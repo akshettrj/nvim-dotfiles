@@ -1,0 +1,5 @@
+packer_compiled.lua
+lua-language-server
+lua/languages/
+lua/old/
+lua/lsp/
