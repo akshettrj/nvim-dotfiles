@@ -33,6 +33,8 @@ o.expandtab = true
 -- Completion Moment
 o.completeopt = "menuone,noselect"
 
+cmd[[set colorcolumn=100]]
+
 -- Fix Syntax on saving
 cmd[[
 set title

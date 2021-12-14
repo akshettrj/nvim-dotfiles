@@ -1,4 +1,6 @@
-require'telescope'.setup{
+local ts = require('telescope')
+
+ts.setup{
   defaults = {
     vimgrep_arguments = {
       'rg',
@@ -23,6 +25,17 @@ require'telescope'.setup{
   }
 }
 
+-- ts.load_extension 'bookmarks'
+--
+-- ts.setup{
+--   extensions = {
+--     bookmarks = {
+--       selected_browser = 'brave',
+--       url_open_command = 'brave',
+--     }
+--   }
+-- }
+
 local silent_noremap = {
   noremap = true,
   silent = true
@@ -43,3 +56,7 @@ nsnoremap('<leader>fr', '<CMD>lua require("telescope.builtin").registers()<CR>')
 nsnoremap('<leader>fm', '<CMD>lua require("telescope.builtin").man_pages()<CR>')
 nsnoremap('<leader>f*', '<CMD>lua require("telescope.builtin").grep_string()<CR>')
 nsnoremap('<leader>fc', '<CMD>lua require("telescope.builtin").file_browser{ cwd = "~/.config/" }<CR>')
+
+-- Extensions
+
+nsnoremap('<leader>fB', '<CMD>lua require("telescope").extensions.bookmarks.bookmarks{}<CR>')

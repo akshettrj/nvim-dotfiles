@@ -25,13 +25,13 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>lrn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<leader>lca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<leader>lq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.show()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.show()<CR>', opts)
+  buf_set_keymap('n', '<leader>lq', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   buf_set_keymap('n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   -- buf_set_keymap('n', '<LeftMouse>', '<LeftMouse><cmd>lua vim.lsp.buf.hover({border = "single"})<CR>', opts)
-  buf_set_keymap('n', '<LeftMouse>', '<LeftMouse><cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '<LeftMouse>', '<LeftMouse><cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '<RightMouse>', '<LeftMouse><cmd>lua vim.lsp.buf.definition()<CR>', opts)
 
 end
@@ -41,7 +41,13 @@ end
 require'lspconfig'.clangd.setup {
   capabilities = capabilities,
   on_attach = on_attach,
-  cmd = {"clangd", "--background-index", "--cross-file-rename"},
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--cross-file-rename",
+    "--clang-tidy",
+    "--completion-style=bundled"
+  },
   -- root_dir = vim.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git")
 }
 
@@ -56,7 +62,18 @@ require'lspconfig'.tsserver.setup{
 
 require'lspconfig'.pyright.setup {
   capabilities = capabilities,
-  on_attach = on_attach
+  on_attach = on_attach,
+  cmd = { "pyright-langserver", "--stdio" },
+  filetypes = { "python" },
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "workspace",
+        useLibraryCodeForTypes = true,
+      }
+    }
+  }
 }
 
 -- CSS
@@ -74,6 +91,16 @@ require'lspconfig'.bashls.setup {
 }
 
 require'lspconfig'.dockerls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach
+}
+
+require'lspconfig'.gopls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach
+}
+
+require'lspconfig'.vimls.setup {
   capabilities = capabilities,
   on_attach = on_attach
 }
@@ -192,6 +219,8 @@ add("~/.local/share/nvim/site/pack/packer/opt/*")
 add("~/.local/share/nvim/site/pack/packer/start/*")
 
 require'lspconfig'.sumneko_lua.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
   -- delete root from workspace to make sure we don't trigger duplicate warnings
   on_new_config = function(config, root)

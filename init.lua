@@ -4,7 +4,7 @@ require('packer_plugin')
 -- My Personal Settings
 require('settings')
 
-require('languages.tex')
+-- require('languages.tex')
 
 -- Plugin Settings
 require('nvim_cmp_plugin')
@@ -19,7 +19,9 @@ require('firenvim_plugin')
 require('which_key_plugin')
 require('gitsigns_plugin')
 require('contextprint_plugin')
-require('copilot')
+require('copilot_plugin')
+require('jupyter_ascending_plugin')
+require('toggleterm_nvim_plugin')
 -- require('dc_presence_plugin')
 
 require('luasnip_plugin')

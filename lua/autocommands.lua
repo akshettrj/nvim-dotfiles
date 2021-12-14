@@ -31,3 +31,9 @@ augroup END
 vim.cmd[[
 autocmd BufEnter * setlocal fo-=c fo-=r fo-=o
 ]]
+
+-- Current line highlight in insert mode
+vim.cmd[[
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
+]]

@@ -1,3 +1,4 @@
+-- local path = require "plenary.path"
 -- For treesitter position
 --[[
 local ts_utils = require'nvim-treesitter.ts_utils'
@@ -56,10 +57,10 @@ end
 
 -- https://github.com/nvim
 
-local function total_words()
-  return string.format("tw:%d", vim.fn.wordcount().words)
-end
-
+-- local function total_words()
+--   return string.format("tw:%d", vim.fn.wordcount().words)
+-- end
+--
 local function total_visual_words()
   local vwc = vim.fn.wordcount().visual_words
   if (vwc ~= nil) then
@@ -84,6 +85,7 @@ local function check_dir()
 end
 ]]
 
+
 require'lualine'.setup{
   options = {
     theme = 'gruvbox',
@@ -103,7 +105,8 @@ require'lualine'.setup{
     },
     lualine_c = {
       'filename',
-      require('nvim-treesitter').statusline,
+      -- require('nvim-treesitter').statusline,
+      -- vim.b.terminal_number,
       -- 'filesize',
       -- "require'lsp-status'.status()"
       -- {currdir},
@@ -111,6 +114,7 @@ require'lualine'.setup{
       -- {fnc_loc}
     },
     lualine_x = {
+      -- {file_permissions},
       'encoding',
       'fileformat',
       'filetype',

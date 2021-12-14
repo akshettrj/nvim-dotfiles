@@ -17,10 +17,10 @@ end
 nsnoremap('<Leader>nh', ':noh<CR>')
 
 -- Navigating splits
-nsnoremap('<C-h>', '<C-w><C-h>')
-nsnoremap('<C-j>', '<C-w><C-j>')
-nsnoremap('<C-k>', '<C-w><C-k>')
-nsnoremap('<C-l>', '<C-w><C-l>')
+nsnoremap('<A-h>', '<C-w><C-h>')
+nsnoremap('<A-j>', '<C-w><C-j>')
+nsnoremap('<A-k>', '<C-w><C-k>')
+nsnoremap('<A-l>', '<C-w><C-l>')
 -- Resizing the splits
 nsnoremap('<C-Up>',    ':resize +2<CR>')
 nsnoremap('<C-Down>',  ':resize -2<CR>')

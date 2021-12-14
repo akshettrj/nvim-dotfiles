@@ -27,12 +27,15 @@ g.vimwiki_list = {
     template_path = '~/iiith/notes/templates',
     template_default = 'def_template',
     template_ext = '.html',
-    custom_wiki2html_arg = '-b "https://akshettrj.github.io/iiith-notes/"',
+    -- custom_wiki2html_arg = '-b "https://akshettrj.github.io/iiith-notes/"',
     nested_syntaxes = {
       python = 'python',
       cpp = 'cpp',
       c = 'c',
       sh = 'zsh',
+      bash = 'zsh',
+      zsh = 'zsh',
+      tex = 'tex'
     },
     syntax = 'default',
     auto_tags = 1,

@@ -45,12 +45,13 @@ return require('packer').startup(function()
 
   use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
   use {"nvim-treesitter/playground", run = ":TSUpdate"}
-  use {"sheerun/vim-polyglot"}                 -- Better Syntax Highlight
   use {"kelwin/vim-smali"}                 -- Better Syntax Highlight
 
 
   -- Indentation
   use { "tpope/vim-sleuth" }
+  -- use { "andymass/vim-matchup" }
+  -- use {"sheerun/vim-polyglot"}                 -- Better Syntax Highlight
   use { "lukas-reineke/indent-blankline.nvim" }
 
   -- Color Schemes
@@ -65,31 +66,34 @@ return require('packer').startup(function()
   -- Productivity
   use { "vimwiki/vimwiki" }
   use { "folke/which-key.nvim" }
-  use { "rstacruz/vim-closer" }
-  use { "untitled-ai/jupyter_ascending.vim" }
+  use { "rstacruz/vim-closer" }   -- Smart closing of parenthesis
+  use { "untitled-ai/jupyter_ascending.vim" }   -- Edit Jupyter Notebook from Vim
   use { "polarmutex/contextprint.nvim" }
   use { "tpope/vim-surround" }
   use { "tpope/vim-repeat" }
-  -- use { "github/copilot.vim" }
+  use { "github/copilot.vim" }
   use { "L3MON4D3/LuaSnip" }
   use { "saadparwaiz1/cmp_luasnip" }
   use { "numToStr/Comment.nvim" }
   use { "tpope/vim-fugitive" }
+  use { "TimUntersberger/neogit" }
   use { "norcalli/nvim-colorizer.lua" }
   use { "akinsho/bufferline.nvim" }
   use { "lewis6991/gitsigns.nvim" }
   use { "rafamadriz/friendly-snippets" }
   -- use { "itchyny/vim-cursorword" }
   -- use { "puremourning/vimspector" }
+  -- use { "akinsho/toggleterm.nvim" }
 
   -- Telescope
   use { "nvim-lua/popup.nvim" }
   use { "nvim-lua/plenary.nvim" }
   use { "nvim-telescope/telescope.nvim" }
-  use { "nvim-telescope/telescope-media-files.nvim" }
-  use { "nvim-telescope/telescope-fzf-native.nvim" }
-  use { "nvim-telescope/telescope-frecency.nvim" }
-  use { "nvim-telescope/telescope-symbols.nvim" }
+  -- use { "nvim-telescope/telescope-media-files.nvim" }
+  -- use { "nvim-telescope/telescope-fzf-native.nvim" }
+  -- use { "nvim-telescope/telescope-frecency.nvim" }
+  -- use { "nvim-telescope/telescope-symbols.nvim" }
+  -- use { "dhruvmanila/telescope-bookmarks.nvim" }
 
   use { "kyazdani42/nvim-web-devicons", opt=true }
   use { "nvim-lualine/lualine.nvim" }

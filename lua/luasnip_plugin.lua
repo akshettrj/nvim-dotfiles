@@ -62,21 +62,24 @@ local latex_snips = {
   s({trig="begin"}, {
       t { "\\begin{" }, i (1, "argument"), t { "}", "" },
       i (2, "body"),
-      t { "", "\\end{" }, d (nil, function(args, snip, old_state, initial_text)
+      t { "", "\\end{" }, d (nil, function(args)
         return t (args[1][1])
       end, {1}, "arg"), t { "}" }, i(0)
     })
 }
 
 ls.snippets = {
-  tex = {
-    s("ls", {
-        t({"\\begin{itemize}",
-          "\t\\item "}), i(1), d(2, rec_ls, {}),
-      t({"", "\\end{itemize}"}), i(0)
-    }),
-  },
-  vimwiki = latex_snips,
+  -- tex = {
+  --   s("ls", {
+  --       t({"\\begin{itemize}",
+  --         "\t\\item "}), i(1), d(2, rec_ls, {}),
+  --     t({"", "\\end{itemize}"}), i(0)
+  --   }),
+  -- },
+  -- vimwiki = latex_snips
 }
 
-require("luasnip/loaders/from_vscode").lazy_load()
+require ("luasnip/loaders/from_vscode").lazy_load()
+require "snippets.luasnip.utils"
+require "snippets.luasnip.latex"
+require "snippets.luasnip.helpers"
