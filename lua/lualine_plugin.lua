@@ -61,10 +61,11 @@ end
 --   return string.format("tw:%d", vim.fn.wordcount().words)
 -- end
 --
+
 local function total_visual_words()
   local vwc = vim.fn.wordcount().visual_words
   if (vwc ~= nil) then
-    return string.format("vw:%d", vwc)
+    return string.format("wc:%d", vwc)
   else
     return ""
   end
@@ -89,8 +90,8 @@ end
 require'lualine'.setup{
   options = {
     theme = 'gruvbox',
-    -- section_separators = {},
-    -- component_separators = { left = '|', right = '|' }
+    section_separators = {},
+    component_separators = { left = '|', right = '|' }
   },
   extensions = {
   },
@@ -105,7 +106,16 @@ require'lualine'.setup{
     },
     lualine_c = {
       'filename',
-      -- require('nvim-treesitter').statusline,
+      --[[ function()
+        opts = {
+          indicator_size = 100,
+          type_patterns = {'function','method'},
+          transform_fn = function(line) return line:gsub('%s*[%[%(%{]*%s*$', '') end,
+          -- transform_fn = function(line) return line end,
+          separator = '::'
+        }
+        return require('nvim-treesitter').statusline(opts)
+      end, ]]
       -- vim.b.terminal_number,
       -- 'filesize',
       -- "require'lsp-status'.status()"

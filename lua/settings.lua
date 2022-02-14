@@ -1,45 +1,35 @@
 local o = vim.o
-local cmd = vim.cmd
-local g = vim.g
+local g = vim.opt_global
 
--- g.zipPlugin_ext = "*.zip,*.jar,*.xpi,*.ja,*.war,*.ear,*.celzip, *.oxt,*.kmz,*.wsz,*.xap,*.docx,*.docm,*.dotx,*.dotm,*.potx,*.potm, *.ppsx,*.ppsm,*.pptx,*.pptm,*.ppam,*.sldx,*.thmx,*.xlam,*.xlsx,*.xlsm, *.xlsb,*.xltx,*.xltm,*.xlam,*.crtx,*.vdw,*.glox,*.gcsx,*.gqsx,*.epub"
+-- Editor Options (:set)
 
--- Line Numbering
-o.number = true
-o.relativenumber = true
+o.number = true; o.relativenumber = true  -- Line Numbering
+o.encoding = 'utf-8'                      -- Encoding
+o.mouse = 'a'                             -- Enable Mouse
+o.wrap = true; o.linebreak = true         -- Don't break words
+o.splitbelow = true; o.splitright = true  -- Splits open in intuitive direction
+o.completeopt = "menuone,noselect"        -- Completion Moment
+o.foldmarker = "<<<,>>>"                  -- Folds
+o.foldmethod = "marker"                   -- Folds
+o.colorcolumn = '100'                     -- Highlight 100th Column
+o.title = true                            -- Show Title in X11 window name
+o.showmode = false                        -- Don't show current mode (insert,normal etc.)
+o.virtualedit = 'block'                   -- Move beyond EOL in block mode (select full rectangle)
+o.signcolumn = 'yes'                      -- Keep signcolumn always open
 
--- Encoding
-o.encoding = 'utf-8'
-
--- Enable Mouse
-o.mouse = 'a'
-
--- Don't break words
-o.wrap = true
-o.linebreak = true
-
--- Splits open in intuitive direction
-o.splitbelow = true
-o.splitright = true
-
--- Tabbing and spacing
+-- [[ Tabbing and spacing
 o.tabstop = 4
 o.shiftwidth = 4
 o.expandtab = true
 -- o.smarttab = true
 -- o.smartindent = true
 -- o.autoindent = true
+--]]
 
--- Completion Moment
-o.completeopt = "menuone,noselect"
 
-cmd[[set colorcolumn=100]]
+-- Global Options (:setglobal)
 
--- Fix Syntax on saving
-cmd[[
-set title
-setglobal termguicolors
+g.termguicolors = true                    --  Enable 24-bit RGB color
 
-" No need of mode showing now
-set noshowmode
-]]
+
+vim.cmd[[ let mapleader = " " ]]

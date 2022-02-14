@@ -1,14 +1,30 @@
 -- Key Mappings
 
+--[[
+Different Modes Available
+
+         Mode  | Norm | Ins | Cmd | Vis | Sel | Opr | Term | Lang | ~
+Command        +------+-----+-----+-----+-----+-----+------+------+ ~
+[nore]map      | yes  |  -  |  -  | yes | yes | yes |  -   |  -   |
+n[nore]map     | yes  |  -  |  -  |  -  |  -  |  -  |  -   |  -   |
+[nore]map!     |  -   | yes | yes |  -  |  -  |  -  |  -   |  -   |
+i[nore]map     |  -   | yes |  -  |  -  |  -  |  -  |  -   |  -   |
+c[nore]map     |  -   |  -  | yes |  -  |  -  |  -  |  -   |  -   |
+v[nore]map     |  -   |  -  |  -  | yes | yes |  -  |  -   |  -   |
+x[nore]map     |  -   |  -  |  -  | yes |  -  |  -  |  -   |  -   |
+s[nore]map     |  -   |  -  |  -  |  -  | yes |  -  |  -   |  -   |
+o[nore]map     |  -   |  -  |  -  |  -  |  -  | yes |  -   |  -   |
+t[nore]map     |  -   |  -  |  -  |  -  |  -  |  -  | yes  |  -   |
+l[nore]map     |  -   | yes | yes |  -  |  -  |  -  |  -   | yes  |
+
+--]]
+
 local silent_noremap = {
   noremap = true,
   silent = true
 }
 
-------------------------
------ Normal Mode ------
-------------------------
-
+-- n-maps <<<
 local function nsnoremap(lhs, rhs)
   vim.api.nvim_set_keymap('n', lhs, rhs, silent_noremap)
 end
@@ -52,18 +68,32 @@ nsnoremap('<S-TAB>', ':bprevious<CR>')
 nsnoremap('Y', 'y$')
 
 nsnoremap('<C-s>', ':w<CR>')
+-- >>>
 
--- Jupyter Notebooks
-nsnoremap('<leader>jx', ':silent call jupyter_ascending#execute()<CR>')
-nsnoremap('<leader>ja', ':silent call jupyter_ascending#execute_all()<CR>')
-nsnoremap('<leader>js', ':silent call jupyter_ascending#sync()<CR>')
+-- i-maps <<<
+local function isnoremap(lhs, rhs)
+  vim.api.nvim_set_keymap('i', lhs, rhs, silent_noremap)
+end
 
-------------------------
------ Visual Mode ------
-------------------------
+-- [[ Easy Undo
+isnoremap (',', ',<C-g>u')
+isnoremap ('.', '.<C-g>u')
+isnoremap ('?', '?<C-g>u')
+isnoremap ('!', '!<C-g>u')
+isnoremap ('<Space>', '<Space><C-g>u')
+-- ]]
 
-local function vsnoremap(key, map)
-  vim.api.nvim_set_keymap('v', key, map, silent_noremap)
+-- [[ Move around in insertmode
+isnoremap ('<A-k>', '<Up>')
+isnoremap ('<A-j>', '<Down>')
+isnoremap ('<A-h>', '<Left>')
+isnoremap ('<A-l>', '<Right>')
+-- ]]
+-- >>>
+
+-- v-maps <<<
+local function vsnoremap(lhs, rhs)
+  vim.api.nvim_set_keymap('v', lhs, rhs, silent_noremap)
 end
 
 -- Using system clipboard
@@ -77,25 +107,19 @@ vsnoremap('>', '>gv')
 -- Move around lines in Visual Mode
 vsnoremap('<A-k>', ':move \'<-2<CR>gv-gv')
 vsnoremap('<A-j>', ':move \'>+1<CR>gv-gv')
+-- >>>
 
-------------------------
------ Insert Mode ------
-------------------------
-
-local function isnoremap(lhs, rhs)
-  vim.api.nvim_set_keymap('i', lhs, rhs, silent_noremap)
+-- x-maps <<<
+local function xsnoremap(lhs, rhs)
+  vim.api.nvim_set_keymap('x', lhs, rhs, silent_noremap)
 end
 
--- For Copilot
-vim.api.nvim_set_keymap('i', '<C-J>', 'copilot#Accept("<CR>")', {silent=true,script=true,expr=true})
+xsnoremap('p', 'pgvy')
+-- >>>
 
--- isnoremap("P{", "{}")
 
-------------------------
------ Mouse Mapping ----
-------------------------
-
--- Calculator
+--[[
+-- Calculator Example
 
 vim.cmd[[
 function! EvalEquation()
@@ -108,3 +132,4 @@ command! EvalEquation call EvalEquation()
 
 inoremap <C-g>= <ESC>:EvalEquation<CR>A
 ]]
+--]]

@@ -6,33 +6,33 @@ local on_attach = function(client, bufnr)
 
   require'lsp_signature'.on_attach()
 
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  -- local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   -- Mappings.
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap=true, silent=true, buffer=0 }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover({border="single"})<CR>', opts)
-  buf_set_keymap('n', 'gim', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   -- buf_set_keymap('n', '<leader>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   -- buf_set_keymap('n', '<leader>lwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   -- buf_set_keymap('n', '<leader>lwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<leader>lD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<leader>lrn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>lca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.show()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.show()<CR>', opts)
-  buf_set_keymap('n', '<leader>lq', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  buf_set_keymap('n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   -- buf_set_keymap('n', '<LeftMouse>', '<LeftMouse><cmd>lua vim.lsp.buf.hover({border = "single"})<CR>', opts)
-  buf_set_keymap('n', '<LeftMouse>', '<LeftMouse><cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', '<RightMouse>', '<LeftMouse><cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+  vim.keymap.set('n', 'K', function() vim.lsp.buf.hover({border="single"}) end, opts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+  vim.keymap.set('n', '<leader>lD', vim.lsp.buf.type_definition, opts)
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+  vim.keymap.set('n', '<leader>lca', vim.lsp.buf.code_action, opts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+  vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+  vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, opts)
+  vim.keymap.set('n', '<leader>lf', vim.lsp.buf.formatting, opts)
+  vim.keymap.set('n', '<LeftMouse>', '<LeftMouse><cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  vim.keymap.set('n', '<RightMouse>', '<LeftMouse><cmd>lua vim.lsp.buf.definition()<CR>', opts)
 
 end
 
@@ -73,7 +73,8 @@ require'lspconfig'.pyright.setup {
         useLibraryCodeForTypes = true,
       }
     }
-  }
+  },
+  -- single_file_support = false
 }
 
 -- CSS
@@ -110,37 +111,7 @@ require'lspconfig'.vimls.setup {
 -- require'flutter-tools'.setup{}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- Lua
+-- Lua <<<
 
 -- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
 USER = vim.fn.expand('$USER')
@@ -203,12 +174,17 @@ table.insert(path, "lua/?/init.lua")
 local function add(lib)
   for _, p in pairs(vim.fn.expand(lib, false, true)) do
     p = vim.loop.fs_realpath(p)
-    library[p] = true
+    if p ~= nil then
+      library[p] = true
+    end
   end
 end
 
 -- add runtime
-add("$VIMRUNTIME")
+local runtimes = vim.api.nvim_list_runtime_paths()
+for _,runtime in ipairs(runtimes) do
+  add(runtime)
+end
 
 -- add your config
 add("~/.config/nvim")
@@ -217,6 +193,11 @@ add("~/.config/nvim")
 -- if you're not using packer, then you might need to change the paths below
 add("~/.local/share/nvim/site/pack/packer/opt/*")
 add("~/.local/share/nvim/site/pack/packer/start/*")
+
+local awesome_config = (os.getenv("PWD") == "/home/akshettrj/.config/awesome")
+if awesome_config  then
+  add("/usr/share/awesome/lib")
+end
 
 require'lspconfig'.sumneko_lua.setup {
   capabilities = capabilities,
@@ -240,7 +221,7 @@ require'lspconfig'.sumneko_lua.setup {
       completion = { callSnippet = "Both" },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = { "vim" }
+        globals = awesome_config and { "vim", "use", "awesome", "client", "root" } or { "vim", "use", "client", "root" }
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -254,3 +235,5 @@ require'lspconfig'.sumneko_lua.setup {
     }
   }
 }
+
+-- >>>

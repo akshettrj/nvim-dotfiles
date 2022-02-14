@@ -1,31 +1,34 @@
--- Packer Plugin Manager
-require('packer_plugin')
+local files =
+{
+  'custom_runtimes',    -- Plugin Development
+  'packer_plugin',      -- Plugin Manager
+  'settings',           -- Personal Settings
+  -- PLUGINS <<<
+  'nvim_cmp_plugin',
+  'bufferline_plugin',
+  'indentline_plugin',
+  'lualine_plugin',
+  'telescope_plugin',
+  'treesitter_plugin',
+  'vimwiki_plugin',
+  'comment',
+  'firenvim_plugin',
+  'which_key_plugin',
+  'gitsigns_plugin',
+  'contextprint_plugin',
+  'copilot_plugin',
+  'jupyter_ascending_plugin',
+  'toggleterm_nvim_plugin',
+  'luasnip_plugin',
+  'ts-manipulator_plugin',
+  -- 'dc_presence_plugin',
+  -- >>>
+  'colorscheme',
+  'autocommands',
+  'keymappings',
+  'my_lsp_config',
+}
 
--- My Personal Settings
-require('settings')
-
--- require('languages.tex')
-
--- Plugin Settings
-require('nvim_cmp_plugin')
-require('bufferline_plugin')
-require('indentline_plugin')
-require('lualine_plugin')
-require('telescope_plugin')
-require('treesitter_plugin')
-require('vimwiki_plugin')
-require('comment')
-require('firenvim_plugin')
-require('which_key_plugin')
-require('gitsigns_plugin')
-require('contextprint_plugin')
-require('copilot_plugin')
-require('jupyter_ascending_plugin')
-require('toggleterm_nvim_plugin')
--- require('dc_presence_plugin')
-
-require('luasnip_plugin')
-require('colorscheme')
-require('autocommands')
-require('keymappings')
-require('my_lsp_config')
+for _, plugin in ipairs(files) do
+  require(plugin)
+end

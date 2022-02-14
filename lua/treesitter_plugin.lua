@@ -1,6 +1,8 @@
 require'nvim-treesitter.configs'.setup{
   ensure_installed = "all",
-  ignore_install = {},
+  ignore_install = {
+    "phpdoc",       -- Randi compile hi nahi hota
+  },
   highlight = {
     enable = true,
     disable = {'vimwiki'},
