@@ -1,5 +1,5 @@
 require("indent_blankline").setup {
-    char = "»",
+    -- char = "»",
     buftype_exclude = {
         "terminal",
         "help"

@@ -1,9 +1,12 @@
 --[[
 let g:vimwiki_list = [{ 'path': '~/work/notes/vimWiki', 'path_html': '~/work/notes/vimWiki/html' }]
 
+]]
+vim.cmd[[
 let g:vimwiki_hl_headers = 1 	" Color the headings
 let g:vimwiki_hl_cb_checked = 2	" Highligh completed TODOs
 let g:vimwiki_url_maxsave = 0
+let g:vimwiki_html_header_numbering=0
 ]]
 local g = vim.g
 

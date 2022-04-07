@@ -32,6 +32,7 @@ return require('packer').startup(function()
   use { "nvim-lua/lsp-status.nvim" }
   use { "onsails/lspkind-nvim" }
   use { "ray-x/lsp_signature.nvim" }
+  use { "williamboman/nvim-lsp-installer" }
   -- >>>
 
   -- Autocompletion ( CMP ) <<<
@@ -54,6 +55,7 @@ return require('packer').startup(function()
   -- Treesitter <<<
   use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
   use {"nvim-treesitter/playground", run = ":TSUpdate"}
+  use {"ThePrimeagen/jvim.nvim"}
   -- >>>
 
   -- Indentation & other Syntax Highlighting <<<
@@ -95,6 +97,7 @@ return require('packer').startup(function()
   use { "lewis6991/gitsigns.nvim" }
   use { "rafamadriz/friendly-snippets" }
   use { "ferrine/md-img-paste.vim" }
+  use { "akinsho/toggleterm.nvim" }
   -- use { "itchyny/vim-cursorword" }
   -- use { "puremourning/vimspector" }
   -- >>>
@@ -115,7 +118,5 @@ return require('packer').startup(function()
   -- use { "andweeb/presence.nvim" }
   -- use { "glacambre/firenvim", run = function() vim.fn['firenvim#install'](69) end }
   -- >>>
-
-  use { "akinsho/toggleterm.nvim" }
 
 end)
