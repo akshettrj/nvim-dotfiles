@@ -69,6 +69,41 @@ local latex_snips = {
 }
 
 ls.snippets = {
+    all = {
+    s({trig="cp"}, {
+      t({"#include \"bits/stdc++.h\""}),
+      t({"using namespace std;"}),
+      t({"#define max(a, b) (a < b ? b : a)"}),
+      t({"#define min(a, b) ((a > b) ? b : a)"}),
+      t({"#define rep(i, begin, end) for (__typeof(end) i = (begin) - ((begin) > (end)); i != (end) - ((begin) > (end)); i += 1 - 2 * ((begin) > (end)))"}),
+      t({"#define INF 1000000000000000003"}),
+      t({"typedef long long int ll;"}),
+      t({"typedef vector<ll> vi;"}),
+      t({"typedef vector<vector<ll>> vvi;"}),
+      t({"#define ff first"}),
+      t({"#define ss second"}),
+      t({"#define pb push_back"}),
+      t({"#define eb emplace_back"}),
+      t({"#define pob pop_back"}),
+      t({"#define mp make_pair"}),
+      t({"#define mt make_tuple"}),
+      t({"#define endl \"\n\""}),
+      t({"void solve()"}),
+      t({"{"}),
+             i(1, "this"),
+      t({"}"}),
+      t({""}),
+      t({"int main()"}),
+      t({"{"}),
+      t({"    ios::sync_with_stdio(false);"}),
+      t({"    cin.tie(nullptr);"}),
+      t({"    cout.tie(nullptr);"}),
+      t({"    int t;cin >> t;while(t--)"}),
+      t({"    solve();"}),
+      t({"    return 0;"}),
+      t({"}"}),
+    })
+  },
   -- tex = {
   --   s("ls", {
   --       t({"\\begin{itemize}",
@@ -82,4 +117,5 @@ ls.snippets = {
 require ("luasnip/loaders/from_vscode").lazy_load()
 require "snippets.luasnip.utils"
 require "snippets.luasnip.latex"
+require "snippets.luasnip.cpp"
 require "snippets.luasnip.helpers"

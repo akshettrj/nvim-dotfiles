@@ -17,7 +17,7 @@ cmp.setup({
       require('luasnip').lsp_expand(args.body)
     end
   },
-  mapping = {
+  mapping = cmp.mapping.preset.insert({
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-e>'] = cmp.mapping.abort(),
@@ -44,7 +44,7 @@ cmp.setup({
       end
     end, { "i", "s" }),
     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-  },
+  }),
   sources = {
     { name = 'npm', keyword_length = 4 },
     { name = 'luasnip'},
@@ -58,8 +58,6 @@ cmp.setup({
     { name = 'buffer', keyword_length = 5, max_item_count = 4 },
     { name = 'emoji' },
     { name = 'spell', keyword_length = 5 },
-  },
-  documentation = {
   },
   experimental = {
     native_menu = false,
