@@ -159,7 +159,7 @@ xnoremap <silent> p pgvy
 let g:gruvbox_termcolors = 256
 let g:gruvbox_transparent_background = 1
 let g:gruvbox_improved_warnings = 1
-let g:gruvbox_improved_strings = 0
+" let g:gruvbox_improved_strings = 1
 let g:gruvbox_italic = 0
 let g:gruvbox_underline = 1
 let g:gruvbox_undercurl = 1
