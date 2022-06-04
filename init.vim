@@ -668,6 +668,25 @@ lspconfig.rust_analyzer.setup{
 }
 --]]
 
+
+
+
+
+-- LuaSnip / Snippets
+---[[
+local ls = require('luasnip')
+
+ls.config.setup{
+    history = true,
+    updateevents = "TextChanged,TextChangedI",
+    region_check_events = "CursorHold,CursorHoldI",
+    enable_autosnippets = nil,
+    ext_opts = nil,
+}
+
+require('luasnip.loaders.from_vscode').lazy_load()
+--]]
+
 EOF
 
 "
