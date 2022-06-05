@@ -15,7 +15,7 @@ Plug 'kdheepak/cmp-latex-symbols'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'hrsh7th/nvim-cmp'
 
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': 'TSUpdate' }
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'ThePrimeagen/jvim.nvim'
 
 Plug 'tpope/vim-sleuth'
@@ -29,7 +29,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 
-Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'fatih/vim-go', { 'for': [ 'go', 'rapid', 'gosum' ] }
 
 Plug 'numToStr/Comment.nvim'
 Plug 'rafamadriz/friendly-snippets'
@@ -39,7 +39,7 @@ Plug 'akinsho/toggleterm.nvim'
 Plug 'romgrk/barbar.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', { 'for': [ 'wiki', 'markdown' ] }
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
