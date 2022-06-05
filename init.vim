@@ -641,7 +641,7 @@ lspconfig.clangd.setup{
     },
 }
 
-lspconfig.tsserver.setup{
+lspconfig.pyright.setup{
     capabilities = capabilities,
     on_attach = on_attach,
     cmd = { 'pyright-langserver', '--stdio' },
@@ -655,6 +655,11 @@ lspconfig.tsserver.setup{
 	    },
 	},
     },
+}
+
+lspconfig.tsserver.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
 }
 
 lspconfig.gopls.setup{
