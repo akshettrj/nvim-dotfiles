@@ -39,7 +39,7 @@ Plug 'akinsho/toggleterm.nvim'
 Plug 'romgrk/barbar.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 
-Plug 'vimwiki/vimwiki', { 'for': [ 'wiki', 'markdown' ] }
+Plug 'vimwiki/vimwiki'
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -159,7 +159,7 @@ xnoremap <silent> p pgvy
 let g:gruvbox_termcolors = 256
 let g:gruvbox_transparent_background = 1
 let g:gruvbox_improved_warnings = 1
-" let g:gruvbox_improved_strings = 1
+let g:gruvbox_improved_strings = 1
 let g:gruvbox_italic = 0
 let g:gruvbox_underline = 1
 let g:gruvbox_undercurl = 1
@@ -211,6 +211,8 @@ autocmd BufWritePost *.*tex call BuildLatexFiles()
 "
 
 lua << EOF
+local g = vim.g
+
 local silent_noremap = {
     noremap = true,
     silent = true
@@ -692,6 +694,52 @@ ls.config.setup{
 require('luasnip.loaders.from_vscode').lazy_load()
 --]]
 
+-- Vimwiki
+---[[
+g.vimwiki_list = {
+  {
+    name = 'Global Notes',
+    path = '~/work/notes/vimWiki',
+    path_html = '~/work/notes/vimWiki/html',
+    template_path = '~/iiith/notes/templates',
+    template_default = 'def_template',
+    template_ext = '.html',
+    syntax = 'default',
+    ext = '.wiki',
+    auto_toc = 1,
+    auto_tags = 1,
+    auto_export = 0,
+    links_space_char = '_',
+    maxhi = 1,
+  }, {
+    name = 'IIIT Notes 3.1',
+    path = '~/iiith/notes/',
+    path_html = '~/iiith/notes/html',
+    template_path = '~/iiith/notes/templates',
+    template_default = 'def_template',
+    template_ext = '.html',
+    -- custom_wiki2html_arg = '-b "https://akshettrj.github.io/iiith-notes/"',
+    nested_syntaxes = {
+      python = 'python',
+      cpp = 'cpp',
+      c = 'c',
+      sh = 'zsh',
+      bash = 'zsh',
+      zsh = 'zsh',
+      tex = 'tex',
+      json = 'json',
+    },
+    syntax = 'default',
+    auto_tags = 1,
+    ext = '.wiki',
+    auto_export = 1,
+    auto_toc = 1,
+    links_space_char = '_',
+    maxhi = 1,
+  },
+}
+--]]
+
 EOF
 
 "
@@ -703,6 +751,6 @@ let g:vimwiki_hl_cb_checked = 2
 let g:vimwiki_url_maxsave = 0
 let g:vimwiki_html_header_numbering = 0
 let g:vimwiki_listsyms = '✗○◐●✓'
-let g:vimwiki_valid_html_tags = 'b,i,s,u,sub,sup,kbd,br,hr'
+let g:vimwiki_valid_html_tags = 'b,i,s,u,sub,sup,kbd,br,hr,div'
 
 autocmd BufEnter *.wiki :syntax sync fromstart
