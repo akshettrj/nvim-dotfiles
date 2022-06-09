@@ -416,6 +416,7 @@ ts.setup{
     },
 }
 
+nsnoremap('<leader>fR', '<CMD>lua require("telescope.builtin").resume()<CR>')
 nsnoremap('<leader>fe', '<CMD>lua require("telescope").extensions.file_browser.file_browser({ cwd = vim.fn.expand("%:p:h") })<CR>')
 nsnoremap('<leader>fg', '<CMD>lua require("telescope.builtin").git_files{}<CR>')
 nsnoremap('<leader>ff', '<CMD>lua require("telescope.builtin").find_files{ hidden = true }<CR>')
