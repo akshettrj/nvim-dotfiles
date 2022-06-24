@@ -397,7 +397,6 @@ require('gitsigns').setup{
 local ts = require('telescope')
 ts.setup{
     defaults = {
-        initial_mode = "normal",
         vimgrep_arguments = { 'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case' },
         file_ignore_patterns = {
             'node_modules/.*',
