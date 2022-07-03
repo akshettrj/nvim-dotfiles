@@ -500,7 +500,7 @@ cmp.setup{
             --    fallback()
             if luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
-            else
+            elseif fallback ~= nil then
                 fallback()
             end
         end, { 'i', 's' }),
@@ -510,7 +510,7 @@ cmp.setup{
             --     fallback()
             if luasnip.jumpable(-1) then
                 luasnip.jump(-1)
-            else
+            elseif fallback ~= nil then
                 fallback()
             end
         end, { 'i', 's' }),
