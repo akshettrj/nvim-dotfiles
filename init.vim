@@ -103,6 +103,8 @@ autocmd InsertLeave * set nocul
 " Keybindings
 "
 
+nnoremap <silent> <C-s> :w<CR>
+
 "" Navigating Splits
 nnoremap <silent> <A-h> <C-w><C-h>
 nnoremap <silent> <A-j> <C-w><C-j>
