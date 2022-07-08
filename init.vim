@@ -41,6 +41,9 @@ Plug 'nvim-lualine/lualine.nvim'
 
 Plug 'vimwiki/vimwiki'
 
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -61,7 +64,6 @@ set splitbelow splitright
 set completeopt=menuone,noselect
 set foldmarker=<<<,>>>
 set foldmethod=marker
-set colorcolumn=100
 set title
 set noshowmode
 set virtualedit=block
@@ -69,6 +71,9 @@ set signcolumn=yes
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+set laststatus=3
+set winbar=%=%m\ %f
 
 setglobal termguicolors
 
@@ -741,7 +746,32 @@ g.vimwiki_list = {
     auto_toc = 1,
     links_space_char = '_',
     maxhi = 1,
-  },
+  }, {
+    name = 'Interview Prep',
+    path = '~/work/intern_prep/notes',
+    path_html = '~/work/intern_prep/notes/html',
+    template_path = '~/iiith/notes/templates',
+    template_default = 'def_template',
+    template_ext = '.html',
+    -- custom_wiki2html_arg = '-b "https://akshettrj.github.io/iiith-notes/"',
+    nested_syntaxes = {
+      python = 'python',
+      cpp = 'cpp',
+      c = 'c',
+      sh = 'zsh',
+      bash = 'zsh',
+      zsh = 'zsh',
+      tex = 'tex',
+      json = 'json',
+    },
+    syntax = 'default',
+    auto_tags = 1,
+    ext = '.wiki',
+    auto_export = 1,
+    auto_toc = 1,
+    links_space_char = '_',
+    maxhi = 1,
+  }
 }
 --]]
 
