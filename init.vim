@@ -6,6 +6,7 @@ call plug#begin()
 Plug 'neovim/nvim-lspconfig'
 Plug 'onsails/lspkind-nvim'
 Plug 'ray-x/lsp_signature.nvim'
+Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
@@ -90,6 +91,7 @@ augroup cleanup_file
     autocmd BufWritePre * %s/\s\+$//e
     autocmd BufWritePre * %s/\n\+\%$//e
     autocmd BufWritePre * call setpos('.', save_pos)
+    autocmd BufWritePre * lua vim.lsp.buf.format()
 augroup END
 
 augroup highlight_yank
@@ -177,6 +179,38 @@ let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 
 
+" jump to start of line
+function! JumpToStartOfLine()
+
+   let l:CurCol = col(".")
+
+   if l:CurCol == 1
+      normal _
+   else
+      normal 0
+      " call cursor(".", 1)
+   endif
+
+endfunction
+
+" jump to end line
+function! JumpToEndOfLine()
+
+   let l:CurCol = col(".")
+   let l:EndCol = col("$")-1
+
+   if l:CurCol == l:EndCol
+      normal g_
+   else
+      normal $
+      " exec 'call cursor(".", '.l:EndCol.')'
+   endif
+
+endfunction
+
+nnoremap H :call JumpToStartOfLine()<CR>
+nnoremap L :call JumpToEndOfLine()<CR>
+
 
 
 "
@@ -205,7 +239,6 @@ nnoremap <silent> <A-p> <CMD>call ZathuraOpenPdf()<CR>
 nnoremap <silent> <A-b> <CMD>call BuildLatexFiles()<CR>
 
 autocmd BufWritePost *.*tex call BuildLatexFiles()
-
 
 
 
@@ -616,6 +649,8 @@ require('Comment').setup{
 
 -- LSP
 ---[[
+require('lsp_lines').setup()
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -635,7 +670,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '[e', vim.diagnostic.goto_prev, opts)
     vim.keymap.set('n', ']e', vim.diagnostic.goto_next, opts)
     vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, opts)
-    vim.keymap.set('n', '<leader>lf', vim.lsp.buf.formatting, opts)
+    vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, opts)
     vim.keymap.set('n', '<LeftMouse>', '<LeftMouse><CMD>lua vim.diagnostic.open_float()<CR>', opts)
     vim.keymap.set('n', '<RightMouse>', '<LeftMouse><CMD>lua vim.lsp.buf.definition()<CR>', opts)
 end
@@ -670,6 +705,28 @@ lspconfig.pyright.setup{
     },
 }
 
+lspconfig.efm.setup {
+    on_attach = on_attach,
+    flags = {
+        debounce_text_changes = 150,
+    },
+    init_options = {
+        documentFormatting = true,
+    },
+    filetypes = {"python"},
+    settings = {
+        rootMarkers = {".git/", "requirements.txt"},
+        languages = {
+            python = {
+                {
+                    formatCommand = "black --quiet -",
+                    formatStdin = true,
+                },
+            },
+        },
+    },
+}
+
 lspconfig.tsserver.setup{
     capabilities = capabilities,
     on_attach = on_attach,
@@ -678,12 +735,17 @@ lspconfig.tsserver.setup{
 lspconfig.gopls.setup{
     capabilities = capabilities,
     on_attach = on_attach,
+    settings = {
+        gopls = {
+            analyses = {
+                nilness = true,
+                unusedparams = true,
+                unusedwrite = true,
+                useany = true,
+            },
+        },
+    },
 }
-
--- lspconfig.rust_analyzer.setup{
---     capabilities = capabilities,
---     on_attach = on_attach,
--- }
 
 lspconfig.taplo.setup{
     capabilities = capabilities,
@@ -691,11 +753,12 @@ lspconfig.taplo.setup{
 }
 
 local opts = {
-    tools = { -- rust-tools options
+    -- rust-tools options
+    tools = {
         autoSetHints = true,
         hover_with_actions = true,
         inlay_hints = {
-            show_parameter_hints = false,
+            show_parameter_hints = true,
             parameter_hints_prefix = "",
             other_hints_prefix = "",
         },
@@ -703,20 +766,30 @@ local opts = {
 
     -- all the opts to send to nvim-lspconfig
     -- these override the defaults set by rust-tools.nvim
-    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
+    -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+    -- https://rust-analyzer.github.io/manual.html#features
     server = {
-        -- on_attach is a callback called when the language server attachs to the buffer
         capabilities = capabilities,
         on_attach = on_attach,
         settings = {
-            -- to enable rust-analyzer settings visit:
-            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
             ["rust-analyzer"] = {
-                -- enable clippy on save
+                assist = {
+                    importEnforceGranularity = true,
+                    importPrefix = "crate"
+                },
+                cargo = {
+                    allFeatures = true
+                },
                 checkOnSave = {
+                    -- default: `cargo check`
                     command = "clippy"
                 },
-            }
+                inlayHints = {
+                    typeHints = {
+                        enable = false,
+                    },
+                },
+            },
         }
     },
 }
