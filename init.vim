@@ -649,7 +649,7 @@ require('Comment').setup{
 
 -- LSP
 ---[[
-require('lsp_lines').setup()
+-- require('lsp_lines').setup()
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -756,7 +756,7 @@ local opts = {
     -- rust-tools options
     tools = {
         autoSetHints = true,
-        hover_with_actions = true,
+        -- hover_with_actions = true,
         inlay_hints = {
             show_parameter_hints = true,
             parameter_hints_prefix = "",
