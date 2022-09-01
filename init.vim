@@ -166,16 +166,22 @@ xnoremap <silent> p pgvy
 "
 
 "" Gruvbox
-let g:gruvbox_termcolors = 256
-let g:gruvbox_transparent_background = 1
-let g:gruvbox_improved_warnings = 1
-let g:gruvbox_improved_strings = 1
-let g:gruvbox_italic = 0
-let g:gruvbox_underline = 1
-let g:gruvbox_undercurl = 1
-let g:gruvbox_italicize_comments = 0
-let g:gruvbox_invert_tabline = 0
-let g:gruvbox_contrast_dark = 'hard'
+lua << EOF
+require("gruvbox").setup({
+  undercurl = true,
+  underline = true,
+  bold = true,
+  italic = false,
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  invert_intend_guides = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "hard", -- can be "hard", "soft" or empty string
+  overrides = {},
+})
+EOF
 colorscheme gruvbox
 
 
