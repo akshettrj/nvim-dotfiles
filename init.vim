@@ -42,6 +42,7 @@ Plug 'romgrk/barbar.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 " Plug 'chentoast/marks.nvim'
 Plug 'SmiteshP/nvim-navic'
+Plug 'mbbill/undotree'
 
 Plug 'vimwiki/vimwiki'
 
@@ -161,6 +162,9 @@ vnoremap <silent> <A-j> :move '>+1<CR>gv-gv
 
 
 xnoremap <silent> p pgvy
+
+"" Undo Tree
+nnoremap <silent> <F5> :UndotreeToggle<CR>
 
 
 "
