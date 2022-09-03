@@ -40,6 +40,8 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'akinsho/toggleterm.nvim'
 Plug 'romgrk/barbar.nvim'
 Plug 'nvim-lualine/lualine.nvim'
+" Plug 'chentoast/marks.nvim'
+Plug 'SmiteshP/nvim-navic'
 
 Plug 'vimwiki/vimwiki'
 

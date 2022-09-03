@@ -50,12 +50,15 @@ require('colorizer').setup {}
 
 -- Indent
 ---[[
+vim.opt.list = true
+vim.opt.listchars:append "eol:↴"
 require('indent_blankline').setup {
     -- char = '»',
     buftype_exclude = { 'terminal', 'help' },
     show_first_indent_level = false,
     use_treesitter = true,
     show_trailing_blankline_indent = false,
+    show_end_of_line = true,
 }
 --]]
 
@@ -80,6 +83,8 @@ local function total_visual_words()
     end
 end
 
+local navic = require('nvim-navic')
+
 require('lualine').setup {
     options = {
         theme = 'gruvbox',
@@ -98,6 +103,7 @@ require('lualine').setup {
         },
         lualine_c = {
             'filename',
+            { navic.get_location, cond = navic.is_available },
         },
         lualine_x = {
             'encoding',
@@ -406,6 +412,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 local on_attach = function(client, bufnr)
     require('lsp_signature').on_attach()
     local opts = { noremap = true, silent = true, buffer = true }
+    require('nvim-navic').attach(client, bufnr)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
