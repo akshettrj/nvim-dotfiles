@@ -673,4 +673,14 @@ g.vimwiki_list = {
         maxhi = 1,
     }
 }
+
+
+local opts = { noremap = true }
+vim.keymap.set('n', '<leader>ma', require("harpoon.mark").add_file, opts)
+vim.keymap.set('n', '<leader>mt', require("harpoon.ui").toggle_quick_menu, opts)
+vim.keymap.set('n', '<leader>m1', function() require("harpoon.ui").nav_file(1) end, opts)
+vim.keymap.set('n', '<leader>m2', function() require("harpoon.ui").nav_file(2) end, opts)
+vim.keymap.set('n', '<leader>m3', function() require("harpoon.ui").nav_file(3) end, opts)
+vim.keymap.set('n', '<leader>mn', require("harpoon.ui").nav_next, opts)
+vim.keymap.set('n', '<leader>mp', require("harpoon.ui").nav_prev, opts)
 -- ]]

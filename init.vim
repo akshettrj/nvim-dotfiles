@@ -43,6 +43,7 @@ Plug 'nvim-lualine/lualine.nvim'
 " Plug 'chentoast/marks.nvim'
 Plug 'SmiteshP/nvim-navic'
 Plug 'mbbill/undotree'
+Plug 'ThePrimeagen/harpoon'
 
 Plug 'vimwiki/vimwiki'
 
