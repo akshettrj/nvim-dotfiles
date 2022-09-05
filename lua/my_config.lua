@@ -675,12 +675,19 @@ g.vimwiki_list = {
 }
 
 
-local opts = { noremap = true }
+opts = { noremap = true }
 vim.keymap.set('n', '<leader>ma', require("harpoon.mark").add_file, opts)
 vim.keymap.set('n', '<leader>mt', require("harpoon.ui").toggle_quick_menu, opts)
 vim.keymap.set('n', '<leader>m1', function() require("harpoon.ui").nav_file(1) end, opts)
 vim.keymap.set('n', '<leader>m2', function() require("harpoon.ui").nav_file(2) end, opts)
 vim.keymap.set('n', '<leader>m3', function() require("harpoon.ui").nav_file(3) end, opts)
+vim.keymap.set('n', '<leader>m4', function() require("harpoon.ui").nav_file(4) end, opts)
+vim.keymap.set('n', '<leader>m5', function() require("harpoon.ui").nav_file(5) end, opts)
+vim.keymap.set('n', '<leader>m6', function() require("harpoon.ui").nav_file(6) end, opts)
+vim.keymap.set('n', '<leader>m7', function() require("harpoon.ui").nav_file(7) end, opts)
+vim.keymap.set('n', '<leader>m8', function() require("harpoon.ui").nav_file(8) end, opts)
+vim.keymap.set('n', '<leader>m9', function() require("harpoon.ui").nav_file(9) end, opts)
+vim.keymap.set('n', '<leader>m0', function() require("harpoon.ui").nav_file(10) end, opts)
 vim.keymap.set('n', '<leader>mn', require("harpoon.ui").nav_next, opts)
 vim.keymap.set('n', '<leader>mp', require("harpoon.ui").nav_prev, opts)
 -- ]]
