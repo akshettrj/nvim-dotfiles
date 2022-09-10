@@ -411,8 +411,10 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local on_attach = function(client, bufnr)
     require('lsp_signature').on_attach()
+    if client.name ~= "efm" then
+        require('nvim-navic').attach(client, bufnr)
+    end
     local opts = { noremap = true, silent = true, buffer = true }
-    require('nvim-navic').attach(client, bufnr)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
