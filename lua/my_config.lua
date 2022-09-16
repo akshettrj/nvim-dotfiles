@@ -75,7 +75,7 @@ local function spell_mode_on()
 end
 
 local function total_visual_words()
-    local vwc = vim.fn.wordcount().visual_word
+    local vwc = vim.api.nvim_eval("wordcount()")["visual_words"]
     if (vwc ~= nil) then
         return "wc:" .. vwc
     else
