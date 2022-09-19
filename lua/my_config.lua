@@ -366,6 +366,10 @@ require('nvim-treesitter.configs').setup {
     matchup = { enable = true },
     markid = { enable = true },
 }
+
+require('treesitter-context').setup {
+    enable = true,
+}
 --]]
 
 
