@@ -188,6 +188,7 @@ require('gitsigns').setup {
 -- Telescope
 ---[[
 local ts = require('telescope')
+local lga_actions = require('telescope-live-grep-args.actions')
 ts.setup {
     defaults = {
         vimgrep_arguments = { 'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column',
@@ -206,7 +207,17 @@ ts.setup {
         },
     },
     extensions = {
-        file_browser = {},
+        file_browser = {
+            hijack_netrw = true,
+        },
+        live_grep_args = {
+            auto_quoting = true,
+            mappings = {
+                i = {
+                    ["<C-k>"] = lga_actions.quote_prompt(),
+                },
+            },
+        },
     },
 }
 
@@ -215,7 +226,7 @@ nsnoremap('<leader>fe',
     '<CMD>lua require("telescope").extensions.file_browser.file_browser({ cwd = vim.fn.expand("%:p:h") })<CR>')
 nsnoremap('<leader>fg', '<CMD>lua require("telescope.builtin").git_files{show_untracked = true }<CR>')
 nsnoremap('<leader>ff', '<CMD>lua require("telescope.builtin").find_files{ hidden = true }<CR>')
-nsnoremap('<leader>fl', '<CMD>lua require("telescope.builtin").live_grep()<CR>')
+nsnoremap('<leader>fl', '<CMD>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>')
 nsnoremap('<leader>fb', '<CMD>lua require("telescope.builtin").buffers()<CR>')
 nsnoremap('<leader>fh', '<CMD>lua require("telescope.builtin").help_tags()<CR>')
 nsnoremap('<leader>fd', '<CMD>lua require("telescope.builtin").lsp_workspace_diagnostics()<CR>')
