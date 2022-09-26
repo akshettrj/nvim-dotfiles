@@ -676,8 +676,10 @@ g.vimwiki_list = {
         maxhi = 1,
     },
 }
+-- ]]
 
-
+-- Harpoon
+--- [[
 opts = { noremap = true }
 vim.keymap.set('n', '<leader>ma', require("harpoon.mark").add_file, opts)
 vim.keymap.set('n', '<leader>mt', require("harpoon.ui").toggle_quick_menu, opts)
