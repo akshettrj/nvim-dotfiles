@@ -268,7 +268,10 @@ nnoremap <silent> <A-b> <CMD>call BuildLatexFiles()<CR>
 
 autocmd BufWritePost *.*tex call BuildLatexFiles()
 
+"" Custom Commands
 
+command! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
+command! FormatJSON :%!python3 -m json.tool
 
 
 
