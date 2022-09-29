@@ -11,8 +11,7 @@ end
 
 -- Bufferline
 ---[[
-require('bufferline').setup()
-vim.g.bufferline = {
+require('bufferline').setup {
     animation = false,
     auto_hide = false,
     tabpages = true,
