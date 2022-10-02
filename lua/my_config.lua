@@ -601,9 +601,14 @@ lspconfig.sumneko_lua.setup({
     on_attach = on_attach
 })
 
+local credentials = require("credentials")
+print(credentials.grammarly_client_id)
 lspconfig.grammarly.setup({
     cmd = { "grammarly-languageserver", "--stdio" },
     filetypes = { "markdown", "text" },
+    init_options = {
+        clientId = credentials.grammarly_client_id,
+    },
 })
 --]]
 
