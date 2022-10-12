@@ -50,6 +50,7 @@ Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'untitled-ai/jupyter_ascending.vim'
 
 Plug 'vimwiki/vimwiki'
+Plug 'lervag/vimtex'
 
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
@@ -295,3 +296,18 @@ let g:vimwiki_listsyms = '✗○◐●✓'
 let g:vimwiki_valid_html_tags = 'b,i,s,u,sub,sup,kbd,br,hr,div'
 
 autocmd BufEnter *.wiki :syntax sync fromstart
+
+"
+" VimTex
+"
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_quickfix_mode = 0
+let g:vimtex_mappings_enabled = 0
+let g:vimtex_log_ignore = [
+   \ 'Underfull',
+   \ 'Overfull',
+   \ 'specifier changed to',
+   \ 'Token not allowed in a PDF string',
+   \ ]
+let g:vimtext_context_pdf_viewer = 1
+let g:vimtex_context_pdf_viewer = 'okular'
