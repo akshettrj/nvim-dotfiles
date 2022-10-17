@@ -37,6 +37,7 @@ Plug 'simrat39/rust-tools.nvim', { 'for': [ 'rust' ] }
 
 Plug 'numToStr/Comment.nvim'
 Plug 'rafamadriz/friendly-snippets'
+Plug 'iurimateus/luasnip-latex-snippets.nvim'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'akinsho/toggleterm.nvim'
