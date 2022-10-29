@@ -515,9 +515,21 @@ lspconfig.gopls.setup {
                 unusedparams = true,
                 unusedwrite = true,
                 useany = true,
+                assign = true,
+                atomic = true,
+                bools = true,
+                cgocall = true,
+                erroras = true,
+                fieldalignment = true,
+                printf = true,
             },
         },
     },
+}
+
+lspconfig.golangci_lint_ls.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
 }
 
 lspconfig.taplo.setup {
