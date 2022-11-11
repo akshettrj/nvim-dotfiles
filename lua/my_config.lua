@@ -758,7 +758,21 @@ vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>")
 vim.keymap.set("n", "<leader>du", ":lua require'dapui'.toggle()<CR>")
 
 require('nvim-dap-virtual-text').setup()
-require('dap-go').setup()
 require('dapui').setup()
 require('telescope').load_extension('dap')
+
+-- Launch dap-ui automatically when debugging starts/stops
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.after.event_initialized["dapui_config"] = function()
+    dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+    dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+    dapui.close()
+end
+
+-- Language Specific Extensions
+require('dap-go').setup()
 -- ]]
