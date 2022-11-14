@@ -1,3 +1,4 @@
-lua-language-server/
+/lua-language-server/
 credentials.lua
-spell/
+/spell/
+/debuggers/

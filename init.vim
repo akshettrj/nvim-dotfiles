@@ -50,6 +50,8 @@ Plug 'mbbill/undotree'
 Plug 'ThePrimeagen/harpoon'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'untitled-ai/jupyter_ascending.vim'
+Plug 'petertriho/nvim-scrollbar'
+Plug 'nvim-zh/colorful-winsep.nvim'
 
 Plug 'vimwiki/vimwiki'
 Plug 'lervag/vimtex'

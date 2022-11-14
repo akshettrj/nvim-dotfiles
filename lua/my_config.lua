@@ -39,6 +39,11 @@ nsnoremap("<S-Tab>", "<CMD>BufferPrevious<CR>")
 --]]
 
 
+require('scrollbar').setup()
+require('scrollbar.handlers.gitsigns').setup()
+
+
+require('colorful-winsep').setup()
 
 -- Colorizer
 ---[[
