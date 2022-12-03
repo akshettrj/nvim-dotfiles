@@ -588,7 +588,7 @@ require('rust-tools').setup(opts)
 
 -- This will be the path towards your sumneko folder. This is subjective
 local sumneko_root_path = os.getenv("HOME") ..
-    "/.config/nvim/lua-language-server"
+    "/.config/nvim/lsp/lua-language-server"
 local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 lspconfig.sumneko_lua.setup({
     cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
@@ -762,12 +762,45 @@ vim.keymap.set("n", "<leader>lp", ":lua require'dap'.set_breakpoint(nil, nil, vi
 vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>")
 vim.keymap.set("n", "<leader>du", ":lua require'dapui'.toggle()<CR>")
 
+local dap, dapui = require("dap"), require("dapui")
 require('nvim-dap-virtual-text').setup()
 require('dapui').setup()
 require('telescope').load_extension('dap')
 
+-- Language Specific Extensions
+require('dap-go').setup()
+
+
+-- C/C++/Rust Debugger
+dap.adapters.codelldb = {
+    type = 'server',
+    port = "${port}",
+    executable = {
+        command = '/usr/bin/codelldb',
+        args = { "--port", "${port}" },
+    }
+}
+
+dap.configurations.cpp = {
+    {
+        name = "Launch file",
+        type = "codelldb",
+        request = "launch",
+        program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = true,
+        stdio = { "input.txt", nil, nil },
+    },
+}
+
+dap.configurations.c = dap.configurations.cpp
+dap.configurations.rust = dap.configurations.cpp
+
+
+
 -- Launch dap-ui automatically when debugging starts/stops
-local dap, dapui = require("dap"), require("dapui")
 dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open()
 end
@@ -778,6 +811,4 @@ dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
 end
 
--- Language Specific Extensions
-require('dap-go').setup()
 -- ]]
