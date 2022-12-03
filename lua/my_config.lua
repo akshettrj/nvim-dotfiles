@@ -51,6 +51,8 @@ require('colorizer').setup {}
 --]]
 
 
+require('yode-nvim').setup({})
+
 
 -- Indent
 ---[[
