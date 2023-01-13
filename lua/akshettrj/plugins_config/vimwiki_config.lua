@@ -1,3 +1,9 @@
+vim.g.vimwiki_hl_headers = 1
+vim.g.vimwiki_hl_cb_checked = 2
+vim.g.vimwiki_url_maxsave = 0
+vim.g.vimwiki_html_header_numbering = 0
+vim.g.vimwiki_valid_html_tags = "b,i,s,u,sub,sup,kbd,br,hr,div"
+
 vim.g.vimwiki_list = {
     {
         name = "General Notes",
