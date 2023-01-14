@@ -6,9 +6,9 @@ vim.keymap.set("n", "<A-l>", "<C-w><C-l>", { silent = true })
 
 
 -- Resizing splits
-vim.keymap.set("n", "<C-Up>",    ":resize +2<CR>", { silent = true })
-vim.keymap.set("n", "<C-Down>",  ":resize -2<CR>")
-vim.keymap.set("n", "<C-Left>",  ":vertical resize +2<CR>", { silent = true })
+vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { silent = true })
+vim.keymap.set("n", "<C-Down>", ":resize -2<CR>")
+vim.keymap.set("n", "<C-Left>", ":vertical resize +2<CR>", { silent = true })
 vim.keymap.set("n", "<C-Right>", ":vertical resize -2<CR>", { silent = true })
 
 
@@ -25,6 +25,8 @@ vim.keymap.set({ "n", "v" }, "<Leader>p", [["+p]], { silent = true })
 vim.keymap.set("n", "n", "nzzzv", { silent = true })
 vim.keymap.set("n", "N", "Nzzzv", { silent = true })
 vim.keymap.set("n", "G", "Gzzzv", { silent = true })
+vim.keymap.set("n", "%", "%zzzv", { silent = true })
+vim.keymap.set("n", "``", "``zzzv", { silent = true })
 
 
 -- Moving around in insert mode
@@ -63,7 +65,7 @@ vim.keymap.set("n", "H", function()
 end, { silent = true })
 vim.keymap.set("n", "L", function()
     local current_column = vim.fn.col(".")
-    local end_column = vim.fn.col("$")-1
+    local end_column = vim.fn.col("$") - 1
     if current_column == end_column then
         vim.cmd [[normal g_]]
     else

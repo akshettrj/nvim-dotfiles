@@ -52,6 +52,7 @@ vim.cmd [[ Plug 'tpope/vim-eunuch' ]]
 vim.cmd [[ Plug 'nvim-telescope/telescope.nvim' ]]
 vim.cmd [[ Plug 'nvim-telescope/telescope-file-browser.nvim' ]]
 vim.cmd [[ Plug 'nvim-telescope/telescope-live-grep-args.nvim' ]]
+vim.cmd [[ Plug 'nvim-telescope/telescope-dap.nvim' ]]
 
 
 -- Treesitter
@@ -79,5 +80,13 @@ vim.cmd [[ Plug 'molleweide/LuaSnip-snippets.nvim' ]]
 
 -- Language Specific
 vim.cmd [[ Plug 'fatih/vim-go', { 'for': [ 'go', 'rapid', 'gosum' ] } ]]
+
+
+-- Debuggers
+vim.cmd [[ Plug 'mfussenegger/nvim-dap' ]]
+vim.cmd [[ Plug 'leoluz/nvim-dap-go', { 'for': [ 'go', 'rapid', 'gosum' ] } ]]
+vim.cmd [[ Plug 'mfussenegger/nvim-dap-python', { 'for': [ 'python' ] } ]]
+vim.cmd [[ Plug 'rcarriga/nvim-dap-ui' ]]
+vim.cmd [[ Plug 'theHamsta/nvim-dap-virtual-text' ]]
 
 vim.fn["plug#end"]()

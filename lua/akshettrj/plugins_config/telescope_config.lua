@@ -61,6 +61,10 @@ if telescope.extensions.file_browser ~= nil then
 end
 
 
+if utils.is_module_available("telescope._extensions.dap") then
+    require("telescope").load_extension("dap")
+end
+
 vim.keymap.set("n", "<Leader>fR", telescope_builtin.resume, { silent = true })
 
 vim.keymap.set("n", "<Leader>fg", function()

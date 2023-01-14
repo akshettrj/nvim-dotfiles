@@ -13,3 +13,7 @@ end
 if utils.is_module_available("lspconfig") then
     require("akshettrj.lsp")
 end
+
+if utils.is_module_available("dap") then
+    require("akshettrj.dap")
+end
