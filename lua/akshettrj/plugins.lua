@@ -31,6 +31,7 @@ vim.cmd [[ Plug 'hrsh7th/nvim-cmp' ]]
 vim.cmd [[ Plug 'romgrk/barbar.nvim' ]]
 vim.cmd [[ Plug 'lukas-reineke/indent-blankline.nvim' ]]
 vim.cmd [[ Plug 'nvim-lualine/lualine.nvim' ]]
+vim.cmd [[ Plug 'petertriho/nvim-scrollbar' ]]
 
 
 -- Colors & Highlighting
@@ -66,6 +67,7 @@ vim.cmd [[ Plug 'untitled-ai/jupyter_ascending.vim' ]]
 vim.cmd [[ Plug 'vimwiki/vimwiki' ]]
 vim.cmd [[ Plug 'tpope/vim-dadbod' ]]
 vim.cmd [[ Plug 'kristijanhusak/vim-dadbod-ui' ]]
+vim.cmd [[ Plug 'ThePrimeagen/jvim.nvim' ]]
 
 
 -- Snippets

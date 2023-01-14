@@ -52,5 +52,9 @@ if utils.is_module_available("luasnip") then
     require("akshettrj.plugins_config.luasnip_config")
 end
 
+if utils.is_module_available("scrollbar") then
+    require("akshettrj.plugins_config.scrollbar_config")
+end
+
 require("akshettrj.plugins_config.jupyter_ascending_config")
 require("akshettrj.plugins_config.vimwiki_config")
