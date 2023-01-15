@@ -1,3 +1,7 @@
+if not pcall(require, "gruvbox") then
+    return
+end
+
 require("gruvbox").setup({
     undercurl            = true,
     underline            = true,

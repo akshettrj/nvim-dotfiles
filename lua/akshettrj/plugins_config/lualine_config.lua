@@ -1,3 +1,7 @@
+if not pcall(require, "lualine") then
+    return
+end
+
 local utils = require("akshettrj.utils")
 
 local lualine_a = {
@@ -18,7 +22,7 @@ local lualine_z = {
     "location",
 }
 
-if utils.is_module_available("nvim-navic") then
+if pcall(require, "nvim-navic") then
     local navic = require("nvim-navic")
     table.insert(lualine_c, { navic.get_location, cond = navic.is_available })
 end

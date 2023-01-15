@@ -1,3 +1,7 @@
+if not pcall(require, "colorful-winsep") then
+    return
+end
+
 require("colorful-winsep").setup({
     -- highlight = {
     --     bg = "#16161E",

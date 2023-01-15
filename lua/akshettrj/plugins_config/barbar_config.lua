@@ -1,3 +1,7 @@
+if not pcall(require, "bufferline") then
+    return
+end
+
 require("bufferline").setup({
     animation = false,
     auto_hide = false,
@@ -5,10 +9,10 @@ require("bufferline").setup({
     closable = true,
     clickable = true,
     diagnostics = {
-        {enabled = true, icon = "ﬀ"}, -- ERROR
-        {enabled = false}, -- WARN
-        {enabled = false}, -- INFO
-        {enabled = true},  -- HINT
+        { enabled = true, icon = "ﬀ" }, -- ERROR
+        { enabled = false }, -- WARN
+        { enabled = false }, -- INFO
+        { enabled = true }, -- HINT
     },
     exclude_ft = {},
     exclude_name = {},
@@ -42,4 +46,4 @@ vim.keymap.set("n", "<A-9>", "<Cmd>BufferGoto 9<CR>", { silent = true })
 vim.keymap.set("n", "<A-0>", "<Cmd>BufferLast<CR>", { silent = true })
 
 -- Utils
-vim.keymap.set("n", "<A-p>", "<Cmd>BufferPin<CR>", { silent = true})
+vim.keymap.set("n", "<A-p>", "<Cmd>BufferPin<CR>", { silent = true })

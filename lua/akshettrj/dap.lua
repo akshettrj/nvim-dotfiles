@@ -1,4 +1,7 @@
-local utils = require("akshettrj.utils")
+if not pcall(require, "dap") then
+    return
+end
+
 local dap = require("dap")
 
 vim.keymap.set("n", "<F5>", dap.continue)
@@ -13,7 +16,7 @@ vim.keymap.set("n", "<Leader>dB", function()
     dap.set_breakpoint(vim.fn.input("Breakpoint Condition: "))
 end)
 
-if utils.is_module_available("dapui") then
+if pcall(require, "dapui") then
     local dapui = require("dapui")
 
     dapui.setup()
@@ -32,14 +35,14 @@ if utils.is_module_available("dapui") then
     end
 end
 
-if utils.is_module_available("nvim-dap-virtual-text") then
+if pcall(require, "nvim-dap-virtual-text") then
     require("nvim-dap-virtual-text").setup()
 end
 
-if utils.is_module_available("dap-go") then
+if pcall(require, "dap-go") then
     require("dap-go").setup()
 end
 
-if utils.is_module_available("dap-python") then
+if pcall(require, "dap-python") then
     require("dap-python").setup("~/.config/nvim/debuggers/debugpy/bin/python")
 end

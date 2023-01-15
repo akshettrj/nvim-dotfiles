@@ -1,6 +1,4 @@
-local utils = require("akshettrj.utils")
-
-if not utils.is_module_available("jvim") then
+if not pcall(require, "jvim") then
     return
 end
 

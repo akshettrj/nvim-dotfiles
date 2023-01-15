@@ -1,6 +1,9 @@
-local utils = require("akshettrj.utils")
+if not pcall(require, "cmp") then
+    return
+end
+
 local cmp = require("cmp")
-local luasnip_available = utils.is_module_available("luasnip")
+local luasnip_available = pcall(require, "luasnip")
 
 cmp.setup({
     snippet = {
@@ -65,9 +68,9 @@ cmp.setup({
     },
     formatting = {
         format = function(entry, vim_item)
-            if utils.is_module_available("lspkind") then
+            if pcall(require, "lspkind") then
                 vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
-        end
+            end
             vim_item.menu = ({
                 npm = "",
                 buffer = "﬘",

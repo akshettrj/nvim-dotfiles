@@ -1,13 +1,16 @@
-local utils = require("akshettrj.utils")
+if not pcall(require, "luasnip") then
+    return
+end
+
 local ls = require("luasnip")
 
-if utils.is_module_available("luasnip-snippets") then
+if pcall(require, "luasnip-snippets") then
     require("luasnip-snippets").load_snippets()
 end
 
 require("luasnip.loaders.from_vscode").lazy_load() -- "rafamadriz/friendly-snippets"
 
-if utils.is_module_available("luasnip-latex-snippets") then
+if pcall(require, "luasnip-latex-snippets") then
     require("luasnip-latex-snippets").setup()
 end
 

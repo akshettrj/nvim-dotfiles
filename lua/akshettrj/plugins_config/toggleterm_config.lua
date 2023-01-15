@@ -1,3 +1,7 @@
+if not pcall(require, "toggleterm") then
+    return
+end
+
 require("toggleterm").setup({
     size = function(term)
         if term.direction == "horizontal" then

@@ -80,6 +80,7 @@ vim.cmd [[ Plug 'molleweide/LuaSnip-snippets.nvim' ]]
 
 -- Language Specific
 vim.cmd [[ Plug 'fatih/vim-go', { 'for': [ 'go', 'rapid', 'gosum' ] } ]]
+vim.cmd [[ Plug 'simrat39/rust-tools.nvim', { 'for': [ 'rust', 'toml' ] } ]]
 
 
 -- Debuggers

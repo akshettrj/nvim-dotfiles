@@ -1,3 +1,7 @@
+if not pcall(require, "telescope") then
+    return
+end
+
 local utils = require("akshettrj.utils")
 local telescope = require("telescope")
 local telescope_builtin = require("telescope.builtin")
@@ -8,7 +12,7 @@ local extensions = {
     },
 }
 
-if utils.is_module_available("telescope-live-grep-args.actions") then
+if pcall(require, "telescope-live-grep-args.actions") then
     extensions.live_grep_args = {
         auto_quoting = true,
         mappings = {
@@ -61,7 +65,7 @@ if telescope.extensions.file_browser ~= nil then
 end
 
 
-if utils.is_module_available("telescope._extensions.dap") then
+if pcall(require, "telescope._extensions.dap") then
     require("telescope").load_extension("dap")
 end
 

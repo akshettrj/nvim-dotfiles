@@ -1,3 +1,7 @@
+if not pcall(require, "nvim-navic") then
+    return
+end
+
 require("nvim-navic").setup({
     icons = {
         File          = " ",

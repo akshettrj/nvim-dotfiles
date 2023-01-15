@@ -1,19 +1,21 @@
-local utils = require("akshettrj.utils")
+if not pcall(require, "lspconfig") then
+    return
+end
+
 local lspconfig = require("lspconfig")
-local uv = vim.loop
 
 local capabilities = nil
-if utils.is_module_available("cmp_nvim_lsp") then
+if pcall(require, "cmp_nvim_lsp") then
     capabilities = require("cmp_nvim_lsp").default_capabilities()
 end
 
 local on_attach = function(client, bufnr)
-    if utils.is_module_available("lsp_signature") then
+    if pcall(require, "lsp_signature") then
         require("lsp_signature").on_attach()
     end
 
     if (client.name ~= "efm") and (client.name ~= "golangci_lint_ls") then
-        if utils.is_module_available("nvim-navic") then
+        if pcall(require, "nvim-navic") then
             require("nvim-navic").attach(client, bufnr)
         end
     end
@@ -219,3 +221,68 @@ lspconfig.sumneko_lua.setup({
         },
     },
 })
+
+if pcall(require, "rust-tools") then
+    local rt = require("rust-tools")
+    local opts = {
+        tools = {
+            executor = require("rust-tools.executors").termopen,
+            on_initialized = nil,
+            reload_workspace_from_cargo_toml = true,
+            inlay_hints = {
+                auto = true,
+                only_current_line = true,
+                show_parameter_hints = true,
+                parameter_hints_prefix = "<- ",
+                other_hints_prefix = "=> ",
+                max_len_align = false,
+                max_len_align_padding = 1,
+                right_align = false,
+                right_align_padding = 7,
+                highlight = "Comment",
+            },
+            hover_actions = {
+                border = {
+                    { "╭", "FloatBorder" },
+                    { "─", "FloatBorder" },
+                    { "╮", "FloatBorder" },
+                    { "│", "FloatBorder" },
+                    { "╯", "FloatBorder" },
+                    { "─", "FloatBorder" },
+                    { "╰", "FloatBorder" },
+                    { "│", "FloatBorder" },
+                },
+                max_width = nil,
+                max_height = nil,
+                auto_focus = false,
+            },
+            crate_graph = {
+                backend = "x11",
+                output = nil,
+                full = true,
+                enabled_graphviz_backends = { "bmp", "cgimage", "canon", "dot",
+                    "gv", "xdot", "xdot1.2", "xdot1.4", "eps", "exr",
+                    "fig", "gd", "gd2", "gif", "gtk", "ico", "cmap",
+                    "ismap", "imap", "cmapx", "imap_np", "cmapx_np",
+                    "jpg", "jpeg", "jpe", "jp2", "json", "json0", "dot_json",
+                    "xdot_json", "pdf", "pic", "pct", "pict", "plain",
+                    "plain-ext", "png", "pov", "ps", "ps2", "psd", "sgi",
+                    "svg", "svgz", "tga", "tiff", "tif", "tk", "vml", "vmlz",
+                    "wbmp", "webp", "xlib", "x11",
+                },
+            },
+        },
+        server = {
+            standalone = true,
+        },
+        dap = {
+            adapter = {
+                type = "executable",
+                command = "lldb-vscode",
+                name = "rt_lldb",
+            },
+        },
+    }
+
+    rt.setup(opts)
+end
