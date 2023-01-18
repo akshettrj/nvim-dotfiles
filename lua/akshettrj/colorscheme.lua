@@ -17,4 +17,4 @@ require("gruvbox").setup({
     overrides            = {},
 })
 
-vim.cmd [[colorscheme gruvbox]]
+vim.cmd.colorscheme("gruvbox")

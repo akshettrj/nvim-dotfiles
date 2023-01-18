@@ -274,6 +274,7 @@ if pcall(require, "rust-tools") then
         },
         server = {
             standalone = true,
+            on_attach = on_attach,
         },
         dap = {
             adapter = {

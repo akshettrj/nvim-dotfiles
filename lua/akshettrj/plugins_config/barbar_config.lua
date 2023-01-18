@@ -46,4 +46,5 @@ vim.keymap.set("n", "<A-9>", "<Cmd>BufferGoto 9<CR>", { silent = true })
 vim.keymap.set("n", "<A-0>", "<Cmd>BufferLast<CR>", { silent = true })
 
 -- Utils
+vim.keymap.set("n", "<A-w>", "<Cmd>BufferClose<CR>", { silent = true })
 vim.keymap.set("n", "<A-p>", "<Cmd>BufferPin<CR>", { silent = true })

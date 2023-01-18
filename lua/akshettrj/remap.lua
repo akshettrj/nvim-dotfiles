@@ -58,7 +58,7 @@ vim.keymap.set("n", "<F4>", ":UndotreeToggle<CR>", { silent = true })
 vim.keymap.set("n", "H", function()
     local current_column = vim.fn.col(".")
     if current_column == 1 then
-        vim.cmd [[normal _]]
+        vim.cmd.normal("_")
     else
         vim.fn.cursor(".", 1)
     end
@@ -67,7 +67,7 @@ vim.keymap.set("n", "L", function()
     local current_column = vim.fn.col(".")
     local end_column = vim.fn.col("$") - 1
     if current_column == end_column then
-        vim.cmd [[normal g_]]
+        vim.cmd.normal("g_")
     else
         vim.fn.cursor(".", end_column)
     end

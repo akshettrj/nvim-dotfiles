@@ -1,93 +1,95 @@
-vim.fn["plug#begin"]()
+local Plug = vim.fn["plug#"]
+
+vim.call("plug#begin")
 
 
 -- Requirements
-vim.cmd [[ Plug 'nvim-tree/nvim-web-devicons' ]]
-vim.cmd [[ Plug 'nvim-lua/popup.nvim' ]]
-vim.cmd [[ Plug 'nvim-lua/plenary.nvim' ]]
+Plug("nvim-tree/nvim-web-devicons")
+Plug("nvim-lua/popup.nvim")
+Plug("nvim-lua/plenary.nvim")
 
 
 -- Colorschemes
-vim.cmd [[ Plug 'ellisonleao/gruvbox.nvim' ]]
+Plug("ellisonleao/gruvbox.nvim", { ["on"] = "colorscheme" })
 
 
 -- LSP
-vim.cmd [[ Plug 'neovim/nvim-lspconfig' ]]
-vim.cmd [[ Plug 'onsails/lspkind.nvim' ]]
-vim.cmd [[ Plug 'ray-x/lsp_signature.nvim' ]]
-vim.cmd [[ Plug 'SmiteshP/nvim-navic' ]]
+Plug("neovim/nvim-lspconfig")
+Plug("onsails/lspkind.nvim")
+Plug("ray-x/lsp_signature.nvim")
+Plug("SmiteshP/nvim-navic")
 
 
 -- Completion
-vim.cmd [[ Plug 'hrsh7th/cmp-nvim-lsp' ]]
-vim.cmd [[ Plug 'hrsh7th/cmp-nvim-lua' ]]
-vim.cmd [[ Plug 'hrsh7th/cmp-nvim-lsp-document-symbol' ]]
-vim.cmd [[ Plug 'hrsh7th/cmp-path' ]]
-vim.cmd [[ Plug 'kdheepak/cmp-latex-symbols' ]]
-vim.cmd [[ Plug 'saadparwaiz1/cmp_luasnip' ]]
-vim.cmd [[ Plug 'hrsh7th/nvim-cmp' ]]
+Plug("hrsh7th/cmp-nvim-lsp")
+Plug("hrsh7th/cmp-nvim-lua")
+Plug("hrsh7th/cmp-nvim-lsp-document-symbol")
+Plug("hrsh7th/cmp-path")
+Plug("kdheepak/cmp-latex-symbols", { ["for"] = { "tex" } })
+Plug("saadparwaiz1/cmp_luasnip")
+Plug("hrsh7th/nvim-cmp")
 
 -- UI
-vim.cmd [[ Plug 'romgrk/barbar.nvim' ]]
-vim.cmd [[ Plug 'lukas-reineke/indent-blankline.nvim' ]]
-vim.cmd [[ Plug 'nvim-lualine/lualine.nvim' ]]
-vim.cmd [[ Plug 'petertriho/nvim-scrollbar' ]]
+Plug("romgrk/barbar.nvim")
+Plug("lukas-reineke/indent-blankline.nvim")
+Plug("nvim-lualine/lualine.nvim")
+Plug("petertriho/nvim-scrollbar")
 
 
 -- Colors & Highlighting
-vim.cmd [[ Plug 'nvim-zh/colorful-winsep.nvim' ]]
-vim.cmd [[ Plug 'norcalli/nvim-colorizer.lua' ]]
+Plug("nvim-zh/colorful-winsep.nvim")
+Plug("norcalli/nvim-colorizer.lua")
 
 
 -- Productivity
-vim.cmd [[ Plug 'lewis6991/gitsigns.nvim' ]]
-vim.cmd [[ Plug 'tpope/vim-sleuth' ]]
-vim.cmd [[ Plug 'tpope/vim-surround' ]]
-vim.cmd [[ Plug 'tpope/vim-repeat' ]]
-vim.cmd [[ Plug 'tpope/vim-fugitive' ]]
-vim.cmd [[ Plug 'tpope/vim-eunuch' ]]
+Plug("lewis6991/gitsigns.nvim")
+Plug("tpope/vim-sleuth") ------ Indentation configuration
+Plug("tpope/vim-surround") ---- Brackets and stuff
+Plug("tpope/vim-repeat") ------ Repeat custom stuff with .
+Plug("tpope/vim-fugitive", { ["on"] = "Git" }) ---- Git
+Plug("tpope/vim-eunuch") ------ Unix helpers
 
 
 -- Telescope
-vim.cmd [[ Plug 'nvim-telescope/telescope.nvim' ]]
-vim.cmd [[ Plug 'nvim-telescope/telescope-file-browser.nvim' ]]
-vim.cmd [[ Plug 'nvim-telescope/telescope-live-grep-args.nvim' ]]
-vim.cmd [[ Plug 'nvim-telescope/telescope-dap.nvim' ]]
+Plug("nvim-telescope/telescope.nvim")
+Plug("nvim-telescope/telescope-file-browser.nvim")
+Plug("nvim-telescope/telescope-live-grep-args.nvim")
+Plug("nvim-telescope/telescope-dap.nvim")
 
 
 -- Treesitter
-vim.cmd [[ Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' } ]]
-vim.cmd [[ Plug 'nvim-treesitter/nvim-treesitter-context' ]]
+Plug("nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
+Plug("nvim-treesitter/nvim-treesitter-context")
 
 
 -- Utilities
-vim.cmd [[ Plug 'numToStr/Comment.nvim' ]]
-vim.cmd [[ Plug 'akinsho/toggleterm.nvim' ]]
-vim.cmd [[ Plug 'mbbill/undotree' ]]
-vim.cmd [[ Plug 'untitled-ai/jupyter_ascending.vim' ]]
-vim.cmd [[ Plug 'vimwiki/vimwiki' ]]
-vim.cmd [[ Plug 'tpope/vim-dadbod' ]]
-vim.cmd [[ Plug 'kristijanhusak/vim-dadbod-ui' ]]
-vim.cmd [[ Plug 'ThePrimeagen/jvim.nvim' ]]
+Plug("numToStr/Comment.nvim")
+Plug("akinsho/toggleterm.nvim")
+Plug("mbbill/undotree")
+Plug("untitled-ai/jupyter_ascending.vim", { ["for"] = { "python" } })
+Plug("vimwiki/vimwiki", { ["on"] = { "VimwikiIndex", "VimwikiUISelect" } })
+Plug("tpope/vim-dadbod", { ["on"] = { "DB", "DBUI", "DBUIToggle" } })
+Plug("kristijanhusak/vim-dadbod-ui", { ["on"] = { "DB", "DBUI", "DBUIToggle" } })
+Plug("ThePrimeagen/jvim.nvim", { ["for"] = "json" })
 
 
 -- Snippets
-vim.cmd [[ Plug 'L3MON4D3/LuaSnip' ]]
-vim.cmd [[ Plug 'rafamadriz/friendly-snippets' ]]
-vim.cmd [[ Plug 'iurimateus/luasnip-latex-snippets.nvim' ]]
-vim.cmd [[ Plug 'molleweide/LuaSnip-snippets.nvim' ]]
+Plug("L3MON4D3/LuaSnip")
+Plug("rafamadriz/friendly-snippets")
+Plug("iurimateus/luasnip-latex-snippets.nvim")
+Plug("molleweide/LuaSnip-snippets.nvim")
 
 
 -- Language Specific
-vim.cmd [[ Plug 'fatih/vim-go', { 'for': [ 'go', 'rapid', 'gosum' ] } ]]
-vim.cmd [[ Plug 'simrat39/rust-tools.nvim', { 'for': [ 'rust', 'toml' ] } ]]
+Plug("fatih/vim-go", { ["for"] = { "go", "rapid", "gosum" } })
+Plug("simrat39/rust-tools.nvim", { ["for"] = { "rust", "toml" } })
 
 
 -- Debuggers
-vim.cmd [[ Plug 'mfussenegger/nvim-dap' ]]
-vim.cmd [[ Plug 'leoluz/nvim-dap-go', { 'for': [ 'go', 'rapid', 'gosum' ] } ]]
-vim.cmd [[ Plug 'mfussenegger/nvim-dap-python', { 'for': [ 'python' ] } ]]
-vim.cmd [[ Plug 'rcarriga/nvim-dap-ui' ]]
-vim.cmd [[ Plug 'theHamsta/nvim-dap-virtual-text' ]]
+Plug("mfussenegger/nvim-dap")
+Plug("leoluz/nvim-dap-go", { ["for"] = { "go", "rapid", "gosum" } })
+Plug("mfussenegger/nvim-dap-python", { ["for"] = { "python" } })
+Plug("rcarriga/nvim-dap-ui")
+Plug("theHamsta/nvim-dap-virtual-text")
 
-vim.fn["plug#end"]()
+vim.call("plug#end")
