@@ -57,7 +57,7 @@ lspconfig.clangd.setup({
 lspconfig.pyright.setup({
     capabilities = capabilities,
     on_attach = on_attach,
-    cmd = { "pyright", "--stdio" },
+    cmd = { "pyright-langserver", "--stdio" },
     filetypes = { "python" },
     settings = {
         python = {
@@ -286,4 +286,8 @@ if pcall(require, "rust-tools") then
     }
 
     rt.setup(opts)
+end
+
+if pcall(require, "mason") then
+    require("mason").setup()
 end

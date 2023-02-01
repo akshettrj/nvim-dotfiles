@@ -16,8 +16,10 @@ Plug("ellisonleao/gruvbox.nvim", { ["on"] = "colorscheme" })
 -- LSP
 Plug("neovim/nvim-lspconfig")
 Plug("onsails/lspkind.nvim")
+Plug("williamboman/mason.nvim")
 Plug("ray-x/lsp_signature.nvim")
 Plug("SmiteshP/nvim-navic")
+Plug("j-hui/fidget.nvim")
 
 
 -- Completion
