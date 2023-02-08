@@ -36,6 +36,7 @@ Plug("romgrk/barbar.nvim")
 Plug("lukas-reineke/indent-blankline.nvim")
 Plug("nvim-lualine/lualine.nvim")
 Plug("petertriho/nvim-scrollbar")
+Plug("gorbit99/codewindow.nvim")
 
 
 -- Colors & Highlighting
@@ -73,6 +74,7 @@ Plug("vimwiki/vimwiki", { ["on"] = { "VimwikiIndex", "VimwikiUISelect" } })
 Plug("tpope/vim-dadbod", { ["on"] = { "DB", "DBUI", "DBUIToggle" } })
 Plug("kristijanhusak/vim-dadbod-ui", { ["on"] = { "DB", "DBUI", "DBUIToggle" } })
 Plug("ThePrimeagen/jvim.nvim", { ["for"] = "json" })
+Plug("ellisonleao/carbon-now.nvim")
 
 
 -- Snippets
@@ -83,7 +85,7 @@ Plug("molleweide/LuaSnip-snippets.nvim")
 
 
 -- Language Specific
-Plug("fatih/vim-go", { ["for"] = { "go", "rapid", "gosum" } })
+-- Plug("fatih/vim-go", { ["for"] = { "go", "rapid", "gosum" } })
 Plug("simrat39/rust-tools.nvim", { ["for"] = { "rust", "toml" } })
 
 

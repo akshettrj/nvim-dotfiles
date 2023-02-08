@@ -21,4 +21,9 @@ vim.opt.laststatus = 3
 vim.opt.winbar = "%=%m %f"
 vim.opt_global.termguicolors = true
 vim.opt.list = true
+vim.opt.fillchars = { eob = " " }
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.lazyredraw = true
+
 vim.g.mapleader = " "
