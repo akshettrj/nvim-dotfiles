@@ -192,7 +192,7 @@ uv.fs_scandir(plugins_path, function(err1, success)
     end
 end) ]]
 
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup({
     cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
     capabilities = capabilities,
     on_attach = on_attach,
