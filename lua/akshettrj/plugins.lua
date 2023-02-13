@@ -51,6 +51,7 @@ Plug("tpope/vim-surround") ---- Brackets and stuff
 Plug("tpope/vim-repeat") ------ Repeat custom stuff with .
 Plug("tpope/vim-fugitive", { ["on"] = "Git" }) ---- Git
 Plug("tpope/vim-eunuch") ------ Unix helpers
+Plug("hoschi/yode-nvim")
 
 
 -- Telescope
