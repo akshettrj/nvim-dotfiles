@@ -20,6 +20,7 @@ local on_attach = function(client, bufnr)
         end
     end
 
+
     local keymap_opts = { silent = true, buffer = true }
 
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, keymap_opts)
@@ -148,6 +149,16 @@ lspconfig.gopls.setup({
                 unusedwrite = true,
                 usesgenerics = true,
             },
+            hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+            },
+            importShortcut = "Both",
         },
     },
 })
@@ -191,7 +202,6 @@ uv.fs_scandir(plugins_path, function(err1, success)
         ::continue::
     end
 end) ]]
-
 lspconfig.lua_ls.setup({
     cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
     capabilities = capabilities,
