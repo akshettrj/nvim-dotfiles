@@ -53,6 +53,9 @@ vim.keymap.set("x", "p", "pgvy", { silent = true })
 -- Undo-tree
 vim.keymap.set("n", "<F4>", ":UndotreeToggle<CR>", { silent = true })
 
+-- Undo on spaces and tabs
+vim.keymap.set("i", "<Space>", "<Space><C-g>u", { silent = true })
+
 
 -- Jump to start/end of line
 vim.keymap.set("n", "H", function()

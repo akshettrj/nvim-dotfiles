@@ -14,7 +14,7 @@ local on_attach = function(client, bufnr)
         require("lsp_signature").on_attach()
     end
 
-    if (client.name ~= "ruff_lsp") and (client.name ~= "golangci_lint_ls") then
+    if (client.name ~= "ruff_lsp") and (client.name ~= "golangci_lint_ls") and (client.name ~= "grammarly") then
         if pcall(require, "nvim-navic") then
             require("nvim-navic").attach(client, bufnr)
         end
