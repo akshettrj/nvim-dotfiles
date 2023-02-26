@@ -14,7 +14,7 @@ local on_attach = function(client, bufnr)
         require("lsp_signature").on_attach()
     end
 
-    if (client.name ~= "efm") and (client.name ~= "golangci_lint_ls") then
+    if (client.name ~= "ruff_lsp") and (client.name ~= "golangci_lint_ls") then
         if pcall(require, "nvim-navic") then
             require("nvim-navic").attach(client, bufnr)
         end
@@ -72,23 +72,13 @@ lspconfig.pyright.setup({
 })
 
 
-lspconfig.efm.setup({
+lspconfig.ruff_lsp.setup({
     capabilities = capabilities,
     on_attach = on_attach,
-    flags = { debounce_text_changes = 150 },
-    init_options = { documentFormatting = true },
+    cmd = { "ruff-lsp" },
     filetypes = { "python" },
-    settings = {
-        rootMarkers = { ".git/", "requirements.txt" },
-        languages = {
-            python = {
-                {
-                    formatCommand = "black --quiet -",
-                    formatStdin = true,
-                },
-            },
-        },
-    },
+    settings = {},
+    single_file_support = true,
 })
 
 
@@ -175,6 +165,16 @@ lspconfig.taplo.setup({
     on_attach = on_attach,
 })
 
+lspconfig.grammarly.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    cmd = { os.getenv("HOME") .. "/.config/nvim/lsp/grammarly/extension/node_modules/.bin/grammarly-languageserver", "--stdio" },
+    filetypes = { "markdown", "text", "pandoc" },
+    init_options = {
+        clientId = 'client_BaDkMgx4X19X9UxxYRCXZo',
+    },
+})
+
 local sumneko_root_path = os.getenv("HOME") .. "/.config/nvim/lsp/lua-language-server"
 local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 
@@ -218,8 +218,8 @@ lspconfig.lua_ls.setup({
             workspace = {
                 library = sumneko_workspace_library,
                 -- adjust these two values if your performance is not optimal
-                maxPreload = 2000,
-                preloadFileSize = 1000,
+                maxPreload = 10000,
+                preloadFileSize = 10000,
             },
             format = {
                 enable = true,

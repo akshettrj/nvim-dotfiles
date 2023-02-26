@@ -9,6 +9,12 @@ Plug("nvim-lua/popup.nvim")
 Plug("nvim-lua/plenary.nvim")
 
 
+-- Pets roaming around (doesn't work currently due to hologram.nvim)
+-- Plug("edluffy/hologram.nvim")
+-- Plug("MunifTanjim/nui.nvim")
+-- Plug("giusgad/pets.nvim")
+
+
 -- Colorschemes
 Plug("ellisonleao/gruvbox.nvim", { ["on"] = "colorscheme" })
 
