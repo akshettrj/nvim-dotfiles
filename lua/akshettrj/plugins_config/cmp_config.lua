@@ -72,19 +72,19 @@ cmp.setup({
                 vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
             end
             vim_item.menu = ({
-                npm = "",
-                buffer = "﬘",
-                nvim_lsp = "",
-                luasnip = "",
-                nvim_lua = "",
-                emoji = "ﲃ",
-                latex_symbols = "",
-                treesitter = "滑",
-                path = "",
-                zsh = "",
-                spell = "暈",
-                rg = "縷",
-            })[entry.source.name]
+                    npm = "",
+                    buffer = "﬘",
+                    nvim_lsp = "",
+                    luasnip = "",
+                    nvim_lua = "",
+                    emoji = "ﲃ",
+                    latex_symbols = "",
+                    treesitter = "滑",
+                    path = "",
+                    zsh = "",
+                    spell = "暈",
+                    rg = "縷",
+                })[entry.source.name]
             return vim_item
         end,
     },

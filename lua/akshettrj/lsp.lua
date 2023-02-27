@@ -169,7 +169,7 @@ lspconfig.grammarly.setup({
     capabilities = capabilities,
     on_attach = on_attach,
     cmd = { os.getenv("HOME") .. "/.config/nvim/lsp/grammarly/extension/node_modules/.bin/grammarly-languageserver", "--stdio" },
-    filetypes = { "markdown", "text", "pandoc" },
+    filetypes = { "markdown", "text", "pandoc", "vimwiki" },
     init_options = {
         clientId = 'client_BaDkMgx4X19X9UxxYRCXZo',
     },
