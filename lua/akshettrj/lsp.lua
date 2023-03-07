@@ -181,7 +181,12 @@ local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 local sumneko_workspace_library = {
     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
     [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-    [vim.fn.expand("/usr/share/awesome/lib")] = true,
+    [vim.fn.expand("/usr/share/awesome/lib/awful")] = true,
+    [vim.fn.expand("/usr/share/awesome/lib/beautiful")] = true,
+    [vim.fn.expand("/usr/share/awesome/lib/gears")] = true,
+    [vim.fn.expand("/usr/share/awesome/lib/menubar")] = true,
+    [vim.fn.expand("/usr/share/awesome/lib/naughty")] = true,
+    [vim.fn.expand("/usr/share/awesome/lib/wibox")] = true,
 }
 
 --[[ local plugins_path = vim.fn.expand("$XDG_DATA_HOME/nvim/plugged")
@@ -285,6 +290,15 @@ if pcall(require, "rust-tools") then
         server = {
             standalone = true,
             on_attach = on_attach,
+            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            settings = {
+                ["rust-analyzer"] = {
+                    procMacro = {
+                        enable = true,
+                        attributes = { enabled = true, }
+                    },
+                },
+            },
         },
         dap = {
             adapter = {
