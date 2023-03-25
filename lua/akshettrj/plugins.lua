@@ -44,6 +44,7 @@ Plug("lukas-reineke/indent-blankline.nvim")
 Plug("nvim-lualine/lualine.nvim")
 Plug("petertriho/nvim-scrollbar")
 Plug("gorbit99/codewindow.nvim")
+Plug("tiagovla/scope.nvim")
 
 
 -- Colors & Highlighting

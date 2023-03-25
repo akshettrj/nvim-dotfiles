@@ -16,7 +16,7 @@ require("bufferline").setup({
     },
     exclude_ft = {},
     exclude_name = {},
-    icons = true,
+    icons = "both",
     icon_custom_colors = false,
     icon_separator_active = "▎",
     icon_separator_inactive = "▎",
