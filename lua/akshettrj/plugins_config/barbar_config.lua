@@ -8,21 +8,30 @@ require("bufferline").setup({
     tabpages = true,
     closable = true,
     clickable = true,
-    diagnostics = {
-        { enabled = true, icon = "ﬀ" }, -- ERROR
-        { enabled = false }, -- WARN
-        { enabled = false }, -- INFO
-        { enabled = true }, -- HINT
-    },
     exclude_ft = {},
     exclude_name = {},
-    icons = "both",
+    icons = {
+        buffer_index = true,
+        filetype = { enabled = true },
+        modified = { button = "●" },
+        pinned = { button = "車" },
+        inactive = {
+            separator = {
+                left = "▎"
+            },
+        },
+        separator = {
+            left = "▎",
+        },
+        diagnostics = {
+            { enabled = true, icon = "ﬀ" }, -- ERROR
+            { enabled = false }, -- WARN
+            { enabled = false }, -- INFO
+            { enabled = true }, -- HINT
+        },
+        button = "",
+    },
     icon_custom_colors = false,
-    icon_separator_active = "▎",
-    icon_separator_inactive = "▎",
-    icon_close_tab = "",
-    icon_close_tab_modified = "●",
-    icon_pinned = "車",
     insert_at_start = false,
     insert_at_end = true,
     maximum_padding = 1,
