@@ -297,6 +297,13 @@ if pcall(require, "rust-tools") then
                         enable = true,
                         attributes = { enabled = true, }
                     },
+                    checkOnSave = {
+                        allFeatures = true,
+                        overrideCommand = {
+                            "cargo", "clippy", "--workspace", "--message-format=json",
+                            "--all-targets", "--all-features", "--no-deps",
+                        }
+                    }
                 },
             },
         },
