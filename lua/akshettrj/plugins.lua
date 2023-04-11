@@ -84,6 +84,7 @@ Plug("tpope/vim-dadbod", { ["on"] = { "DB", "DBUI", "DBUIToggle" } })
 Plug("kristijanhusak/vim-dadbod-ui", { ["on"] = { "DB", "DBUI", "DBUIToggle" } })
 Plug("ThePrimeagen/jvim.nvim", { ["for"] = "json" })
 Plug("ellisonleao/carbon-now.nvim")
+Plug("github/copilot.vim")
 
 
 -- Snippets
