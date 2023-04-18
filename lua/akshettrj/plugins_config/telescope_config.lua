@@ -74,14 +74,27 @@ vim.keymap.set("n", "<Leader>fR", telescope_builtin.resume, { silent = true })
 vim.keymap.set("n", "<Leader>fg", function()
     telescope_builtin.git_files({ show_untracked = true })
 end, { silent = true })
+vim.keymap.set("n", "<A-g>", function()
+    telescope_builtin.git_files({ show_untracked = true })
+end, { silent = true })
 
 vim.keymap.set("n", "<Leader>ff", function()
     telescope_builtin.find_files({ hidden = true })
 end, { silent = true })
+vim.keymap.set("n", "<A-f>", function()
+    telescope_builtin.find_files({ hidden = true })
+end, { silent = true })
 
 vim.keymap.set("n", "<Leader>fb", telescope_builtin.buffers, { silent = true })
+vim.keymap.set("n", "<A-b>", telescope_builtin.buffers, { silent = true })
+
 vim.keymap.set("n", "<Leader>fh", telescope_builtin.help_tags, { silent = true })
+
 vim.keymap.set("n", "<Leader>fr", telescope_builtin.lsp_references, { silent = true })
+vim.keymap.set("n", "<A-r>", telescope_builtin.lsp_references, { silent = true })
+
 vim.keymap.set("n", "<Leader>fE", telescope_builtin.diagnostics, { silent = true })
+
 vim.keymap.set("n", "<Leader>fm", telescope_builtin.man_pages, { silent = true })
-vim.keymap.set("n", "<Leader>f*", telescope_builtin.grep_string, { silent = true })
+
+vim.keymap.set("n", "<A-g>", telescope_builtin.grep_string, { silent = true })
