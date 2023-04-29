@@ -19,6 +19,16 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
 })
 
+if pcall(require, "yapf") then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*.py",
+        group = cleanup_file_group,
+        callback = function()
+            vim.cmd [[Yapf]]
+        end,
+    })
+end
+
 
 highlight_yank_group = vim.api.nvim_create_augroup("highlight_yank", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {

@@ -1,8 +1,7 @@
-if not pcall(require, "dap") then
+local dap_loaded, dap = pcall(require, "dap")
+if not dap_loaded then
     return
 end
-
-local dap = require("dap")
 
 vim.keymap.set("n", "<F5>", dap.continue)
 vim.keymap.set("n", "<Leader>dr", dap.repl.open)
@@ -16,9 +15,8 @@ vim.keymap.set("n", "<Leader>dB", function()
     dap.set_breakpoint(vim.fn.input("Breakpoint Condition: "))
 end)
 
-if pcall(require, "dapui") then
-    local dapui = require("dapui")
-
+local dapui_loaded, dapui = pcall(require, "dapui")
+if dapui_loaded then
     dapui.setup()
     vim.keymap.set("n", "<Leader>du", dapui.toggle)
 
@@ -35,14 +33,17 @@ if pcall(require, "dapui") then
     end
 end
 
-if pcall(require, "nvim-dap-virtual-text") then
-    require("nvim-dap-virtual-text").setup()
+local ndvt_loaded, nvim_dap_virtual_text = pcall(require, "nvim-dap-virtual-text")
+if ndvt_loaded then
+    nvim_dap_virtual_text.setup()
 end
 
-if pcall(require, "dap-go") then
-    require("dap-go").setup()
+local dap_go_loaded, dap_go = pcall(require, "dap-go")
+if dap_go_loaded then
+    dap_go.setup()
 end
 
-if pcall(require, "dap-python") then
-    require("dap-python").setup("~/.config/nvim/debuggers/debugpy/bin/python")
+local dap_python_loaded, dap_python = pcall(require, "dap-python")
+if dap_python then
+    dap_python.setup("~/.config/nvim/debuggers/debugpy/bin/python")
 end

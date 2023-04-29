@@ -19,13 +19,14 @@ Plug("nvim-lua/plenary.nvim")
 Plug("ellisonleao/gruvbox.nvim", { ["on"] = "colorscheme" })
 
 
--- LSP
+-- LSP and formatter
 Plug("neovim/nvim-lspconfig")
 Plug("onsails/lspkind.nvim")
 Plug("williamboman/mason.nvim")
 Plug("ray-x/lsp_signature.nvim")
 Plug("SmiteshP/nvim-navic")
 Plug("j-hui/fidget.nvim")
+Plug("amirali/yapf.nvim", { ["for"] = { "python" } })
 
 
 -- Completion

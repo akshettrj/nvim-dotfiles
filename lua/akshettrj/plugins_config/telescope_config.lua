@@ -96,5 +96,3 @@ vim.keymap.set("n", "<A-r>", telescope_builtin.lsp_references, { silent = true }
 vim.keymap.set("n", "<Leader>fE", telescope_builtin.diagnostics, { silent = true })
 
 vim.keymap.set("n", "<Leader>fm", telescope_builtin.man_pages, { silent = true })
-
-vim.keymap.set("n", "<A-g>", telescope_builtin.grep_string, { silent = true })

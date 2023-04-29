@@ -1,8 +1,9 @@
-if not pcall(require, "gruvbox") then
+local loaded, gruvbox = pcall(require, "gruvbox")
+if not loaded then
     return
 end
 
-require("gruvbox").setup({
+gruvbox.setup({
     undercurl            = true,
     underline            = true,
     bold                 = true,

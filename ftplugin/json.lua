@@ -1,8 +1,7 @@
-if not pcall(require, "jvim") then
+local jvim, loaded = pcall(require, "jvim")
+if loaded then
     return
 end
-
-local jvim = require("jvim")
 
 vim.keymap.set("n", "<Left>", jvim.to_parent, { silent = true })
 vim.keymap.set("n", "<Right>", jvim.descend, { silent = true })
