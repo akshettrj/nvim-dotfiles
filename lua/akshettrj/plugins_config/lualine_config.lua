@@ -5,7 +5,7 @@ end
 local utils = require("akshettrj.utils")
 
 local lualine_a = {
-    { "mode", lower = true },
+    { "mode",             lower = true },
     { utils.spell_mode_on },
 }
 
@@ -29,7 +29,7 @@ end
 
 require("lualine").setup({
     options = {
-        theme = "gruvbox",
+        theme = vim.g.akshettrj_colorscheme,
         section_separators = {},
         component_separators = { left = "|", right = "|" },
     },

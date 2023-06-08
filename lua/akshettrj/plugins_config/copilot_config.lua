@@ -7,4 +7,5 @@ vim.g.copilot_filetypes = {
     python = true,
 }
 
-vim.keymap.set("i", "<C-j>", "copilot#Accept()", { silent = true, script = true, expr = true })
+vim.keymap.set("i", "<C-j>", "copilot#Accept()",
+    { silent = true, script = true, expr = true, replace_keycodes = false })

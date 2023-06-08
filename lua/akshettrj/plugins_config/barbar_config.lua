@@ -3,7 +3,7 @@ if not pcall(require, "bufferline") then
 end
 
 require("bufferline").setup({
-    animation = false,
+    animation = true,
     auto_hide = false,
     tabpages = true,
     closable = true,
@@ -14,7 +14,7 @@ require("bufferline").setup({
         buffer_index = true,
         filetype = { enabled = true },
         modified = { button = "●" },
-        pinned = { button = "車" },
+        pinned = { button = "󰐃" },
         inactive = {
             separator = {
                 left = "▎"
@@ -24,12 +24,15 @@ require("bufferline").setup({
             left = "▎",
         },
         diagnostics = {
-            { enabled = true, icon = "ﬀ" }, -- ERROR
-            { enabled = false }, -- WARN
+            {
+                enabled = true,
+                icon = " ",
+            }, -- ERROR
+            { enabled = true, icon = " " }, -- WARN
             { enabled = false }, -- INFO
-            { enabled = true }, -- HINT
+            { enabled = true, icon = " " }, -- HINT
         },
-        button = "",
+        button = "󱎘",
     },
     icon_custom_colors = false,
     insert_at_start = false,

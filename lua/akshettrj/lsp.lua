@@ -18,6 +18,10 @@ local on_attach = function(client, bufnr)
         if pcall(require, "nvim-navic") then
             require("nvim-navic").attach(client, bufnr)
         end
+
+        if pcall(require, "lsp-inlayhints") then
+            require("lsp-inlayhints").on_attach(client, bufnr)
+        end
     end
 
 
@@ -226,6 +230,10 @@ lspconfig.lua_ls.setup({
                 maxPreload = 10000,
                 preloadFileSize = 10000,
             },
+            hint = {
+                enable = true,
+                await = true,
+            },
             format = {
                 enable = true,
                 defaultConfig = {
@@ -245,16 +253,16 @@ if pcall(require, "rust-tools") then
             on_initialized = nil,
             reload_workspace_from_cargo_toml = true,
             inlay_hints = {
-                auto = true,
-                only_current_line = true,
-                show_parameter_hints = true,
-                parameter_hints_prefix = "<- ",
-                other_hints_prefix = "=> ",
-                max_len_align = false,
-                max_len_align_padding = 1,
-                right_align = false,
-                right_align_padding = 7,
-                highlight = "Comment",
+                auto = false,
+                -- only_current_line = true,
+                -- show_parameter_hints = true,
+                -- parameter_hints_prefix = "<- ",
+                -- other_hints_prefix = "=> ",
+                -- max_len_align = false,
+                -- max_len_align_padding = 1,
+                -- right_align = false,
+                -- right_align_padding = 7,
+                -- highlight = "Comment",
             },
             hover_actions = {
                 border = {

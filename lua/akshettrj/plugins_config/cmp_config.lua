@@ -70,20 +70,49 @@ cmp.setup({
         format = function(entry, vim_item)
             if pcall(require, "lspkind") then
                 vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
+            else
+                local kind_icons = {
+                    Text = "",
+                    Method = "󰆧",
+                    Function = "󰊕",
+                    Constructor = "",
+                    Field = "󰇽",
+                    Variable = "󰂡",
+                    Class = "󰠱",
+                    Interface = "",
+                    Module = "",
+                    Property = "󰜢",
+                    Unit = "",
+                    Value = "󰎠",
+                    Enum = "",
+                    Keyword = "󰌋",
+                    Snippet = "",
+                    Color = "󰏘",
+                    File = "󰈙",
+                    Reference = "",
+                    Folder = "󰉋",
+                    EnumMember = "",
+                    Constant = "󰏿",
+                    Struct = "",
+                    Event = "",
+                    Operator = "󰆕",
+                    TypeParameter = "󰅲",
+                }
+                vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
             end
             vim_item.menu = ({
                     npm = "",
-                    buffer = "﬘",
-                    nvim_lsp = "",
-                    luasnip = "",
+                    buffer = "",
+                    nvim_lsp = "󰘦",
+                    luasnip = "",
                     nvim_lua = "",
-                    emoji = "ﲃ",
-                    latex_symbols = "",
-                    treesitter = "滑",
+                    emoji = "󰞅",
+                    latex_symbols = "",
+                    treesitter = "󰔱",
                     path = "",
                     zsh = "",
-                    spell = "暈",
-                    rg = "縷",
+                    spell = "󰀬",
+                    rg = "󰑑",
                 })[entry.source.name]
             return vim_item
         end,

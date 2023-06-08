@@ -72,5 +72,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
     group = buf_enter_group,
     callback = function()
         vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+        -- vim.cmd [[ syntax match nonascii "[^\x00-\xFF]" ]]
+        -- vim.cmd [[ highlight nonascii guifg=NONE guibg=red ]]
     end,
 })

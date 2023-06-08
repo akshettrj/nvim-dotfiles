@@ -22,6 +22,7 @@ vim.g.vimwiki_list = {
             tex = "tex",
             json = "json",
             go = "go",
+            sparql = "sparql",
         },
         syntax = "default",
         ext = ".wiki",
@@ -30,7 +31,8 @@ vim.g.vimwiki_list = {
         auto_export = 1,
         links_space_char = "_",
         maxhi = 1,
-    }, {
+    },
+    {
         name = "IIIT Notes",
         path = "~/work/vimwiki_notes/iiit_notes",
         path_html = "~/work/vimwiki_notes/html/iiit_notes",
@@ -47,6 +49,7 @@ vim.g.vimwiki_list = {
             tex = "tex",
             json = "json",
             go = "go",
+            sparql = "sparql",
         },
         syntax = "default",
         auto_tags = 1,
@@ -55,7 +58,8 @@ vim.g.vimwiki_list = {
         auto_export = 1,
         links_space_char = "_",
         maxhi = 1,
-    }, {
+    },
+    {
         name = "Programming Notes",
         path = "~/work/vimwiki_notes/programming_notes",
         path_html = "~/work/vimwiki_notes/html/programming_notes",
@@ -72,6 +76,7 @@ vim.g.vimwiki_list = {
             tex = "tex",
             json = "json",
             go = "go",
+            sparql = "sparql",
         },
         syntax = "default",
         auto_tags = 1,
