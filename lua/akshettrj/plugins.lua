@@ -63,7 +63,7 @@ Plug("https://github.com/tpope/vim-repeat") ------ Repeat custom stuff with .
 Plug("https://github.com/tpope/vim-fugitive", { ["on"] = "Git" }) ---- Git
 Plug("https://github.com/tpope/vim-eunuch") ------ Unix helpers
 Plug("https://github.com/hoschi/yode-nvim")
-Plug("https://github.com/chrisgrieser/nvim-spider")
+-- Plug("https://github.com/chrisgrieser/nvim-spider")
 
 
 -- Telescope
