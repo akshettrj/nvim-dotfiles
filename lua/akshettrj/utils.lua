@@ -7,7 +7,7 @@ end
 M.spell_mode_on = function()
     local smo = vim.opt.spell
     if smo:get() then
-        return "暈"
+        return "󰓆"
     else
         return ""
     end
