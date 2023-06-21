@@ -44,6 +44,31 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "[e", vim.diagnostic.goto_prev, keymap_opts)
     vim.keymap.set("n", "]e", vim.diagnostic.goto_next, keymap_opts)
     vim.keymap.set("n", "<Leader>lel", vim.diagnostic.setloclist, keymap_opts)
+
+    vim.cmd[[
+        aunmenu PopUp
+        vnoremenu PopUp.Cut                         "+x
+        vnoremenu PopUp.Copy                        "+y
+        anoremenu PopUp.Paste                       "+gP
+        vnoremenu PopUp.Paste                       "+P
+        vnoremenu PopUp.Delete                      "_x
+        nnoremenu PopUp.Select\ All                 ggVG
+        vnoremenu PopUp.Select\ All                 gg0oG$
+        inoremenu PopUp.Select\ All                 <C-Home><C-O>VG
+        anoremenu PopUp.-1-                         <Nop>
+        nnoremenu PopUp.Format\ Buffer              <Cmd>norm <Leader>lf<CR>
+        nnoremenu PopUp.Show\ Error                 <Cmd>lua vim.diagnostic.open_float()<CR>
+        nnoremenu PopUp.Rename\ Variable            <Cmd>lua vim.lsp.buf.rename()<CR>
+        nnoremenu PopUp.Code\ Action                <Cmd>lua vim.lsp.buf.code_action()<CR>
+        anoremenu PopUp.-2-                         <Nop>
+        nnoremenu PopUp.Go\ To\ Definition          <Cmd>lua vim.lsp.buf.definition()<CR>
+        nnoremenu PopUp.Go\ To\ Declaration         <Cmd>lua vim.lsp.buf.declaration()<CR>
+        nnoremenu PopUp.Go\ To\ Implementation      <Cmd>lua vim.lsp.buf.implementation()<CR>
+        nnoremenu PopUp.Go\ To\ References          <Cmd>lua vim.lsp.buf.references()<CR>
+        nnoremenu PopUp.Go\ To\ Type\ Definition    <Cmd>lua vim.lsp.buf.type_definition()<CR>
+        anoremenu PopUp.-3-                         <Nop>
+        anoremenu PopUp.How-to\ disable\ mouse      <Cmd>help disable-mouse<CR>
+    ]]
 end
 
 lspconfig.clangd.setup({
