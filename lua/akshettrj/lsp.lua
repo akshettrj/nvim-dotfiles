@@ -18,12 +18,21 @@ local on_attach = function(client, bufnr)
         if pcall(require, "nvim-navic") then
             require("nvim-navic").attach(client, bufnr)
         end
-
-        if pcall(require, "lsp-inlayhints") then
-            require("lsp-inlayhints").on_attach(client, bufnr)
-        end
     end
 
+    vim.api.nvim_create_augroup("lsp_augroup", { clear = true })
+
+    --- LSP Inlay Hints
+    vim.api.nvim_create_autocmd("InsertEnter", {
+        buffer = bufnr,
+        callback = function() vim.lsp.inlay_hint(bufnr, true) end,
+        group = "lsp_augroup",
+    })
+    vim.api.nvim_create_autocmd("InsertLeave", {
+        buffer = bufnr,
+        callback = function() vim.lsp.inlay_hint(bufnr, false) end,
+        group = "lsp_augroup",
+    })
 
     local keymap_opts = { silent = true, buffer = true }
 
@@ -45,7 +54,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "]e", vim.diagnostic.goto_next, keymap_opts)
     vim.keymap.set("n", "<Leader>lel", vim.diagnostic.setloclist, keymap_opts)
 
-    vim.cmd[[
+    vim.cmd [[
         aunmenu PopUp
         vnoremenu PopUp.Cut                         "+x
         vnoremenu PopUp.Copy                        "+y

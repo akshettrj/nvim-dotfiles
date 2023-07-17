@@ -28,7 +28,6 @@ Plug("https://github.com/ray-x/lsp_signature.nvim")
 Plug("https://github.com/SmiteshP/nvim-navic")
 Plug("https://github.com/j-hui/fidget.nvim", { ["tag"] = "legacy" })
 Plug("https://github.com/amirali/yapf.nvim", { ["for"] = { "python" } })
-Plug("https://github.com/lvimuser/lsp-inlayhints.nvim", { ["branch"] = "anticonceal" })
 
 
 -- Completion
