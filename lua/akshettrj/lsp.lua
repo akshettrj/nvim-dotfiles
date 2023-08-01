@@ -22,17 +22,19 @@ local on_attach = function(client, bufnr)
 
     vim.api.nvim_create_augroup("lsp_augroup", { clear = true })
 
-    --- LSP Inlay Hints
-    vim.api.nvim_create_autocmd("InsertEnter", {
-        buffer = bufnr,
-        callback = function() vim.lsp.inlay_hint(bufnr, true) end,
-        group = "lsp_augroup",
-    })
-    vim.api.nvim_create_autocmd("InsertLeave", {
-        buffer = bufnr,
-        callback = function() vim.lsp.inlay_hint(bufnr, false) end,
-        group = "lsp_augroup",
-    })
+    -- --- LSP Inlay Hints
+    -- if client.server_capabilities.inlayHintProvider then
+    --     vim.api.nvim_create_autocmd("InsertEnter", {
+    --         buffer = bufnr,
+    --         callback = function() vim.lsp.inlay_hint(bufnr, true) end,
+    --         group = "lsp_augroup",
+    --     })
+    --     vim.api.nvim_create_autocmd("InsertLeave", {
+    --         buffer = bufnr,
+    --         callback = function() vim.lsp.inlay_hint(bufnr, false) end,
+    --         group = "lsp_augroup",
+    --     })
+    -- end
 
     local keymap_opts = { silent = true, buffer = true }
 
