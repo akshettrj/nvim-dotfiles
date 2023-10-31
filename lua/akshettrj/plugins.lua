@@ -1,119 +1,327 @@
-local Plug = vim.fn["plug#"]
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
 
-vim.call("plug#begin")
+require("lazy").setup({
+    -- Requirements
+    "https://github.com/nvim-tree/nvim-web-devicons",
+    {
+        "https://github.com/nvim-lua/popup.nvim",
+        lazy = true,
+        dependencies = {
+            {
+                "https://github.com/nvim-lua/plenary.nvim",
+                lazy = true,
+            },
+        },
+    },
+
+    -- Colorschemes
+    {
+        "https://github.com/ellisonleao/gruvbox.nvim",
+        lazy = true,
+        priority = 1000,
+    },
+
+    -- LSP and formatter
+    "https://github.com/neovim/nvim-lspconfig",
+    {
+        "https://github.com/onsails/lspkind.nvim",
+        lazy = true,
+        dependencies = {
+            "https://github.com/neovim/nvim-lspconfig",
+        },
+    },
+    {
+        "https://github.com/williamboman/mason.nvim",
+        lazy = true,
+        dependencies = {
+            "https://github.com/neovim/nvim-lspconfig",
+        },
+    },
+    {
+        "https://github.com/ray-x/lsp_signature.nvim",
+        lazy = true,
+        dependencies = {
+            "https://github.com/neovim/nvim-lspconfig",
+        },
+    },
+    {
+        "https://github.com/SmiteshP/nvim-navic",
+        lazy = true,
+        dependencies = {
+            "https://github.com/neovim/nvim-lspconfig",
+        },
+    },
+    {
+        "https://github.com/j-hui/fidget.nvim",
+        lazy = true,
+        tag = "legacy",
+        dependencies = {
+            "https://github.com/neovim/nvim-lspconfig",
+        },
+        event = "LspAttach",
+        config = function()
+            require("akshettrj.plugins_config.fidget_config")
+        end,
+    },
+    {
+        "https://github.com/amirali/yapf.nvim",
+        lazy = true,
+        ft = { "python" },
+        dependencies = {
+            "https://github.com/nvim-lua/plenary.nvim",
+        },
+        config = function()
+            require("akshettrj.plugins_config.yapf_config")
+        end,
+    },
+    -- Completion
+    "https://github.com/hrsh7th/cmp-nvim-lsp",
+    "https://github.com/hrsh7th/cmp-nvim-lua",
+    "https://github.com/hrsh7th/cmp-nvim-lsp-document-symbol",
+    "https://github.com/hrsh7th/cmp-path",
+    "https://github.com/hrsh7th/cmp-buffer",
+    { "https://github.com/kdheepak/cmp-latex-symbols",          ft = { "tex" } },
+    "https://github.com/saadparwaiz1/cmp_luasnip",
+    "https://github.com/hrsh7th/nvim-cmp",
+    -- UI
+    {
+        "https://github.com/romgrk/barbar.nvim",
+        dependencies = {
+            "https://github.com/lewis6991/gitsigns.nvim",
+            "https://github.com/nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+            require("akshettrj.plugins_config.barbar_config")
+        end,
+    },
+    { "https://github.com/lukas-reineke/indent-blankline.nvim", tag = "v2.20.8" },
+    "https://github.com/nvim-lualine/lualine.nvim",
+    "https://github.com/petertriho/nvim-scrollbar",
+    {
+        "https://github.com/gorbit99/codewindow.nvim",
+        lazy = true,
+        keys = {
+            "<leader>mo",
+            "<leader>mf",
+            "<leader>mc",
+            "<leader>mm",
+        },
+        config = function()
+            require("akshettrj.plugins_config.codewindow_config")
+        end
+    },
+    -- Colors & Highlighting
+    {
+        "https://github.com/nvim-zh/colorful-winsep.nvim",
+        event = { "WinNew" },
+        lazy = true,
+        config = function()
+            require("akshettrj.plugins_config.colorful_winsep_config")
+        end,
+
+    },
+    {
+        "https://github.com/norcalli/nvim-colorizer.lua",
+        lazy = true,
+        cmd = {
+            "ColorizerAttachToBuffer",
+            "ColorizerDetachFromBuffer",
+            "ColorizerReloadAllBuffers",
+            "ColorizerToggle",
+        },
+        config = function()
+            require("akshettrj.plugins_config.colorizer_config")
+        end,
+    },
+    -- Productivity
+    "https://github.com/lewis6991/gitsigns.nvim",
+    "https://github.com/tpope/vim-sleuth", ------ Indentation configuration
+    "https://github.com/tpope/vim-surround", ---- Brackets and stuff
+    "https://github.com/tpope/vim-repeat", ------ Repeat custom stuff with .
+    { "https://github.com/tpope/vim-fugitive",              cmd = "Git" }, ---- Git
+    "https://github.com/tpope/vim-eunuch", ------ Unix helpers
+    {
+        "https://github.com/hoschi/yode-nvim",
+        lazy = true,
+        cmd = {
+            "YodeCreateSeditorFloating",
+            "YodeCreateSeditorReplace",
+            "YodeBufferDelete",
+            "YodeGoToAlternateBuffer",
+            "YodeCloneCurrentIntoFloat",
+            "YodeFloatToMainWindow",
+            "YodeFormatWrite",
+            "YodeRunInFile",
+        },
+        dependencies = {
+            "https://github.com/nvim-lua/plenary.nvim",
+        },
+        config = function()
+            require("akshettrj.plugins_config.yode_nvim_config")
+        end,
+    },
+    -- Plug("https://github.com/chrisgrieser/nvim-spider")
 
 
--- Requirements
-Plug("https://github.com/nvim-tree/nvim-web-devicons")
-Plug("https://github.com/nvim-lua/popup.nvim")
-Plug("https://github.com/nvim-lua/plenary.nvim")
+    -- Telescope
+    "https://github.com/nvim-telescope/telescope.nvim",
+    "https://github.com/nvim-telescope/telescope-file-browser.nvim",
+    "https://github.com/nvim-telescope/telescope-live-grep-args.nvim",
+    "https://github.com/nvim-telescope/telescope-dap.nvim",
+    -- Treesitter
+    { "https://github.com/nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    "https://github.com/nvim-treesitter/nvim-treesitter-context",
+    -- Utilities
+    {
+        "https://github.com/numToStr/Comment.nvim",
+        lazy = false,
+    },
+    {
+        "https://github.com/akinsho/toggleterm.nvim",
+        lazy = true,
+        keys = { [[\\]] },
+        config = function()
+            require("akshettrj.plugins_config.toggleterm_config")
+        end,
+    },
+    "https://github.com/mbbill/undotree",
+    { "https://github.com/untitled-ai/jupyter_ascending.vim", ft = { "python" } },
+    {
+        "https://github.com/vimwiki/vimwiki",
+        cmd = { "VimwikiIndex", "VimwikiUISelect" },
+    },
+    {
+        "https://github.com/kristijanhusak/vim-dadbod-ui",
+        dependencies = {
+            {
+                "https://github.com/tpope/vim-dadbod",
+                lazy = true,
+            },
+            {
+                "https://github.com/kristijanhusak/vim-dadbod-completion",
+                ft = { "sql", "mysql", "plsql" },
+                lazy = true,
+            },
+        },
+        cmd = {
+            'DBUI',
+            'DBUIToggle',
+            'DBUIAddConnection',
+            'DBUIFindBuffer',
+        },
+        init = function()
+            -- Your DBUI configuration
+            vim.g.db_ui_use_nerd_fonts = 1
+        end,
+    },
 
+    {
+        "https://github.com/ThePrimeagen/jvim.nvim",
+        lazy = true,
+        ft = "json",
+    },
+    {
+        "https://github.com/ellisonleao/carbon-now.nvim",
+        lazy = true,
+        cmd = "CarbonNow",
+        config = function()
+            require("akshettrj.plugins_config.carbon_now_config")
+        end,
+    },
+    {
+        "https://github.com/github/copilot.vim",
+        lazy = true,
+        ft = { "rust", "go", "python" },
+        keys = { "<C-j>" },
+        init = function()
+            vim.g.copilot_no_tab_map = true
 
--- Pets roaming around (doesn't work currently due to hologram.nvim)
--- Plug("https://github.com/edluffy/hologram.nvim")
--- Plug("https://github.com/MunifTanjim/nui.nvim")
--- Plug("https://github.com/giusgad/pets.nvim")
+            vim.g.copilot_filetypes = {
+                ["*"] = false,
+                rust = true,
+                go = true,
+                python = true,
+            }
 
-
--- Colorschemes
-Plug("https://github.com/ellisonleao/gruvbox.nvim", { ["on"] = "colorscheme" })
-Plug("https://github.com/olimorris/onedarkpro.nvim")
-
-
--- LSP and formatter
-Plug("https://github.com/neovim/nvim-lspconfig")
-Plug("https://github.com/onsails/lspkind.nvim")
-Plug("https://github.com/williamboman/mason.nvim")
-Plug("https://github.com/ray-x/lsp_signature.nvim")
-Plug("https://github.com/SmiteshP/nvim-navic")
-Plug("https://github.com/j-hui/fidget.nvim", { ["tag"] = "legacy" })
-Plug("https://github.com/amirali/yapf.nvim", { ["for"] = { "python" } })
-
-
--- Completion
-Plug("https://github.com/hrsh7th/cmp-nvim-lsp")
-Plug("https://github.com/hrsh7th/cmp-nvim-lua")
-Plug("https://github.com/hrsh7th/cmp-nvim-lsp-document-symbol")
-Plug("https://github.com/hrsh7th/cmp-path")
-Plug("https://github.com/hrsh7th/cmp-buffer")
-Plug("https://github.com/kdheepak/cmp-latex-symbols", { ["for"] = { "tex" } })
-Plug("https://github.com/saadparwaiz1/cmp_luasnip")
-Plug("https://github.com/hrsh7th/nvim-cmp")
-
--- UI
-Plug("https://github.com/romgrk/barbar.nvim")
-Plug("https://github.com/lukas-reineke/indent-blankline.nvim")
-Plug("https://github.com/nvim-lualine/lualine.nvim")
-Plug("https://github.com/petertriho/nvim-scrollbar")
-Plug("https://github.com/gorbit99/codewindow.nvim")
-Plug("https://github.com/tiagovla/scope.nvim")
-
-
--- Colors & Highlighting
-Plug("https://github.com/nvim-zh/colorful-winsep.nvim")
-Plug("https://github.com/norcalli/nvim-colorizer.lua")
-
-
--- Productivity
-Plug("https://github.com/lewis6991/gitsigns.nvim")
-Plug("https://github.com/tpope/vim-sleuth") ------ Indentation configuration
-Plug("https://github.com/tpope/vim-surround") ---- Brackets and stuff
-Plug("https://github.com/tpope/vim-repeat") ------ Repeat custom stuff with .
-Plug("https://github.com/tpope/vim-fugitive", { ["on"] = "Git" }) ---- Git
-Plug("https://github.com/tpope/vim-eunuch") ------ Unix helpers
-Plug("https://github.com/hoschi/yode-nvim")
-Plug("https://github.com/willothy/flatten.nvim")
--- Plug("https://github.com/chrisgrieser/nvim-spider")
-
-
--- Telescope
-Plug("https://github.com/nvim-telescope/telescope.nvim")
-Plug("https://github.com/nvim-telescope/telescope-file-browser.nvim")
-Plug("https://github.com/nvim-telescope/telescope-live-grep-args.nvim")
-Plug("https://github.com/nvim-telescope/telescope-dap.nvim")
-
-
--- Treesitter
-Plug("https://github.com/nvim-treesitter/nvim-treesitter", { ["do"] = ":TSUpdate" })
-Plug("https://github.com/nvim-treesitter/nvim-treesitter-context")
-
-
--- Utilities
-Plug("https://github.com/numToStr/Comment.nvim")
-Plug("https://github.com/akinsho/toggleterm.nvim")
-Plug("https://github.com/mbbill/undotree")
-Plug("https://github.com/untitled-ai/jupyter_ascending.vim", { ["for"] = { "python" } })
-Plug("https://github.com/vimwiki/vimwiki", { ["on"] = { "VimwikiIndex", "VimwikiUISelect" } })
-Plug("https://github.com/tpope/vim-dadbod", { ["on"] = { "DB", "DBUI", "DBUIToggle" } })
-Plug(
-    "https://github.com/kristijanhusak/vim-dadbod-ui",
-    { ["on"] = { "DB", "DBUI", "DBUIToggle" } }
-)
-Plug("https://github.com/ThePrimeagen/jvim.nvim", { ["for"] = "json" })
-Plug("https://github.com/ellisonleao/carbon-now.nvim")
-Plug("https://github.com/github/copilot.vim")
-Plug("https://github.com/cshuaimin/ssr.nvim/")
-
-
--- Snippets
-Plug("https://github.com/L3MON4D3/LuaSnip")
-Plug("https://github.com/rafamadriz/friendly-snippets")
-Plug("https://github.com/iurimateus/luasnip-latex-snippets.nvim")
-Plug("https://github.com/molleweide/LuaSnip-snippets.nvim")
-
-
--- Language Specific
--- Plug("fatih/vim-go", { ["for"] = { "go", "rapid", "gosum" } })
-Plug("https://github.com/simrat39/rust-tools.nvim", { ["for"] = { "rust", "toml" } })
-Plug("https://github.com/Omer/vim-sparql")
-Plug("https://github.com/camnw/lf-vim")
-
-
--- Debuggers
-Plug("https://github.com/mfussenegger/nvim-dap")
-Plug("https://github.com/leoluz/nvim-dap-go", { ["for"] = { "go", "rapid", "gosum" } })
-Plug("https://github.com/mfussenegger/nvim-dap-python", { ["for"] = { "python" } })
-Plug("https://github.com/rcarriga/nvim-dap-ui")
-Plug("https://github.com/theHamsta/nvim-dap-virtual-text")
-
-vim.call("plug#end")
+            vim.keymap.set("i", "<C-j>", "copilot#Accept()",
+                { silent = true, script = true, expr = true, replace_keycodes = false })
+        end,
+    },
+    {
+        "https://github.com/cshuaimin/ssr.nvim/",
+        lazy = true,
+        keys = { "<leader>sr" },
+        config = function()
+            require("akshettrj.plugins_config.ssr_config")
+        end,
+    },
+    -- Snippets
+    {
+        "https://github.com/L3MON4D3/LuaSnip",
+        dependencies = {
+            "https://github.com/rafamadriz/friendly-snippets",
+            "https://github.com/iurimateus/luasnip-latex-snippets.nvim",
+            "https://github.com/molleweide/LuaSnip-snippets.nvim",
+        },
+        build = "make install_jsregexp",
+    },
+    -- Language Specific
+    -- Plug("fatih/vim-go", { ["for"] = { "go", "rapid", "gosum" } })
+    {
+        "https://github.com/simrat39/rust-tools.nvim",
+        lazy = true,
+        ft = { "rust", "toml" },
+    },
+    {
+        "https://github.com/Omer/vim-sparql",
+        lazy = true,
+        ft = { "sparql" },
+    },
+    {
+        "https://github.com/camnw/lf-vim",
+        lazy = true,
+        ft = { "lf", "lfrc" },
+    },
+    -- Debuggers
+    {
+        "https://github.com/leoluz/nvim-dap-go",
+        lazy = true,
+        ft = { "go", "rapid", "gosum" },
+        dependencies = {
+            { "https://github.com/mfussenegger/nvim-dap" },
+        },
+    },
+    {
+        "https://github.com/mfussenegger/nvim-dap-python",
+        lazy = true,
+        ft = { "python" },
+        dependencies = {
+            { "https://github.com/mfussenegger/nvim-dap" },
+        },
+    },
+    {
+        "https://github.com/rcarriga/nvim-dap-ui",
+        lazy = true,
+        dependencies = {
+            { "https://github.com/mfussenegger/nvim-dap" },
+        },
+    },
+    {
+        "https://github.com/theHamsta/nvim-dap-virtual-text",
+        lazy = true,
+        dependencies = {
+            { "https://github.com/mfussenegger/nvim-dap" },
+        },
+    },
+})

@@ -2,7 +2,6 @@ if not pcall(require, "telescope") then
     return
 end
 
-local utils = require("akshettrj.utils")
 local telescope = require("telescope")
 local telescope_builtin = require("telescope.builtin")
 
