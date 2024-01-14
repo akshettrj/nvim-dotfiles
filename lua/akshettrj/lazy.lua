@@ -11,4 +11,17 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("akshettrj.plugins")
+require("lazy").setup("akshettrj.plugins", {
+  ui = {
+    border = "single",
+    title = "Lazy.nvim",
+  },
+  change_detection = {
+    enabled = false,
+    notify = false,
+  },
+  profiling = {
+    loader = true,
+    require = true,
+  },
+})
