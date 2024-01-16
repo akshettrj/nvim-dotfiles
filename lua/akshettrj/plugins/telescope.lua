@@ -7,21 +7,24 @@ return {
         function()
           require("telescope.builtin").resume()
         end,
-        { noremap = true, silent = true, desc = "Telescope Resume" }
+        silent = true,
+        desc = "Telescope Resume",
       },
       {
         "<leader>g",
         function()
           require("telescope.builtin").git_files({ show_untracked = true })
         end,
-        { noremap = true, silent = true, desc = "Telescope Git files" }
+        silent = true,
+        desc = "Telescope Git files",
       },
       {
         "<leader>f",
         function()
           require("telescope.builtin").find_files({ hidden = true })
         end,
-        { noremap = true, silent = true, desc = "Telescope Resume" }
+        silent = true,
+        desc = "Telescope Resume",
       },
     },
     cmd = "Telescope",
@@ -64,8 +67,12 @@ return {
     "https://github.com/nvim-telescope/telescope-file-browser.nvim",
     keys = {
       {
-        "<leader>e", "<cmd>Telescope file_browser<CR>",
-        { noremap = true, silent = true, desc = "Telescope File Browser" }
+        "<leader>e",
+        function()
+          require("telescope").extensions.file_browser.file_browser()
+        end,
+        silent = true,
+        desc = "Telescope File Browser",
       },
     },
     config = function()
@@ -83,8 +90,12 @@ return {
     "https://github.com/nvim-telescope/telescope-live-grep-args.nvim",
     keys = {
       {
-        "<leader>/", "<cmd>Telescope live_grep_args<CR>",
-        { noremap = true, silent = true, desc = "Telescope Live Grep Args" }
+        "<leader>/",
+        function()
+          require("telescope").extensions.live_grep_args.live_grep_args()
+        end,
+        silent = true,
+        desc = "Telescope Live Grep Args",
       },
     },
     config = function()
