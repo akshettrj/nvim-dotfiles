@@ -1,8 +1,6 @@
 return {
   {
     "https://github.com/nvim-tree/nvim-web-devicons",
-    lazy = true,
-    config = true,
     opts = {
       override = {},
       color_icons = true,

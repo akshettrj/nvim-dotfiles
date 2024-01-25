@@ -22,4 +22,23 @@ M.get_total_visual_words = function()
   end
 end
 
+M.jump_to_start_of_line = function()
+  local curr_col = vim.fn.col(".")
+  if curr_col == 1 then
+    vim.cmd.normal("_")
+  else
+    vim.fn.cursor(".", 1)
+  end
+end
+
+M.jump_to_end_of_line = function()
+  local curr_col = vim.fn.col(".")
+  local end_col = vim.fn.col("$") - 1
+  if curr_col == end_col then
+    vim.cmd.normal("g_")
+  else
+    vim.fn.cursor(".", end_col)
+  end
+end
+
 return M

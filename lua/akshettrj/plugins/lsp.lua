@@ -25,7 +25,8 @@ return {
   },
   {
     "https://github.com/neovim/nvim-lspconfig",
-    setup = function()
+    event = { "VeryLazy" },
+    config = function()
     end,
     dependencies = {
       "https://github.com/williamboman/mason.nvim",

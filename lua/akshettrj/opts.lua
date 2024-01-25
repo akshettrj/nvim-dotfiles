@@ -7,7 +7,7 @@ vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.foldmarker = { "<<<", ">>>" }
 vim.opt.foldmethod = "marker"
 vim.opt.title = true
@@ -24,6 +24,5 @@ vim.opt.list = true
 vim.opt.fillchars = { eob = " " }
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.lazyredraw = true
 
 vim.g.mapleader = " "

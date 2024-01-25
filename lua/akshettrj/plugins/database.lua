@@ -25,6 +25,7 @@ return {
   },
   {
     "https://github.com/kristijanhusak/vim-dadbod-completion",
+    lazy = true,
     ft = { "sql", "mysql", "plsql" },
   },
 }
