@@ -36,10 +36,10 @@ vim.keymap.set("v", "<", "<gv", opts)
 vim.keymap.set("v", ">", ">gv", opts)
 
 -- Move lines around
-vim.keymap.set("v", "<A-k>", ":move '<-2<CR>gv=gv", opts)
-vim.keymap.set("v", "<A-j>", ":move '>+1<CR>gv=gv", opts)
-vim.keymap.set("n", "<A-k>", ":move .-2<CR>==", opts)
-vim.keymap.set("n", "<A-j>", ":move .+1<CR>==", opts)
+vim.keymap.set("v", "<C-k>", ":move '<-2<CR>gv=gv", opts)
+vim.keymap.set("v", "<C-j>", ":move '>+1<CR>gv=gv", opts)
+-- vim.keymap.set("n", "<C-k>", ":move .-2<CR>==", opts)
+-- vim.keymap.set("n", "<C-j>", ":move .+1<CR>==", opts)
 
 -- Don't change clipboard while pasting in Select mode
 vim.keymap.set("x", "p", "pgvy", opts)

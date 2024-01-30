@@ -2,6 +2,7 @@ local utils = require("akshettrj.utils")
 
 return {
   "https://github.com/nvim-lualine/lualine.nvim",
+  event = "VeryLazy",
   opts = {
     options = {
       theme = vim.g.akshettrj_colorscheme,

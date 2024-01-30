@@ -1,6 +1,6 @@
 return {
   "https://github.com/romgrk/barbar.nvim",
-  lazy = false,
+  event = "VeryLazy",
   keys = {
     { "<Tab>",   "<Cmd>BufferNext<CR>",     silent = true, desc = "Go to next buffer" },
     { "<S-Tab>", "<Cmd>BufferPrevious<CR>", silent = true, desc = "Go to previous buffer" },
@@ -19,8 +19,8 @@ return {
     vim.g.barbar_auto_setup = false
   end,
   opts = {
-    animation = true,
-    auto_hide = false,
+    animation = false,
+    auto_hide = true,
     tabpages = true,
     closable = true,
     clickable = true,
