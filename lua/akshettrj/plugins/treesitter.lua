@@ -1,11 +1,17 @@
 return {
   {
     "https://github.com/nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
+    build = ":TSUpdateSync",
     event = { "VeryLazy" },
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = "all",
+        ensure_installed = {
+          "python",
+          "rust",
+          "lua",
+          "bash",
+          "go",
+        },
         ignore_installed = {},
         highlight = {
           enable = true,
