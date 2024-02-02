@@ -6,6 +6,7 @@ return {
   },
   {
     "https://github.com/lewis6991/gitsigns.nvim",
+    event = { "VeryLazy" },
     opts = function()
       local gs = require("gitsigns")
 

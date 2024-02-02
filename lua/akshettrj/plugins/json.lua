@@ -1,42 +1,34 @@
 return {
   "https://github.com/ThePrimeagen/jvim.nvim",
   ft = { "json" },
-  keys = {
-    {
-      "<Left>",
+  config = function()
+    vim.api.nvim_set_keymap(
+      "n", "<Left>",
       function()
-        require("jvim").to_parent({ silent = true })
+		require("jvim").to_parent({ silent = true })
       end,
-      mode = "n",
-      silent = true,
-      desc = "[JSON] to parent",
-    },
-    {
-      "<Right>",
+      { silent = true, desc = "[JSON] To parent" }
+    )
+    vim.api.nvim_set_keymap(
+      "n", "<Right>",
       function()
-        require("jvim").descend({ silent = true })
+		require("jvim").descend({ silent = true })
       end,
-      mode = "n",
-      silent = true,
-      desc = "[JSON] descend",
-    },
-    {
-      "<Up>",
+      { silent = true, desc = "[JSON] Descend" }
+    )
+    vim.api.nvim_set_keymap(
+      "n", "<Up>",
       function()
-        require("jvim").prev_sibling({ silent = true })
+		require("jvim").prev_sibling({ silent = true })
       end,
-      mode = "n",
-      silent = true,
-      desc = "[JSON] previous sibling",
-    },
-    {
-      "<Down>",
+      { silent = true, desc = "[JSON] Previous sibling" }
+    )
+    vim.api.nvim_set_keymap(
+      "n", "<Down>",
       function()
-        require("jvim").next_sibling({ silent = true })
+          require("jvim").next_sibling({ silent = true })
       end,
-      mode = "n",
-      silent = true,
-      desc = "[JSON] next sibling",
-    },
-  },
+      { silent = true, desc = "[JSON] Next sibling" }
+    )
+  end,
 }

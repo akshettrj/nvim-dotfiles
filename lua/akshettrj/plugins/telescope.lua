@@ -44,7 +44,6 @@ return {
         },
       })
     end,
-
     dependencies = {
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/nvim-tree/nvim-web-devicons",
@@ -53,7 +52,7 @@ return {
 
   {
     "https://github.com/nvim-telescope/telescope-dap.nvim",
-    lazy = true,
+    event = { "VeryLazy" },
     config = function()
       require("telescope").load_extension("dap")
     end,
