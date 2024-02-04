@@ -54,3 +54,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.opt_local.formatoptions:remove({ "c", "r", "o" })
   end,
 })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  group = akshettrj_group,
+  callback = function()
+    vim.api.nvim_set_hl(0, "Normal", { bg = "NONE", ctermbg = "NONE" })
+  end
+})
