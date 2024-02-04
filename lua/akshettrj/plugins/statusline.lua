@@ -42,4 +42,7 @@ return {
       },
     },
   },
+  dependencies = {
+    "https://github.com/nvimdev/lspsaga.nvim",
+  },
 }

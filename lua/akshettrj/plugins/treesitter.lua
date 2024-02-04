@@ -1,17 +1,12 @@
 return {
   {
     "https://github.com/nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdateSync",
+    build = ":TSUpdate",
     event = { "VeryLazy" },
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-          "python",
-          "rust",
-          "lua",
-          "bash",
-          "go",
-        },
+        ensure_installed = "all",
+        sync_install = true,
         ignore_installed = {},
         highlight = {
           enable = true,
@@ -25,9 +20,15 @@ return {
   },
   {
     "https://github.com/nvim-treesitter/nvim-treesitter-context",
+    enabled = false,
     event = { "VeryLazy" },
     config = function()
-      require("treesitter-context").setup()
+      require("treesitter-context").setup({
+        enable = true,
+        max_lines = 0,
+        multiline_threshold = 2,
+      })
+
       highlight_settings = {
         underline = true,
         sp = "Grey",
