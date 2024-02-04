@@ -58,12 +58,17 @@ return {
           client.server_capabilities.hoverProvider = false
         end
 
+        local basics = require("lsp_basics")
+        basics.make_lsp_commands(client, bufnr)
+
         local map = function(mode, lhs, rhs, opts)
           opts["silent"] = true
           opts["buffer"] = bufnr
           opts["desc"] = "[LSP] " .. opts["desc"]
           vim.keymap.set(mode, lhs, rhs, opts)
         end
+
+        vim.lsp.inlay_hint.enable(0, true)
 
         map("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
         map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
@@ -74,6 +79,7 @@ return {
         map("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename the entity" })
         map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
         map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
+        map("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open diagnostics in a floating window" })
         map("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Perform code actions" })
       end
 
@@ -126,11 +132,38 @@ return {
         on_attach = on_attach,
       })
 
+      lspconfig.taplo.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
+
       lspconfig.gopls.setup({
         capabilities = capabilities,
         on_attach = on_attach,
         cmd = { "gopls", "serve" },
-        settings = {},
+        settings = { gopls = {
+          analyses = {
+            fieldalignment = true,
+            shadow = true,
+            unusedvariable = true,
+            unusedwrite = true,
+            useany = true,
+          },
+          hints = {
+            assignVariableTypes = true,
+            compositeLiteralFields = true,
+            compositeLiteralTypes = false,
+            constantValues = true,
+            functionTypeParameters = false,
+            parameterNames = true,
+            rangeVariableTypes = true,
+          },
+          importShortcut = "Both",
+          usePlaceholders = true,
+          matcher = "Fuzzy",
+          experimentalPostfixCompletions = true,
+          staticcheck = true,
+        }, },
       })
 
       lspconfig.ruff_lsp.setup({
@@ -161,7 +194,15 @@ return {
               maxPreload = 10000,
               preloadFileSize = 10000,
             },
-            hint = { enable = true, await = true },
+            hint = {
+              enable = true,
+              arrayIndex = "Disable",
+              await = true,
+              paramName = "Literal",
+              paramType = true,
+              semicolon = "Disable",
+              setType = true,
+            },
             format = {
               enable = true,
               defaultConfig = { indent_style = "space", indent_size = "4" },
@@ -174,6 +215,21 @@ return {
       "https://github.com/williamboman/mason.nvim",
       "https://github.com/williamboman/mason-lspconfig.nvim",
       "https://github.com/hrsh7th/cmp-nvim-lsp",
+      "https://github.com/nanotee/nvim-lsp-basics",
     },
-  }
+  },
+  {
+    "https://github.com/j-hui/fidget.nvim",
+    version = "v1.*",
+    event = { "LspAttach" },
+    config = function()
+      require("fidget").setup({
+        notification = {
+          window = {
+            winblend = 0,
+          },
+        },
+      })
+    end,
+  },
 }

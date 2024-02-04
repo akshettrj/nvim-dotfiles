@@ -7,6 +7,16 @@ return {
   {
     "https://github.com/lewis6991/gitsigns.nvim",
     event = { "VeryLazy" },
+    keys = {
+      {
+        "<leader>gb",
+        function()
+          require("gitsigns").blame_line()
+        end,
+        silent = true,
+        desc = "Run git blame",
+      },
+    },
     opts = function()
       local gs = require("gitsigns")
 
@@ -20,20 +30,19 @@ return {
           follow_files = true,
         },
         attach_to_untracked = false,
-        current_line_blame = true,
-        current_line_blame_opts = {
-          virt_text = true,
-          virt_text_pos = "eol",
-          delay = 1000,
-        },
-        current_line_blame_formatter_opts = {
-          relative_time = true,
-        },
+        current_line_blame = false,
+        -- current_line_blame_opts = {
+        --   virt_text = false,
+        --   virt_text_pos = "eol",
+        --   delay = 1000,
+        -- },
+        -- current_line_blame_formatter_opts = {
+        --   relative_time = true,
+        -- },
         update_debounce = 100,
         max_file_length = 40000,
         on_attach = function()
           opts = {
-            buffer = bufnr,
             expr = true,
             silent = true,
           }

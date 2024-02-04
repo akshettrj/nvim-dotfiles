@@ -62,3 +62,17 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     vim.api.nvim_set_hl(0, "Normal", { bg = "NONE", ctermbg = "NONE" })
   end
 })
+
+vim.api.nvim_create_autocmd("InsertEnter", {
+  group = akshettrj_group,
+  callback = function()
+    vim.opt.relativenumber = false
+  end,
+})
+
+vim.api.nvim_create_autocmd("InsertLeave", {
+  group = akshettrj_group,
+  callback = function()
+    vim.opt.relativenumber = true
+  end,
+})

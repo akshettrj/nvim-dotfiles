@@ -11,7 +11,7 @@ return {
         desc = "Telescope Resume",
       },
       {
-        "<leader>g",
+        "<leader>gf",
         function()
           require("telescope.builtin").git_files({ show_untracked = true })
         end,
