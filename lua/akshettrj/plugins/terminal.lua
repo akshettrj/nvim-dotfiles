@@ -12,7 +12,7 @@ return {
     open_mapping = [[\\]],
     insert_mappings = false,
     terminal_mappings = true,
-    hide_numbers = true,
+    hide_numbers = false,
     shade_filetypes = {},
     shade_terminals = true,
     shading_factor = "1",
