@@ -18,7 +18,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.laststatus = 3
-vim.opt.winbar = "%=%m %f"
+-- vim.opt.winbar = "%=%m %f"
 vim.opt_global.termguicolors = true
 vim.opt.list = true
 vim.opt.fillchars = { eob = " " }
