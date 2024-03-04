@@ -1,3 +1,35 @@
+local map = function(mode, lhs, rhs, bufnr, opts)
+  opts["silent"] = true
+  opts["buffer"] = bufnr
+  opts["desc"] = "[LSP] " .. opts["desc"]
+  vim.keymap.set(mode, lhs, rhs, opts)
+end
+
+local on_attach_maker = function(lsp_basics)
+  return function(client, bufnr)
+    if client.name == "ruff_lsp" then
+      client.server_capabilities.hoverProvider = false
+    end
+
+    -- local basics = require("lsp_basics")
+    lsp_basics.make_lsp_commands(client, bufnr)
+
+    map("n", "gd", vim.lsp.buf.definition, bufnr, { desc = "Go to definition" })
+    map("n", "gD", vim.lsp.buf.declaration, bufnr, { desc = "Go to declaration" })
+    map("n", "gr", vim.lsp.buf.references, bufnr, { desc = "See references" })
+    map("n", "K", vim.lsp.buf.hover, bufnr, { desc = "See hover documentation" })
+    map("n", "gi", vim.lsp.buf.implementation, bufnr, { desc = "Go to implementation" })
+    map("n", "<F2>", vim.lsp.buf.rename, bufnr, { desc = "Rename the entity" })
+    map("n", "<leader>r", vim.lsp.buf.rename, bufnr, { desc = "Rename the entity" })
+    map("n", "[d", vim.diagnostic.goto_prev, bufnr, { desc = "Go to previous diagnostic" })
+    map("n", "]d", vim.diagnostic.goto_next, bufnr, { desc = "Go to next diagnostic" })
+    map("n", "<leader>d", vim.diagnostic.open_float, bufnr, { desc = "Open diagnostics in a floating window" })
+    map("n", "<leader>a", vim.lsp.buf.code_action, bufnr, { desc = "Perform code actions" })
+
+    vim.lsp.inlay_hint.enable(0, true)
+  end
+end
+
 return {
   {
     "https://github.com/williamboman/mason.nvim",
@@ -53,37 +85,10 @@ return {
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      local on_attach = function(client, bufnr)
-        if client.name == "ruff_lsp" then
-          client.server_capabilities.hoverProvider = false
-        end
-
-        local basics = require("lsp_basics")
-        basics.make_lsp_commands(client, bufnr)
-
-        local map = function(mode, lhs, rhs, opts)
-          opts["silent"] = true
-          opts["buffer"] = bufnr
-          opts["desc"] = "[LSP] " .. opts["desc"]
-          vim.keymap.set(mode, lhs, rhs, opts)
-        end
-
-        vim.lsp.inlay_hint.enable(0, true)
-
-        map("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-        map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
-        map("n", "gr", vim.lsp.buf.references, { desc = "See references" })
-        map("n", "K", vim.lsp.buf.hover, { desc = "See hover documentation" })
-        map("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
-        map("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename the entity" })
-        map("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename the entity" })
-        map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
-        map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
-        map("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open diagnostics in a floating window" })
-        map("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Perform code actions" })
-      end
-
+      local lsp_basics = require("lsp_basics")
       local lspconfig = require("lspconfig")
+
+      local on_attach = on_attach_maker(lsp_basics)
 
       lspconfig.clangd.setup({
         capabilities = capabilities,
@@ -231,5 +236,32 @@ return {
         },
       })
     end,
+  },
+  {
+    "https://github.com/mrcjkb/rustaceanvim",
+    version = "^4",
+    ft = { "rust" },
+    init = function()
+      local lsp_basics = require("lsp_basics")
+      local on_attach = on_attach_maker(lsp_basics)
+
+      vim.g.rustaceanvim = {
+        server = {
+          on_attach = function(client, bufnr)
+            -- Rust related stuff here
+
+            on_attach(client, bufnr)
+          end,
+        },
+        default_settings = {
+          ['rust-analyzer'] = {
+
+          },
+        },
+      }
+    end,
+    dependencies = {
+      "https://github.com/nanotee/nvim-lsp-basics",
+    },
   },
 }
