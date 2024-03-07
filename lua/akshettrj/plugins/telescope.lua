@@ -3,7 +3,7 @@ return {
     "https://github.com/nvim-telescope/telescope.nvim",
     keys = {
       {
-        "<leader>R",
+        "<leader>'",
         function()
           require("telescope.builtin").resume()
         end,
@@ -24,7 +24,7 @@ return {
           require("telescope.builtin").find_files({ hidden = true })
         end,
         silent = true,
-        desc = "Telescope Resume",
+        desc = "Telescope Find files",
       },
     },
     cmd = "Telescope",
