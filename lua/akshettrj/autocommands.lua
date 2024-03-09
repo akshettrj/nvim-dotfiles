@@ -6,8 +6,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = akshettrj_group,
   callback = function()
     local curr_pos = vim.fn.getpos(".")
-    vim.cmd([[%s/\s\+$//e]])
-    vim.cmd([[%s/\n\+%$//e]])
+    vim.cmd([[%s/\s\+$//e]])  -- Clean extra whitespaces at the end
+    -- vim.cmd([[%s/\n\+%$//e]]) -- Clean extra lines at the end
     vim.fn.setpos(".", curr_pos)
   end,
 })
