@@ -2,7 +2,17 @@ return {
   {
     -- Git UI
     "https://github.com/tpope/vim-fugitive",
+    enabled = false,
     cmd = "Git",
+  },
+  {
+    "https://github.com/NeogitOrg/neogit",
+    config = true,
+    cmd = "Neogit",
+    dependencies = {
+      "https://github.com/nvim-lua/plenary.nvim",
+      "https://github.com/sindrets/diffview.nvim",
+    },
   },
   {
     "https://github.com/lewis6991/gitsigns.nvim",
