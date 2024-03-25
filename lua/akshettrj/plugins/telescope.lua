@@ -26,6 +26,14 @@ return {
         silent = true,
         desc = "Telescope Find files",
       },
+      {
+        "<leader>b",
+        function()
+          require("telescope.builtin").buffers()
+        end,
+        silent = true,
+        desc = "Telescope Buffers",
+      },
     },
     cmd = "Telescope",
     config = function()
