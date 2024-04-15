@@ -24,5 +24,6 @@ vim.opt.list = true
 vim.opt.fillchars = { eob = " " }
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.scrolloff = 10
 
 vim.g.mapleader = " "
