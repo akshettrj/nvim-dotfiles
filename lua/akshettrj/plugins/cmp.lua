@@ -128,13 +128,18 @@ return {
         },
       })
 
-      -- cmp.setup.cmdline(":", {
-      --   mapping = cmp.mapping.preset.cmdline(),
-      --   sources = cmp.config.sources(
-      --     { sources["cmdline"] },
-      --     { sources["path"] }
-      --   ),
-      -- })
+      cmp.setup.cmdline(":", {
+        mapping = {
+          ["<Tab>"] = {
+            c = function()
+              local char = vim.fn.nr2char(vim.opt.wildchar:get())
+              local key = vim.api.nvim_replace_termcodes(char, true, false, true)
+              vim.api.nvim_feedkeys(key, "nt", true)
+            end
+          },
+        },
+        sources = cmp.config.sources({}),
+      })
     end,
     dependencies = {
       "https://github.com/hrsh7th/cmp-nvim-lsp",
