@@ -9,6 +9,7 @@ return {
     "https://github.com/NeogitOrg/neogit",
     config = true,
     cmd = "Neogit",
+    branch = "nightly",
     dependencies = {
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/sindrets/diffview.nvim",
