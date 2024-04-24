@@ -26,7 +26,7 @@ local on_attach_maker = function(lsp_basics)
     map("n", "<leader>d", vim.diagnostic.open_float, bufnr, { desc = "Open diagnostics in a floating window" })
     map("n", "<leader>a", vim.lsp.buf.code_action, bufnr, { desc = "Perform code actions" })
 
-    vim.lsp.inlay_hint.enable(0, true)
+    vim.lsp.inlay_hint.enable(true, nil)
   end
 end
 
