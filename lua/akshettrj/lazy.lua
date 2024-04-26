@@ -17,8 +17,8 @@ require("lazy").setup("akshettrj.plugins", {
     title = "Lazy.nvim",
   },
   change_detection = {
-    enabled = false,
-    notify = false,
+    enabled = true,
+    notify = true,
   },
   profiling = {
     loader = true,
