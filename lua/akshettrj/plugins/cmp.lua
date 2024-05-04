@@ -7,6 +7,7 @@ local sources = {
   ["rg"] = { name = "rg" },
   ["treesitter"] = { name = "treesitter" },
   ["nvim_lsp_document_symbol"] = { name = "nvim_lsp_document_symbol" },
+  ["nvim_lsp_signature_help"] = { name = "nvim_lsp_signature_help" },
   ["luasnip"] = { name = "luasnip" },
 }
 
@@ -19,6 +20,7 @@ local source_to_icon_map = {
   ["rg"] = "󰑑",
   ["treesitter"] = "󰔱",
   ["nvim_lsp_document_symbol"] = "󱔁",
+  ["nvim_lsp_signature_help"] = "󰡱",
   ["luasnip"] = "",
 }
 
@@ -95,8 +97,9 @@ return {
           end, { "i", "s" })
         }),
         sources = {
-          sources["luasnip"],
           sources["nvim_lsp"],
+          sources["nvim_lsp_signature_help"],
+          sources["luasnip"],
           sources["path"],
           sources["buffer"],
           -- sources["treesitter"],
@@ -150,6 +153,7 @@ return {
       -- "https://github.com/lukas-reineke/cmp-rg",
       -- "https://github.com/ray-x/cmp-treesitter",
       "https://github.com/hrsh7th/cmp-nvim-lsp-document-symbol",
+      "https://github.com/hrsh7th/cmp-nvim-lsp-signature-help",
       "https://github.com/L3MON4D3/LuaSnip",
       "https://github.com/saadparwaiz1/cmp_luasnip",
     },
