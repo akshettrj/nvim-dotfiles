@@ -243,6 +243,10 @@ return {
     end,
   },
   {
+    "https://github.com/folke/trouble.nvim",
+    event = "LspAttach",
+  },
+  {
     "https://github.com/mrcjkb/rustaceanvim",
     version = "^4",
     ft = { "rust" },
