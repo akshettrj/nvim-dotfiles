@@ -1,6 +1,5 @@
 local sources = {
   ["path"] = { name = "path", option = { trailing_slash = true, label_trailing_slash = true } },
-  ["buffer"] = { name = "buffer", option = { keyword_length = 3 } },
   ["cmdline"] = { name = "cmdline", option = { ignore_cmds = { "Man", "!" } } },
   ["git"] = { name = "git" },
   ["nvim_lsp"] = { name = "nvim_lsp" },
@@ -9,6 +8,27 @@ local sources = {
   ["nvim_lsp_document_symbol"] = { name = "nvim_lsp_document_symbol" },
   ["nvim_lsp_signature_help"] = { name = "nvim_lsp_signature_help" },
   ["luasnip"] = { name = "luasnip" },
+  ["emoji"] = { name = "emoji", option = { insert = true } },
+  ["buffer"] = {
+    name = "buffer",
+    option = {
+      keyword_length = 3,
+      ---[[
+      get_bufnrs = function() -- Visible buffers only
+        local bufs = {}
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          bufs[vim.api.nvim_win_get_buf(win)] = true
+        end
+        return vim.tbl_keys(bufs)
+      end,
+      --]]
+      --[[
+      get_bufnrs = function() -- All buffers
+        return vim.api.nvim_list_bufs()
+      end,
+      --]]
+    }
+  },
 }
 
 local source_to_icon_map = {
@@ -22,6 +42,7 @@ local source_to_icon_map = {
   ["nvim_lsp_document_symbol"] = "󱔁",
   ["nvim_lsp_signature_help"] = "󰡱",
   ["luasnip"] = "",
+  ["emoji"] = "😼",
 }
 
 return {
@@ -105,6 +126,7 @@ return {
           -- sources["treesitter"],
           sources["nvim_lsp_document_symbol"],
           -- sources["rg"],
+          sources["emoji"],
         },
         formatting = {
           format = require("lspkind").cmp_format({
@@ -156,6 +178,7 @@ return {
       "https://github.com/hrsh7th/cmp-nvim-lsp-signature-help",
       "https://github.com/L3MON4D3/LuaSnip",
       "https://github.com/saadparwaiz1/cmp_luasnip",
+      "https://github.com/hrsh7th/cmp-emoji",
     },
   },
   {
@@ -169,6 +192,7 @@ return {
       cmp.setup.filetype("gitcommit", {
         sources = cmp.config.sources(
           { sources["git"] },
+          { sources["emoji"] },
           { sources["buffer"] }
         )
       })
