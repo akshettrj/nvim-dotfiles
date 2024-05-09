@@ -183,17 +183,19 @@ return {
   },
   {
     "https://github.com/petertriho/cmp-git",
-    ft = "gitcommit",
+    ft = { "gitcommit", "NeogitCommitMessage" },
     config = function()
-      require("cmp_git").setup()
+      require("cmp_git").setup({
+        filetypes = {"gitcommit", "NeogitCommitMessage"},
+      })
 
       local cmp = require("cmp")
 
-      cmp.setup.filetype("gitcommit", {
+      cmp.setup.filetype({"gitcommit", "NeogitCommitMessage"}, {
         sources = cmp.config.sources(
-          { sources["git"] },
-          { sources["emoji"] },
-          { sources["buffer"] }
+        { sources["git"] },
+        { sources["emoji"] },
+        { sources["buffer"] }
         )
       })
     end,
