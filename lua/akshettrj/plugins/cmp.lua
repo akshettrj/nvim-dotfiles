@@ -44,6 +44,7 @@ local source_to_icon_map = {
   ["nvim_lsp_signature_help"] = "󰡱",
   ["luasnip"] = "",
   ["emoji"] = "😼",
+  ["vim-dadbod-completion"] = "",
 }
 
 return {
