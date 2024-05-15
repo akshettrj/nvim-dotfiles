@@ -9,6 +9,7 @@ local sources = {
   ["nvim_lsp_signature_help"] = { name = "nvim_lsp_signature_help" },
   ["luasnip"] = { name = "luasnip" },
   ["emoji"] = { name = "emoji", option = { insert = true } },
+  ["vim-dadbod-completion"] = { name = "vim-dadbod-completion" },
   ["buffer"] = {
     name = "buffer",
     option = {
@@ -193,15 +194,32 @@ return {
 
       cmp.setup.filetype({"gitcommit", "NeogitCommitMessage"}, {
         sources = cmp.config.sources(
-        { sources["git"] },
-        { sources["emoji"] },
-        { sources["buffer"] }
+          { sources["git"] },
+          { sources["emoji"] },
+          { sources["buffer"] }
         )
       })
     end,
     dependencies = {
       "https://github.com/hrsh7th/nvim-cmp",
       "https://github.com/nvim-lua/plenary.nvim",
+    },
+  },
+  {
+    "https://github.com/kristijanhusak/vim-dadbod-completion",
+    ft = { "sql", "mysql", "plsql" },
+    config = function()
+      local cmp = require("cmp")
+
+      cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
+        sources = cmp.config.sources(
+          { sources["vim-dadbod-completion"] },
+          { sources["buffer"] }
+        )
+      })
+    end,
+    dependencies = {
+      "https://github.com/hrsh7th/nvim-cmp",
     },
   },
 }
