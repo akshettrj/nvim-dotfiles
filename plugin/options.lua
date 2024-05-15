@@ -1,4 +1,5 @@
 vim.opt.number = true
+vim.opt.inccommand = "split"
 vim.opt.relativenumber = true
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
@@ -26,5 +27,3 @@ vim.opt.fillchars = { eob = " " }
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.scrolloff = 10
-
-vim.g.mapleader = " "
