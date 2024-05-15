@@ -226,6 +226,7 @@ return {
       "https://github.com/williamboman/mason-lspconfig.nvim",
       "https://github.com/hrsh7th/cmp-nvim-lsp",
       "https://github.com/nanotee/nvim-lsp-basics",
+      "https://github.com/folke/neoconf.nvim",
     },
   },
   {
@@ -272,5 +273,16 @@ return {
     dependencies = {
       "https://github.com/nanotee/nvim-lsp-basics",
     },
+  },
+  {
+    "https://github.com/folke/neoconf.nvim",
+    opts = {
+      import = {
+        vscode = true,
+        coc = false,
+        nlsp = false,
+      },
+    },
+    lazy = true,
   },
 }
