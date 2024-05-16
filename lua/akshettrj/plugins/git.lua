@@ -10,6 +10,11 @@ return {
     config = true,
     cmd = "Neogit",
     branch = "nightly",
+    opts = {
+      log_view = {
+        kind = "split",
+      },
+    },
     dependencies = {
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/sindrets/diffview.nvim",
