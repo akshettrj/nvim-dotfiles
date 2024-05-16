@@ -11,7 +11,7 @@ return {
         ignore_installed = {},
         highlight = {
           enable = true,
-          disable = { "vimwiki" },
+          disable = { "vimwiki", "latex" },
           additional_vim_regex_highlighting = false,
         },
         indent = { enable = false },
