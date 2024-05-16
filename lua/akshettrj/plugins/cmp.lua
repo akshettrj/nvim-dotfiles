@@ -132,7 +132,7 @@ return {
         },
         formatting = {
           format = require("lspkind").cmp_format({
-            mode = "symbol",
+            mode = "symbol_text",
             maxwidth = function()
               return math.floor(0.45 * vim.o.columns)
             end,
