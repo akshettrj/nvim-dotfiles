@@ -17,6 +17,9 @@ return {
         desc = "Open Neogit",
       },
     },
+    opts = {
+      auto_show_console = false,
+    },
     branch = "nightly",
     dependencies = {
       "https://github.com/nvim-lua/plenary.nvim",
