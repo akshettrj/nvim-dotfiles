@@ -18,7 +18,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-vim.opt.laststatus = 3
+vim.opt.laststatus = 2
 -- vim.opt.winbar = "%=%m %f"
 vim.opt.termguicolors = true
 vim.opt_global.termguicolors = true
