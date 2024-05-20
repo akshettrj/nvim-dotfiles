@@ -20,7 +20,6 @@ return {
     opts = {
       auto_show_console = false,
     },
-    branch = "nightly",
     dependencies = {
       "https://github.com/nvim-lua/plenary.nvim",
       "https://github.com/sindrets/diffview.nvim",

@@ -100,7 +100,6 @@ return {
           "--clang-tidy",
           -- "--completion-style=bundled",
           "--completion-style=detailed",
-          "--function-args-placeholders",
           "--header-insertion=iwyu",
           "--import-insertions",
           "--limit-references=0",
