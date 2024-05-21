@@ -8,6 +8,7 @@ return {
   {
     "https://github.com/NeogitOrg/neogit",
     config = true,
+    branch = "master",
     cmd = "Neogit",
     keys = {
       {
