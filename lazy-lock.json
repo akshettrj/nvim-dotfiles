@@ -29,7 +29,7 @@
   "mason.nvim": { "branch": "main", "commit": "49ff59aded1047a773670651cfa40e76e63c6377" },
   "mini.nvim": { "branch": "main", "commit": "f24747266a047617d06605a2316aa6c071662fa2" },
   "neoconf.nvim": { "branch": "main", "commit": "9092129e9a42ae26375001bd2e6118f8d57c7f2a" },
-  "neogit": { "branch": "master", "commit": "5b7bad8056a65578a7fbd1c703850245594d0f9f" },
+  "neogit": { "branch": "master", "commit": "70ad95be902ee69b56410a5cfc690dd03104edb3" },
   "nvim-cmp": { "branch": "main", "commit": "5260e5e8ecadaf13e6b82cf867a909f54e15fd07" },
   "nvim-dap": { "branch": "master", "commit": "5a2f7121869394502521c52b2bc581ab22c69447" },
   "nvim-lsp-basics": { "branch": "main", "commit": "632714bd3ab355eb6e725b5a78cd8730f12d14d2" },
