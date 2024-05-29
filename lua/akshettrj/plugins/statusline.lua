@@ -6,8 +6,8 @@ return {
   opts = {
     options = {
       theme = vim.g.akshettrj_colorscheme,
-      section_separators = {},
-      component_separators = { left = "|", right = "|" },
+      component_separators = {},
+      section_separators = { left = "|", right = "|" },
     },
     extensions = {},
     sections = {
@@ -23,8 +23,8 @@ return {
           end
         },
       },
-      lualine_b = { "branch", "diff" },
-      lualine_c = { "filename" },
+      lualine_b = { "branch" },
+      lualine_c = { "%=", { "filename", file_status = true }, "diff" },
       lualine_x = { "encoding", "fileformat", "filetype" },
       lualine_y = { "progress" },
       lualine_z = {
