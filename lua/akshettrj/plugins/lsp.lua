@@ -63,7 +63,8 @@ return {
         symbol_in_winbar = {
           enable = true,
           show_folder = 0,
-          show_file = false,
+          show_file = true,
+          folder_level = 2,
           color_mode = true,
           hide_keyword = true,
         },
