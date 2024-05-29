@@ -128,7 +128,7 @@ return {
       lspconfig.ruff_lsp.setup({
         capabilities = capabilities,
         on_attach = on_attach,
-        cmd = { "ruff-lsp" },
+        cmd = { "ruff", "server", "--preview" },
       })
 
       lspconfig.tsserver.setup({
@@ -142,6 +142,11 @@ return {
       })
 
       lspconfig.nil_ls.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
+
+      lspconfig.texlab.setup({
         capabilities = capabilities,
         on_attach = on_attach,
       })
@@ -173,14 +178,6 @@ return {
           experimentalPostfixCompletions = true,
           staticcheck = true,
         }, },
-      })
-
-      lspconfig.ruff_lsp.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        -- settings = {
-        --   args = {},
-        -- },
       })
 
       lspconfig.lua_ls.setup({
