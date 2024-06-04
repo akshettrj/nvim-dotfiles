@@ -243,6 +243,8 @@ return {
   {
     "https://github.com/folke/trouble.nvim",
     event = "LspAttach",
+    cmd = "Trouble",
+    opts = {},
   },
   {
     "https://github.com/mrcjkb/rustaceanvim",
