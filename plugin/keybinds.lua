@@ -55,3 +55,6 @@ vim.keymap.set("n", "L", utils.jump_to_end_of_line, opts)
 -- Quickfix list
 vim.keymap.set("n", "]q", "<CMD>cnext<CR>")
 vim.keymap.set("n", "[q", "<CMD>cprev<CR>")
+
+-- Shift + Space sometimes. Very annoying
+vim.keymap.set("t", "<S-Space>", "<Space>")
