@@ -145,6 +145,16 @@ return {
       lspconfig.nil_ls.setup({
         capabilities = capabilities,
         on_attach = on_attach,
+        settings = {
+          ['nil'] = {
+            nix = {
+              flake = {
+                autoArchive = false,
+                autoEvalInputs = false,
+              },
+            },
+          },
+        },
       })
 
       lspconfig.texlab.setup({
