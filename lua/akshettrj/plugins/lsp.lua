@@ -112,7 +112,7 @@ return {
       lspconfig.pyright.setup({
         capabilities = capabilities,
         on_attach = on_attach,
-        cmd = { "pyright-langserver", "--stdio" },
+        cmd = { "basedpyright-langserver", "--stdio" },
         settings = {
           python = {
             analysis = {
