@@ -36,6 +36,15 @@ return {
         template_ext = ".html",
         ext = ".wiki",
       },
+      {
+        name = "Sprinklr Notes",
+        path = "~/work/vimwiki_notes/sprinklr_notes",
+        path_html = "~/work/vimwiki_notes/html/sprinklr_notes",
+        template_path = "~/work/vimwiki_notes/templates",
+        template_default = "def_template",
+        template_ext = ".html",
+        ext = ".wiki",
+      },
     }
 
     for _, v in ipairs(vimwiki_list) do
