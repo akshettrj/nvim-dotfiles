@@ -49,6 +49,7 @@
   "render-markdown": { "branch": "main", "commit": "fc05fb7c56795f191b6800799a2ec6ea325ba715" },
   "ron.vim": { "branch": "master", "commit": "f749e543975a82e8dd9a6e7df9600a1c098ae800" },
   "rustaceanvim": { "branch": "master", "commit": "047f9c9d8cd2861745eb9de6c1570ee0875aa795" },
+  "snacks.nvim": { "branch": "main", "commit": "f126609b57c0ec07cfd7bcef7085e3905adb4d42" },
   "telescope-dap.nvim": { "branch": "master", "commit": "8c88d9716c91eaef1cdea13cb9390d8ef447dbfe" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "626998e5c1b71c130d8bc6cf7abb6709b98287bb" },
   "telescope-live-grep-args.nvim": { "branch": "master", "commit": "649b662a8f476fd2c0289570764459e95ebaa3f3" },
