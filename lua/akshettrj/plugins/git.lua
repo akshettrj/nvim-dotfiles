@@ -19,7 +19,7 @@ return {
       },
     },
     opts = {
-      auto_show_console = false,
+      -- auto_show_console = false,
     },
     dependencies = {
       "https://github.com/nvim-lua/plenary.nvim",
