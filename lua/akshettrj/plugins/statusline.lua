@@ -1,11 +1,19 @@
 local utils = require("akshettrj.utils")
 
+function get_lualine_theme()
+  if vim.g.akshettrj_colorscheme == "gruvbox" then
+    return "gruvbox_dark"
+  else
+    return vim.g.akshettrj_colorscheme
+  end
+end
+
 return {
   "https://github.com/nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   opts = {
     options = {
-      theme = vim.g.akshettrj_colorscheme,
+      theme = get_lualine_theme(),
       component_separators = {},
       section_separators = { left = "|", right = "|" },
     },

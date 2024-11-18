@@ -60,6 +60,12 @@ vim.api.nvim_create_autocmd("ColorScheme", {
   group = akshettrj_group,
   callback = function()
     vim.api.nvim_set_hl(0, "Normal", { bg = "NONE", ctermbg = "NONE" })
+
+    -- Fix statusline colors
+    vim.api.nvim_set_hl(0, "StatusLine", {reverse = false})
+    vim.api.nvim_set_hl(0, "StatusLineNC", {reverse = false})
+    vim.api.nvim_set_hl(0, "Winbar", {reverse = false})
+    vim.api.nvim_set_hl(0, "WinbarNC", {reverse = false})
   end
 })
 
