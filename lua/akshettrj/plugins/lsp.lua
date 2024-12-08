@@ -5,9 +5,11 @@ local map = function(mode, lhs, rhs, bufnr, opts)
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
+local xdg_config_dir = vim.fn.stdpath("config"):gsub("nvim$", "")
+
 local on_attach_maker = function(lsp_basics)
   return function(client, bufnr)
-    if client.name == "ruff_lsp" then
+    if client.name == "ruff_lsp" or client.name == "ruff" then
       client.server_capabilities.hoverProvider = false
     end
 
@@ -125,7 +127,7 @@ return {
         },
       })
 
-      lspconfig.ruff_lsp.setup({
+      lspconfig.ruff.setup({
         capabilities = capabilities,
         on_attach = on_attach,
         cmd = { "ruff", "server", "--preview" },
@@ -141,16 +143,31 @@ return {
         on_attach = on_attach,
       })
 
-      lspconfig.nil_ls.setup({
+      -- lspconfig.nil_ls.setup({
+      --   capabilities = capabilities,
+      --   on_attach = on_attach,
+      --   settings = {
+      --     ['nil'] = {
+      --       nix = {
+      --         flake = {
+      --           autoArchive = false,
+      --           autoEvalInputs = false,
+      --         },
+      --       },
+      --     },
+      --   },
+      -- })
+
+      lspconfig.nixd.setup({
         capabilities = capabilities,
         on_attach = on_attach,
         settings = {
-          ['nil'] = {
-            nix = {
-              flake = {
-                autoArchive = false,
-                autoEvalInputs = false,
-              },
+          nixd = {
+            nixpkgs = { expr = "import <nixpkgs> { }" },
+            formatting = { command = { "alejandra" } },
+            options = {
+              nixos = { expr = '(builtins.getFlake "' .. xdg_config_dir .. 'nixos-flake").nixosConfigurations.' .. vim.fn.hostname() .. '.options' },
+              home_manager = { expr = '(builtins.getFlake "' .. xdg_config_dir .. 'nixos-flake").homeConfigurations."' .. os.getenv("USER") .. '@' .. vim.fn.hostname() .. '".options' },
             },
           },
         },
