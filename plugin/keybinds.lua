@@ -49,8 +49,8 @@ vim.keymap.set("i", "<Space>", "<Space><C-g>u", opts)
 vim.keymap.set("i", "<Tab>", "<Tab><C-g>u", opts)
 
 -- Jump to start/end of line.
-vim.keymap.set("n", "H", utils.jump_to_start_of_line, opts)
-vim.keymap.set("n", "L", utils.jump_to_end_of_line, opts)
+vim.keymap.set({ "n", "v" }, "H", utils.jump_to_start_of_line, opts)
+vim.keymap.set({ "n", "v" }, "L", utils.jump_to_end_of_line, opts)
 
 -- Quickfix list
 vim.keymap.set("n", "]q", "<CMD>cnext<CR>")
