@@ -22,8 +22,8 @@ local on_attach_maker = function(lsp_basics)
     map("n", "K", vim.lsp.buf.hover, bufnr, { desc = "See hover documentation" })
     map("n", "gi", vim.lsp.buf.implementation, bufnr, { desc = "Go to implementation" })
     map("n", "<leader>r", vim.lsp.buf.rename, bufnr, { desc = "Rename the entity" })
-    map("n", "[d", function() vim.diagnostic.jump({count=-1}) end, bufnr, { desc = "Go to previous diagnostic" })
-    map("n", "]d", function() vim.diagnostic.jump({count=1}) end, bufnr, { desc = "Go to next diagnostic" })
+    map("n", "[d", vim.diagnostic.goto_prev, bufnr, { desc = "Go to previous diagnostic" })
+    map("n", "]d", vim.diagnostic.goto_next, bufnr, { desc = "Go to next diagnostic" })
     map("n", "<leader>D", vim.diagnostic.open_float, bufnr, { desc = "Open diagnostics in a floating window" })
     map("n", "<leader>a", vim.lsp.buf.code_action, bufnr, { desc = "Perform code actions" })
 
@@ -163,7 +163,7 @@ return {
         on_attach = on_attach,
         settings = {
           nixd = {
-            nixpkgs = { expr = "import <nixpkgs> { }" },
+            nixpkgs = { expr = 'import (builtins.getFlake "' .. xdg_config_dir .. 'nixos-flake").inputs.nixpkgs { }' },
             formatting = { command = { "alejandra" } },
             options = {
               nixos = { expr = '(builtins.getFlake "' .. xdg_config_dir .. 'nixos-flake").nixosConfigurations.' .. vim.fn.hostname() .. '.options' },
