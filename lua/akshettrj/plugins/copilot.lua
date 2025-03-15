@@ -1,7 +1,7 @@
 return {
   {
     "https://github.com/github/copilot.vim",
-    enabled = false,
+    enabled = true,
     event = { "VeryLazy" },
     init = function()
       vim.g.copilot_filetypes = {
