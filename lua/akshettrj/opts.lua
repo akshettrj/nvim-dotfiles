@@ -18,7 +18,6 @@ vim.opt.signcolumn = "yes"
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-vim.opt_global.laststatus = 2
 -- vim.opt.winbar = "%=%m %f"
 vim.opt.termguicolors = true
 vim.opt_global.termguicolors = true
@@ -27,3 +26,9 @@ vim.opt.fillchars = { eob = " " }
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.scrolloff = 10
+
+if vim.g.started_by_firenvim == true then
+  vim.opt_global.laststatus = 0
+else
+  vim.opt_global.laststatus = 2
+end
