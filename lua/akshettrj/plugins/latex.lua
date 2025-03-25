@@ -8,5 +8,10 @@ return {
     else
       vim.g.vimtex_view_method = "zathura"
     end
+
+    vim.g.vimtex_quickfix_ignore_filters = {
+      "Overfull",
+      "Underfull"
+    };
   end
 }

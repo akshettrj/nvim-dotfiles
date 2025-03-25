@@ -184,7 +184,6 @@ return {
         cmd = { "gopls", "serve" },
         settings = { gopls = {
           analyses = {
-            fieldalignment = true,
             shadow = true,
             unusedvariable = true,
             unusedwrite = true,
