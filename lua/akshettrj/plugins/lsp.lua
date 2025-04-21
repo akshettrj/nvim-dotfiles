@@ -220,8 +220,9 @@ return {
             },
             workspace = {
               library = {
-                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                vim.fn.expand("$VIMRUNTIME/lua"),
+                vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
+                vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua",
               },
               maxPreload = 10000,
               preloadFileSize = 10000,
