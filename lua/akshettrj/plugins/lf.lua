@@ -13,6 +13,7 @@ return {
       pattern = "LfTermEnter",
       callback = function (a)
         vim.api.nvim_buf_set_keymap(a.buf, "t", "q", "q", {nowait = true})
+        vim.api.nvim_buf_set_keymap(a.buf, "t", "<Esc>", "<Esc>", {nowait = true})
       end
     })
   end,

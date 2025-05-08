@@ -122,6 +122,7 @@ return {
               diagnosticMode = "workspace",
               useLibraryCodeForTypes = true,
               typeCheckingMode = "strict",
+              reportMissingTypeStubs = false,
             },
           },
         },
