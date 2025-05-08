@@ -20,6 +20,7 @@
       name = "nvim-config-dev";
       nativeBuildInputs = with pkgs; [
         lua-language-server
+        tree-sitter
       ];
     };
 

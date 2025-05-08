@@ -176,6 +176,13 @@ return {
       lspconfig.texlab.setup({
         capabilities = capabilities,
         on_attach = on_attach,
+        settings = {
+          texlab = {
+            inlayHints = {
+              maxLength = 15;
+            }
+          }
+        }
       })
 
       lspconfig.gopls.setup({
