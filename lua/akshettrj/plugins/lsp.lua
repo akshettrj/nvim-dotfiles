@@ -251,6 +251,9 @@ return {
           },
         },
       })
+
+      vim.lsp.enable("ty")
+
     end,
     dependencies = {
       "https://github.com/williamboman/mason.nvim",
