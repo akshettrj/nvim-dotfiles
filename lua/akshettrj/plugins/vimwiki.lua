@@ -1,6 +1,7 @@
 return {
   "https://github.com/vimwiki/vimwiki",
   cmd = { "VimwikiIndex", "VimwikiUISelect" },
+  pattern = "*.wiki",
   init = function()
     vim.g.vimwiki_hl_headers = 1
     vim.g.vimwiki_hl_cb_checked = 2
@@ -13,37 +14,21 @@ return {
         name = "General Notes",
         path = "~/work/vimwiki_notes/general_notes",
         path_html = "~/work/vimwiki_notes/html/general_notes",
-        template_path = "~/work/vimwiki_notes/templates",
-        template_default = "def_template",
-        template_ext = ".html",
-        ext = ".wiki",
       },
       {
         name = "IIIT Notes",
         path = "~/work/vimwiki_notes/iiit_notes",
         path_html = "~/work/vimwiki_notes/html/iiit_notes",
-        template_path = "~/work/vimwiki_notes/templates",
-        template_default = "def_template",
-        template_ext = ".html",
-        ext = ".wiki",
       },
       {
         name = "Programming Notes",
         path = "~/work/vimwiki_notes/programming_notes",
         path_html = "~/work/vimwiki_notes/html/programming_notes",
-        template_path = "~/work/vimwiki_notes/templates",
-        template_default = "def_template",
-        template_ext = ".html",
-        ext = ".wiki",
       },
       {
         name = "Sprinklr Notes",
         path = "~/work/vimwiki_notes/sprinklr_notes",
         path_html = "~/work/vimwiki_notes/html/sprinklr_notes",
-        template_path = "~/work/vimwiki_notes/templates",
-        template_default = "def_template",
-        template_ext = ".html",
-        ext = ".wiki",
       },
     }
 
@@ -62,11 +47,17 @@ return {
         sparql = "sparql",
       }
 
+      v.template_path = "~/work/vimwiki_notes/templates"
+      v.template_default = "default"
+      v.template_ext = ".html"
+
       v.auto_toc = 1
       v.auto_tags = 1
       v.auto_export = 1
       v.links_space_char = "_"
       v.links_maxhi = 1
+
+      v.ext = ".wiki"
     end
 
     vim.g.vimwiki_list = vimwiki_list
