@@ -1,3 +1,10 @@
+local hostname = vim.fn.hostname()
+if hostname:startswith("akshettrai.jindal") then
+  alt_prefix = "A-C"
+else
+  alt_prefix = "A"
+end
+
 return {
   {
     -- Git UI
@@ -12,7 +19,7 @@ return {
     cmd = "Neogit",
     keys = {
       {
-        "<A-g>",
+        string.format("<%s-g>", alt_prefix),
         "<Cmd>Neogit<CR>",
         silent = true,
         desc = "Open Neogit",

@@ -2,11 +2,18 @@ local utils = require("akshettrj.utils")
 
 local opts = { silent = true }
 
+local hostname = vim.fn.hostname()
+if hostname:startswith("akshettrai.jindal") then
+  alt_prefix = "A-C"
+else
+  alt_prefix = "A"
+end
+
 -- Split Navigation
-vim.keymap.set("n", "<A-h>", "<C-w><C-h>", opts)
-vim.keymap.set("n", "<A-j>", "<C-w><C-j>", opts)
-vim.keymap.set("n", "<A-k>", "<C-w><C-k>", opts)
-vim.keymap.set("n", "<A-l>", "<C-w><C-l>", opts)
+vim.keymap.set("n", string.format("<%s-h>", alt_prefix), "<C-w><C-h>", opts)
+vim.keymap.set("n", string.format("<%s-j>", alt_prefix), "<C-w><C-j>", opts)
+vim.keymap.set("n", string.format("<%s-k>", alt_prefix), "<C-w><C-k>", opts)
+vim.keymap.set("n", string.format("<%s-l>", alt_prefix), "<C-w><C-l>", opts)
 
 -- Split Resizing
 vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", opts)
@@ -26,10 +33,10 @@ vim.keymap.set("n", "%", "%zzzv", opts)
 vim.keymap.set("n", "``", "``zzzv", opts)
 
 -- Navigation in Insert mode
-vim.keymap.set("i", "<A-h>", "<Left>", opts)
-vim.keymap.set("i", "<A-j>", "<Down>", opts)
-vim.keymap.set("i", "<A-k>", "<Up>", opts)
-vim.keymap.set("i", "<A-l>", "<Right>", opts)
+vim.keymap.set("i", string.format("<%s-h>", alt_prefix), "<Left>", opts)
+vim.keymap.set("i", string.format("<%s-j>", alt_prefix), "<Down>", opts)
+vim.keymap.set("i", string.format("<%s-k>", alt_prefix), "<Up>", opts)
+vim.keymap.set("i", string.format("<%s-l>", alt_prefix), "<Right>", opts)
 
 -- Easy Indentation
 vim.keymap.set("v", "<", "<gv", opts)

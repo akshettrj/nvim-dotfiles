@@ -1,3 +1,10 @@
+local hostname = vim.fn.hostname()
+if hostname:startswith("akshettrai.jindal") then
+  alt_prefix = "A-C"
+else
+  alt_prefix = "A"
+end
+
 return {
   "https://github.com/ThePrimeagen/harpoon",
   branch = "harpoon2",
@@ -7,12 +14,12 @@ return {
     harpoon:setup()
 
     for i = 1, 9 do
-      vim.keymap.set("n", "<A-" .. i .. ">", function()
+      vim.keymap.set("n", "<" .. alt_prefix .. "-" .. i .. ">", function()
         harpoon:list():select(i)
       end, { desc = "Harpoon goto file " .. i })
     end
 
-    vim.keymap.set("n", "<A-0>", function()
+    vim.keymap.set("n", "<" .. alt_prefix .. "-0>", function()
       harpoon.ui:toggle_quick_menu(harpoon:list())
     end, { desc = "Toggle Harpoon UI" })
 

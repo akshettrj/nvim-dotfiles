@@ -1,7 +1,16 @@
+require("akshettrj.utils")
+
+local hostname = vim.fn.hostname()
+if hostname:startswith("akshettrai.jindal") then
+  alt_prefix = "A-C"
+else
+  alt_prefix = "A"
+end
+
 return {
   "https://github.com/lmburns/lf.nvim",
   keys = {
-    { "<A-o>", "<Cmd>Lf<CR>", silent = true, desc = "Open LF file manager" },
+    { string.format("<%s-o>", alt_prefix), "<Cmd>Lf<CR>", silent = true, desc = "Open LF file manager" },
   },
   config = function ()
     require("lf").setup({
