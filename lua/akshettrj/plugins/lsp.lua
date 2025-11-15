@@ -110,34 +110,34 @@ return {
         },
       })
 
-      lspconfig.pyright.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        cmd = { "pyright-langserver", "--stdio" },
-        settings = {
-          python = {
-            analysis = {
-              autoImportCompletions = true,
-              autoSearchPaths = true,
-              diagnosticMode = "workspace",
-              useLibraryCodeForTypes = true,
-              typeCheckingMode = "strict",
-              reportMissingTypeStubs = false,
-            },
-          },
-        },
-      })
-
-      lspconfig.ruff.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        cmd = { "ruff", "server", "--preview" },
-      })
-
-      lspconfig.ts_ls.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-      })
+      -- lspconfig.pyright.setup({
+      --   capabilities = capabilities,
+      --   on_attach = on_attach,
+      --   cmd = { "pyright-langserver", "--stdio" },
+      --   settings = {
+      --     python = {
+      --       analysis = {
+      --         autoImportCompletions = true,
+      --         autoSearchPaths = true,
+      --         diagnosticMode = "workspace",
+      --         useLibraryCodeForTypes = true,
+      --         typeCheckingMode = "strict",
+      --         reportMissingTypeStubs = false,
+      --       },
+      --     },
+      --   },
+      -- })
+      --
+      -- lspconfig.ruff.setup({
+      --   capabilities = capabilities,
+      --   on_attach = on_attach,
+      --   cmd = { "ruff", "server", "--preview" },
+      -- })
+      --
+      -- lspconfig.ts_ls.setup({
+      --   capabilities = capabilities,
+      --   on_attach = on_attach,
+      -- })
 
       lspconfig.taplo.setup({
         capabilities = capabilities,
@@ -253,6 +253,15 @@ return {
       })
 
       vim.lsp.enable("ty")
+      vim.lsp.enable("pyrefly")
+
+      vim.lsp.config["pyrefly"] = {
+        cmd = { "pyrefly", "lsp" },
+        filetypes = { "python" },
+        root_dir = vim.fs.root(0, { ".git/", "pyproject.toml", "pyrefly.toml" }),
+        on_attach=on_attach,
+        capabilities=capabilities,
+      }
 
     end,
     dependencies = {
