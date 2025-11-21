@@ -1,7 +1,6 @@
 require("akshettrj.utils")
 
 local hostname = vim.fn.hostname()
-vim.print(hostname)
 if hostname:startswith("akshettrai.jindal") then
   alt_prefix = "A-C"
 else

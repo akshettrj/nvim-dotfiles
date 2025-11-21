@@ -120,4 +120,31 @@ return {
       "https://github.com/nvim-telescope/telescope.nvim",
     },
   },
+  {
+    "https://github.com/ThePrimeagen/git-worktree.nvim",
+    keys = {
+      {
+        "<leader>gw",
+        function()
+          require('telescope').extensions.git_worktree.git_worktrees()
+        end,
+        silent = true,
+        desc = "Telescope Git worktree switch/delete",
+      },
+      {
+        "<leader>gW",
+        function()
+          require('telescope').extensions.git_worktree.create_git_worktree()
+        end,
+        silent = true,
+        desc = "Telescope Git worktree create",
+      },
+    },
+    config = function()
+      require("telescope").load_extension("git_worktree")
+    end,
+    dependencies = {
+      "https://github.com/nvim-telescope/telescope.nvim",
+    },
+  },
 }

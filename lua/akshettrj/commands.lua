@@ -12,8 +12,6 @@ vim.api.nvim_create_user_command(
 
     final_command =  final_command .. [[s/,\(\n\?\s*[\]}]\)/\1]]
 
-    print(final_command)
-
     vim.cmd(final_command)
   end,
   { nargs = 0, range = true }
