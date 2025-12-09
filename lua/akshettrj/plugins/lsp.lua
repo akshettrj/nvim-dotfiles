@@ -1,3 +1,5 @@
+local utils = require("akshettrj.utils")
+
 local map = function(mode, lhs, rhs, bufnr, opts)
   opts["silent"] = true
   opts["buffer"] = bufnr
@@ -24,16 +26,23 @@ local on_attach_maker = function(lsp_basics)
     map("n", "<leader>r", vim.lsp.buf.rename, bufnr, { desc = "Rename the entity" })
     map("n", "[d", vim.diagnostic.goto_prev, bufnr, { desc = "Go to previous diagnostic" })
     map("n", "]d", vim.diagnostic.goto_next, bufnr, { desc = "Go to next diagnostic" })
-    map("n", "<leader>D", vim.diagnostic.open_float, bufnr, { desc = "Open diagnostics in a floating window" })
     map("n", "<leader>a", vim.lsp.buf.code_action, bufnr, { desc = "Perform code actions" })
 
     vim.lsp.inlay_hint.enable(true, nil)
+    vim.diagnostic.config({
+      float = {
+        source = "always",
+      },
+    })
   end
 end
 
 return {
   {
     "https://github.com/williamboman/mason.nvim",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     cmd = {
       "Mason",
       "MasonUpdate",
@@ -48,6 +57,9 @@ return {
   },
   {
     "https://github.com/williamboman/mason-lspconfig.nvim",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     cmd = { "LspInstall", "LspUninstall" },
     config = function()
       require("mason-lspconfig").setup()
@@ -58,6 +70,9 @@ return {
   },
   {
     "https://github.com/nvimdev/lspsaga.nvim",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     event = { "LspAttach" },
     config = function()
       require("lspsaga").setup({
@@ -83,16 +98,18 @@ return {
   },
   {
     "https://github.com/neovim/nvim-lspconfig",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     event = { "BufNewFile", "BufReadPre" },
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       local lsp_basics = require("lsp_basics")
-      local lspconfig = require("lspconfig")
 
       local on_attach = on_attach_maker(lsp_basics)
 
-      lspconfig.clangd.setup({
+      vim.lsp.config.clangd = {
         capabilities = capabilities,
         on_attach = on_attach,
         cmd = {
@@ -108,7 +125,7 @@ return {
           "--limit-results=0",
           "--rename-file-limit=0",
         },
-      })
+      }
 
       -- lspconfig.pyright.setup({
       --   capabilities = capabilities,
@@ -139,10 +156,10 @@ return {
       --   on_attach = on_attach,
       -- })
 
-      lspconfig.taplo.setup({
+      vim.lsp.config.taplo = {
         capabilities = capabilities,
         on_attach = on_attach,
-      })
+      }
 
       -- lspconfig.nil_ls.setup({
       --   capabilities = capabilities,
@@ -159,7 +176,7 @@ return {
       --   },
       -- })
 
-      lspconfig.nixd.setup({
+      vim.lsp.config.nixd = {
         capabilities = capabilities,
         on_attach = on_attach,
         settings = {
@@ -172,49 +189,51 @@ return {
             },
           },
         },
-      })
+      }
 
-      lspconfig.texlab.setup({
+      vim.lsp.config.texlab = {
         capabilities = capabilities,
         on_attach = on_attach,
         settings = {
           texlab = {
             inlayHints = {
-              maxLength = 15;
+              maxLength = 15,
             }
           }
         }
-      })
+      }
 
-      lspconfig.gopls.setup({
+      vim.lsp.config.gopls = {
         capabilities = capabilities,
         on_attach = on_attach,
         cmd = { "gopls", "serve" },
-        settings = { gopls = {
-          analyses = {
-            shadow = true,
-            unusedvariable = true,
-            unusedwrite = true,
-            useany = true,
+        settings = {
+          gopls = {
+            analyses = {
+              shadow = true,
+              unusedvariable = true,
+              unusedwrite = true,
+              useany = true,
+            },
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = false,
+              constantValues = true,
+              functionTypeParameters = false,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
+            importShortcut = "Both",
+            usePlaceholders = true,
+            matcher = "Fuzzy",
+            experimentalPostfixCompletions = true,
+            staticcheck = true,
           },
-          hints = {
-            assignVariableTypes = true,
-            compositeLiteralFields = true,
-            compositeLiteralTypes = false,
-            constantValues = true,
-            functionTypeParameters = false,
-            parameterNames = true,
-            rangeVariableTypes = true,
-          },
-          importShortcut = "Both",
-          usePlaceholders = true,
-          matcher = "Fuzzy",
-          experimentalPostfixCompletions = true,
-          staticcheck = true,
-        }, },
-      })
+        },
+      }
 
-      lspconfig.lua_ls.setup({
+      vim.lsp.config.lua_ls = {
         capabilities = capabilities,
         on_attach = on_attach,
         settings = {
@@ -250,19 +269,18 @@ return {
             },
           },
         },
-      })
+      }
 
       vim.lsp.enable("ty")
       vim.lsp.enable("pyrefly")
 
-      vim.lsp.config["pyrefly"] = {
+      vim.lsp.config.pyrefly = {
         cmd = { "pyrefly", "lsp" },
         filetypes = { "python" },
         root_dir = vim.fs.root(0, { ".git/", "pyproject.toml", "pyrefly.toml" }),
-        on_attach=on_attach,
-        capabilities=capabilities,
+        on_attach = on_attach,
+        capabilities = capabilities,
       }
-
     end,
     dependencies = {
       "https://github.com/williamboman/mason.nvim",
@@ -274,6 +292,9 @@ return {
   },
   {
     "https://github.com/j-hui/fidget.nvim",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     version = "v1.*",
     event = { "LspAttach" },
     config = function()
@@ -288,12 +309,18 @@ return {
   },
   {
     "https://github.com/folke/trouble.nvim",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     event = "LspAttach",
     cmd = "Trouble",
     opts = {},
   },
   {
     "https://github.com/mrcjkb/rustaceanvim",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     version = "^4",
     ft = { "rust" },
     init = function()
@@ -321,6 +348,9 @@ return {
   },
   {
     "https://github.com/folke/neoconf.nvim",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     opts = {
       import = {
         vscode = true,

@@ -1,6 +1,11 @@
+local utils = require("akshettrj.utils")
+
 return {
   {
     "https://github.com/mfussenegger/nvim-dap",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     keys = {
       {
         "<leader>db",

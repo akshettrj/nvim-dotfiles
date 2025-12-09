@@ -8,5 +8,6 @@ require("akshettrj.autocommands")
 require("akshettrj.opts")
 require("akshettrj.commands")
 require("akshettrj.lazy")
+require("akshettrj.vscode")
 
 vim.cmd("colorscheme " .. vim.g.akshettrj_colorscheme)

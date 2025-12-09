@@ -1,6 +1,11 @@
+local utils = require("akshettrj.utils")
+
 return {
   {
     "https://github.com/nvim-telescope/telescope.nvim",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     keys = {
       {
         "<leader>'",
@@ -34,6 +39,14 @@ return {
         silent = true,
         desc = "Telescope Buffers",
       },
+      {
+        "<leader>j",
+        function()
+          require("telescope.builtin").jumplist()
+        end,
+        silent = true,
+        desc = "Telescope Jumplist",
+      },
     },
     cmd = "Telescope",
     config = function()
@@ -60,6 +73,9 @@ return {
 
   {
     "https://github.com/nvim-telescope/telescope-dap.nvim",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     event = { "VeryLazy" },
     config = function()
       require("telescope").load_extension("dap")
@@ -72,6 +88,9 @@ return {
 
   {
     "https://github.com/nvim-telescope/telescope-file-browser.nvim",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     keys = {
       {
         "<leader>e",
@@ -95,6 +114,9 @@ return {
 
   {
     "https://github.com/nvim-telescope/telescope-live-grep-args.nvim",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     keys = {
       {
         "<leader>/",
@@ -122,6 +144,9 @@ return {
   },
   {
     "https://github.com/ThePrimeagen/git-worktree.nvim",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     keys = {
       {
         "<leader>gw",

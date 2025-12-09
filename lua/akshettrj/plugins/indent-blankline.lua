@@ -1,6 +1,11 @@
+local utils = require("akshettrj.utils")
+
 return {
   {
     "https://github.com/lukas-reineke/indent-blankline.nvim",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     main = "ibl",
     events = { "VeryLazy" },
     opts = {

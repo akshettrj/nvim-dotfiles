@@ -41,4 +41,9 @@ M.jump_to_end_of_line = function()
   end
 end
 
+M.is_inside_vscode = function()
+  local has_vscode, _ = pcall(require, "vscode")
+  return has_vscode
+end
+
 return M

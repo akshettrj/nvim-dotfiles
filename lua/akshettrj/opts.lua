@@ -1,3 +1,5 @@
+local utils = require("akshettrj.utils")
+
 vim.opt.number = true
 vim.opt.inccommand = "split"
 vim.opt.relativenumber = true
@@ -25,7 +27,10 @@ vim.opt.list = true
 vim.opt.fillchars = { eob = " " }
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.scrolloff = 10
+
+if not utils.is_inside_vscode() then
+  vim.opt.scrolloff = 10
+end
 
 if vim.g.started_by_firenvim == true then
   vim.opt_global.laststatus = 0

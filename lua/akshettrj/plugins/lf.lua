@@ -9,6 +9,7 @@ end
 
 return {
   "https://github.com/lmburns/lf.nvim",
+  cmd = "Lf",
   keys = {
     { string.format("<%s-o>", alt_prefix), "<Cmd>Lf<CR>", silent = true, desc = "Open LF file manager" },
   },

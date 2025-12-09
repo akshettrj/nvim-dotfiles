@@ -1,6 +1,10 @@
+local utils = require("akshettrj.utils")
 return {
   {
     "https://github.com/nvim-treesitter/nvim-treesitter",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     build = ":TSUpdate",
     event = { "BufNewFile", "BufReadPost" },
     config = function()
@@ -20,6 +24,9 @@ return {
   },
   {
     "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+    enabled = function()
+      return not utils.is_inside_vscode()
+    end,
     event = { "BufNewFile", "BufReadPost" },
     config = function()
       require("nvim-treesitter.configs").setup({
