@@ -88,6 +88,7 @@ return {
           enable = true,
           sign = true,
           virtual_text = false,
+          sign_priority = 0;
         },
       })
     end,
