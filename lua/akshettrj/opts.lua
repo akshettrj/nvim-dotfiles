@@ -25,8 +25,8 @@ vim.opt.termguicolors = true
 vim.opt_global.termguicolors = true
 vim.opt.list = true
 vim.opt.fillchars = { eob = " " }
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+-- vim.opt.ignorecase = true
+-- vim.opt.smartcase = true
 
 if not utils.is_inside_vscode() then
   vim.opt.scrolloff = 10

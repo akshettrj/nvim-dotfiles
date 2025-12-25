@@ -127,25 +127,27 @@ return {
           "--rename-file-limit=0",
         },
       }
+      vim.lsp.enable("clangd")
 
-      -- lspconfig.pyright.setup({
-      --   capabilities = capabilities,
-      --   on_attach = on_attach,
-      --   cmd = { "pyright-langserver", "--stdio" },
-      --   settings = {
-      --     python = {
-      --       analysis = {
-      --         autoImportCompletions = true,
-      --         autoSearchPaths = true,
-      --         diagnosticMode = "workspace",
-      --         useLibraryCodeForTypes = true,
-      --         typeCheckingMode = "strict",
-      --         reportMissingTypeStubs = false,
-      --       },
-      --     },
-      --   },
-      -- })
-      --
+      vim.lsp.config.pyright = {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        cmd = { "pyright-langserver", "--stdio" },
+        settings = {
+          python = {
+            analysis = {
+              autoImportCompletions = true,
+              autoSearchPaths = true,
+              diagnosticMode = "workspace",
+              useLibraryCodeForTypes = true,
+              typeCheckingMode = "standard",
+              reportMissingTypeStubs = false,
+            },
+          },
+        },
+      }
+      -- vim.lsp.enable("pyright")
+
       -- lspconfig.ruff.setup({
       --   capabilities = capabilities,
       --   on_attach = on_attach,
@@ -161,6 +163,7 @@ return {
         capabilities = capabilities,
         on_attach = on_attach,
       }
+      vim.lsp.enable("taplo")
 
       -- lspconfig.nil_ls.setup({
       --   capabilities = capabilities,
@@ -191,6 +194,7 @@ return {
           },
         },
       }
+      vim.lsp.enable("nixd")
 
       vim.lsp.config.texlab = {
         capabilities = capabilities,
@@ -203,6 +207,7 @@ return {
           }
         }
       }
+      vim.lsp.enable("texlab")
 
       vim.lsp.config.gopls = {
         capabilities = capabilities,
@@ -233,6 +238,7 @@ return {
           },
         },
       }
+      vim.lsp.enable("gopls")
 
       vim.lsp.config.lua_ls = {
         capabilities = capabilities,
@@ -271,9 +277,7 @@ return {
           },
         },
       }
-
-      vim.lsp.enable("ty")
-      vim.lsp.enable("pyrefly")
+      vim.lsp.enable("lua_ls")
 
       vim.lsp.config.pyrefly = {
         cmd = { "pyrefly", "lsp" },
@@ -282,6 +286,15 @@ return {
         on_attach = on_attach,
         capabilities = capabilities,
       }
+      vim.lsp.enable("pyrefly")
+
+      vim.lsp.config.ty = {
+        cmd = { "ty", "server" },
+        filetypes = { "python" },
+        root_dir = vim.fs.root(0, { ".git/", "pyproject.toml" }),
+      }
+      vim.lsp.enable("ty")
+
     end,
     dependencies = {
       "https://github.com/williamboman/mason.nvim",
