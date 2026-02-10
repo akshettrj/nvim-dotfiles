@@ -26,12 +26,13 @@ local on_attach_maker = function(lsp_basics)
     map("n", "<leader>r", vim.lsp.buf.rename, bufnr, { desc = "Rename the entity" })
     map("n", "[d", vim.diagnostic.goto_prev, bufnr, { desc = "Go to previous diagnostic" })
     map("n", "]d", vim.diagnostic.goto_next, bufnr, { desc = "Go to next diagnostic" })
+    map("n", "<leader>D", vim.diagnostic.open_float, bufnr, { desc = "Go to next diagnostic" })
     map("n", "<leader>a", vim.lsp.buf.code_action, bufnr, { desc = "Perform code actions" })
 
     vim.lsp.inlay_hint.enable(true, nil)
     vim.diagnostic.config({
       float = {
-        source = "always",
+        source = "if_many",
       },
     })
   end
@@ -85,7 +86,7 @@ return {
           hide_keyword = true,
         },
         lightbulb = {
-          enable = true,
+          enable = false,
           sign = true,
           virtual_text = false,
           sign_priority = 0;
