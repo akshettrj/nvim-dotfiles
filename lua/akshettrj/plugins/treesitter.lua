@@ -2,13 +2,14 @@ local utils = require("akshettrj.utils")
 return {
   {
     "https://github.com/nvim-treesitter/nvim-treesitter",
+    branch = "main",
     enabled = function()
       return not utils.is_inside_vscode()
     end,
     build = ":TSUpdate",
     event = { "BufNewFile", "BufReadPost" },
     config = function()
-      require("nvim-treesitter.configs").setup({
+      require("nvim-treesitter").setup({
         auto_install = true,
         sync_install = true,
         ignore_installed = {},
@@ -17,19 +18,29 @@ return {
           disable = { "vimwiki", "latex" },
           additional_vim_regex_highlighting = false,
         },
-        indent = { enable = false },
         matchup = { enable = false },
+      })
+    end,
+    init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(ev)
+          if ev.match ~= "vimwiki" and ev.match ~= "latex" then
+            pcall(vim.treesitter.start)
+          end
+        end,
       })
     end,
   },
   {
     "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
     enabled = function()
-      return not utils.is_inside_vscode()
+      return false
+      -- return not utils.is_inside_vscode()
     end,
     event = { "BufNewFile", "BufReadPost" },
     config = function()
-      require("nvim-treesitter.configs").setup({
+      require("nvim-treesitter").setup({
         textobjects = {
           select = {
             enable = true,

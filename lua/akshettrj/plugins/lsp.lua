@@ -284,6 +284,13 @@ return {
         cmd = { "pyrefly", "lsp" },
         filetypes = { "python" },
         root_dir = vim.fs.root(0, { ".git/", "pyproject.toml", "pyrefly.toml" }),
+        -- settings = {
+        --   python = {
+        --     pyrefly = {
+        --       diagnosticMode = "workspace",
+        --     },
+        --   },
+        -- },
         on_attach = on_attach,
         capabilities = capabilities,
       }

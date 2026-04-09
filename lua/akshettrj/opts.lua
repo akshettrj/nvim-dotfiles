@@ -13,7 +13,7 @@ vim.opt.splitright = true
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.foldmarker = { "<<<", ">>>" }
 vim.opt.foldmethod = "marker"
-vim.opt.title = true
+-- vim.opt.title = true
 vim.opt.showmode = false
 vim.opt.virtualedit = "block"
 vim.opt.signcolumn = "yes"
@@ -37,3 +37,5 @@ if vim.g.started_by_firenvim == true then
 else
   vim.opt_global.laststatus = 2
 end
+
+require("vim._core.ui2").enable({})
