@@ -300,8 +300,19 @@ return {
         cmd = { "ty", "server" },
         filetypes = { "python" },
         root_dir = vim.fs.root(0, { ".git/", "pyproject.toml" }),
+        on_attach = on_attach,
+        capabilities = capabilities,
       }
       vim.lsp.enable("ty")
+
+      vim.lsp.config.qmlls = {
+        cmd = { "qmlls", "-E" },
+        filetypes = { "qml" },
+        root_dir = vim.fs.root(0, { "shell.qml" }),
+        on_attach = on_attach,
+        capabilities = capabilities,
+      }
+      vim.lsp.enable("qmlls")
 
     end,
     dependencies = {
