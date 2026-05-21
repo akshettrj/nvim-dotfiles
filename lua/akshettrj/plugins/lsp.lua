@@ -38,6 +38,37 @@ local on_attach_maker = function(lsp_basics)
   end
 end
 
+local create_lsp_commands = function()
+  vim.api.nvim_create_user_command("LspInfo", function(opts)
+    require("vim.health")._check(opts.mods or "", "vim.lsp")
+  end, {
+    desc = "Show LSP health information",
+    force = true,
+  })
+
+  vim.api.nvim_create_user_command("LspRestart", function(opts)
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
+
+    if #clients == 0 then
+      vim.notify("No active LSP clients for the current buffer", vim.log.levels.WARN)
+      vim.cmd.doautoall("nvim.lsp.enable FileType")
+      return
+    end
+
+    for _, client in ipairs(clients) do
+      client:stop(opts.bang)
+    end
+
+    vim.defer_fn(function()
+      vim.cmd.doautoall("nvim.lsp.enable FileType")
+    end, 500)
+  end, {
+    bang = true,
+    desc = "Restart LSP clients attached to the current buffer",
+    force = true,
+  })
+end
+
 return {
   {
     "https://github.com/williamboman/mason.nvim",
@@ -103,8 +134,11 @@ return {
     enabled = function()
       return not utils.is_inside_vscode()
     end,
+    cmd = { "LspInfo", "LspRestart" },
     event = { "BufNewFile", "BufReadPre" },
     config = function()
+      create_lsp_commands()
+
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       local lsp_basics = require("lsp_basics")
