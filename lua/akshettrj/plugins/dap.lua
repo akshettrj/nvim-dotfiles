@@ -77,6 +77,20 @@ return {
       require("dap-go").setup()
       require("dap-python").setup("python")
 
+      dap.configurations.python = dap.configurations.python or {}
+      table.insert(dap.configurations.python, {
+        type = "python",
+        request = "attach",
+        name = "Attach to debugpy (prompt port)",
+        connect = {
+          host = "127.0.0.1",
+          port = function()
+            return tonumber(vim.fn.input("debugpy port: ", "5678"))
+          end,
+        },
+        justMyCode = false,
+      })
+
       require("nvim-dap-virtual-text").setup({
         display_callback = function(variable)
           if #variable.value > 15 then
