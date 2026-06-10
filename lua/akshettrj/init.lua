@@ -7,6 +7,7 @@ vim.g.akshettrj_colorscheme = "gruvbox"
 require("akshettrj.autocommands")
 require("akshettrj.opts")
 require("akshettrj.commands")
+require("akshettrj.timestamps").setup()
 require("akshettrj.lazy")
 require("akshettrj.vscode")
 
