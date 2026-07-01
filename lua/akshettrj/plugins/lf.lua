@@ -16,7 +16,12 @@ return {
   config = function ()
     require("lf").setup({
       escape_quit = false,
+      direction = "float",
       border = "rounded",
+      height = vim.fn.float2nr(vim.fn.round(0.90 * vim.o.lines)),
+      width = vim.fn.float2nr(vim.fn.round(0.90 * vim.o.columns)),
+
+      layout_mapping = string.format("<%s-u>", alt_prefix),
     })
 
     vim.api.nvim_create_autocmd("User", {
