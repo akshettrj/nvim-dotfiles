@@ -6,69 +6,7 @@ return {
     enabled = function()
       return not utils.is_inside_vscode()
     end,
-    keys = {
-      {
-        "<leader>db",
-        function()
-          require("dap").toggle_breakpoint()
-        end,
-        desc = "Toggle breakpoint for debugging",
-      },
-      {
-        "<leader>dB",
-        function()
-          require("dap").run_to_cursor()
-        end,
-      },
-      {
-        "<leader>?",
-        function()
-          require("dap").eval(nil, { enter = true })
-        end,
-      },
-      {
-        "<F1>",
-        function()
-          require("dap").continue()
-        end,
-      },
-      {
-        "<F2>",
-        function()
-          require("dap").step_into()
-        end,
-      },
-      {
-        "<F3>",
-        function()
-          require("dap").step_over()
-        end,
-      },
-      {
-        "<F4>",
-        function()
-          require("dap").step_out()
-        end,
-      },
-      {
-        "<F5>",
-        function()
-          require("dap").step_back()
-        end,
-      },
-      {
-        "<F6>",
-        function()
-          require("dap").restart()
-        end,
-      },
-      {
-        "<F7>",
-        function()
-          require("dap").close()
-        end,
-      },
-    },
+    keys = require("akshettrj.dap.keymaps").lazy_keys(),
     config = function()
       local dap = require("dap")
       local ui = require("dapui")
