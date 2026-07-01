@@ -23,6 +23,6 @@ return {
     shell = vim.o.shell,
     on_open = nil,
     on_close = nil,
-
+    auto_scroll = false,
   },
 }
