@@ -31,7 +31,7 @@ M.mappings = {
   {
     "<leader>?",
     function()
-      require("dap").eval(nil, {
+      require("dapui").eval(nil, {
         enter = true,
         width = math.floor(vim.o.columns * 0.9),
         height = math.floor(vim.o.lines * 0.8),
